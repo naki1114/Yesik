@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/menu"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:text="메     뉴"
+        android:textSize="30sp"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/restaurantRegister"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="식 당   등 록"
+        android:backgroundTint="#000000"/>
+
+    <Button
+        android:id="@+id/menuRegister"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="메 뉴 / 가 격   등 록"
+        android:backgroundTint="#000000"/>
+
+    <Button
+        android:id="@+id/tableRegister"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="룸 / 테 이 블   등 록"
+        android:backgroundTint="#000000"/>
+
+    <Button
+        android:id="@+id/manageTable"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="테 이 블   관 리"
+        android:backgroundTint="#000000"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:text="로 그 아 웃"
+        android:backgroundTint="#000000" />
+
+</LinearLayout>

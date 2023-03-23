@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <TextView
+        android:id="@+id/nameRegister"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="식 당   등 록"
+        android:textSize="30sp"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/nameInput"
+            android:layout_width="180dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:inputType="textPersonName"
+            android:text="상   호   명"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/placeInput"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:inputType="textPersonName"
+            android:text="지      점"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/registerNameButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="등 록"
+            android:backgroundTint="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/innerImageInput"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="이 미 지 첨 부"
+            android:src="@drawable/restaurant_inner" />
+
+        <Button
+            android:id="@+id/registerPictureButton"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="등 록"
+            android:backgroundTint="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/exInner1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/restaurant_inner" />
+
+        <ImageView
+            android:id="@+id/exInner2"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/restaurant_inner" />
+
+        <ImageView
+            android:id="@+id/exInner3"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/restaurant_inner" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/exInner4"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/restaurant_inner" />
+
+        <ImageView
+            android:id="@+id/exInner5"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="120dp"
+            android:src="@drawable/restaurant_inner" />
+
+    </LinearLayout>
+
+</LinearLayout>

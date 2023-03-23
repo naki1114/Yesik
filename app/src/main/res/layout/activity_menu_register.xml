@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <TextView
+        android:id="@+id/menuRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="메 뉴   등 록"
+        android:textSize="30dp"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/menuImageInput"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="이 미 지 첨 부"
+            android:src="@drawable/pasta" />
+
+        <EditText
+            android:id="@+id/menuInput"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="메 뉴 이 름"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/priceInput"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="가   격"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/wonText"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:text="원"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/registerButton"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="등 록"
+            android:backgroundTint="#000000" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp" />
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center" >-->
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/exImage1"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/steak" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/exMenu1"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="스 테 이 크"-->
+<!--            android:gravity="center" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/won1"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="₩"-->
+<!--            android:gravity="center" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/exPrice1"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:text="20,000"-->
+<!--            android:gravity="center" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:gravity="center" >-->
+
+
+<!--        <ImageView-->
+<!--            android:id="@+id/exImage2"-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:src="@drawable/pasta" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/exMenu2"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="파 스 타"-->
+<!--            android:gravity="center" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/won2"-->
+<!--            android:layout_width="20dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:text="₩"-->
+<!--            android:gravity="center" />-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/exPrice2"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:layout_marginLeft="5dp"-->
+<!--            android:text="16,000"-->
+<!--            android:gravity="center" />-->
+
+<!--    </LinearLayout>-->
+
+</LinearLayout>

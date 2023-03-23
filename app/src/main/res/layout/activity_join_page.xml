@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:accessibilityLiveRegion="polite"
+    tools:context=".Join_Page">
+
+    <TextView
+        android:id="@+id/joinText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-500dp"
+        android:text="회 원 가 입"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/memberCheck"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/joinText"
+        app:layout_constraintLeft_toLeftOf="@+id/joinText"
+        app:layout_constraintRight_toRightOf="@+id/joinText"
+        app:layout_constraintBottom_toTopOf="@+id/idText">
+
+        <RadioButton
+            android:id="@+id/restaurantMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:text="식 당 회 원"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/personalMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="개 인 회 원"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/idText"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:gravity="center"
+        android:text="아        이        디"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordText"
+        app:layout_constraintLeft_toLeftOf="@+id/memberCheck"
+        app:layout_constraintRight_toLeftOf="@+id/idInput"
+        app:layout_constraintTop_toBottomOf="@+id/memberCheck"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/idInput"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:inputType="textPersonName"
+        android:hint="ID"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/idText"
+        app:layout_constraintRight_toRightOf="@+id/memberCheck"
+        app:layout_constraintTop_toBottomOf="@+id/memberCheck"
+        app:layout_constraintVertical_bias="0" />
+
+    <Button
+        android:id="@+id/duplicateCheck"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#B9D8F1"
+        android:text="중 복 확 인"
+        app:layout_constraintBottom_toTopOf="@+id/passwordInput"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/idInput"
+        app:layout_constraintRight_toRightOf="@+id/idInput"
+        app:layout_constraintTop_toBottomOf="@+id/idInput" />
+
+    <TextView
+        android:id="@+id/passwordText"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="비    밀    번    호"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/passwordReText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/idText"
+        app:layout_constraintRight_toRightOf="@+id/idText"
+        app:layout_constraintTop_toTopOf="@+id/passwordInput"
+        app:layout_constraintVertical_bias="0" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:hint="PASSWORD"
+        app:layout_constraintBottom_toTopOf="@+id/passwordReInput"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/idInput"
+        app:layout_constraintRight_toRightOf="@+id/idInput"
+        app:layout_constraintTop_toBottomOf="@+id/duplicateCheck" />
+
+    <TextView
+        android:id="@+id/passwordReText"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="비밀번호 재확인"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/nameText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/passwordText"
+        app:layout_constraintRight_toRightOf="@+id/passwordText"
+        app:layout_constraintTop_toBottomOf="@+id/passwordText" />
+
+    <EditText
+        android:id="@+id/passwordReInput"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:hint="PASSWORD"
+        app:layout_constraintBottom_toTopOf="@id/nameInput"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/passwordInput"
+        app:layout_constraintRight_toRightOf="@+id/passwordInput"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="이                    름"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@id/birthText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/passwordReText"
+        app:layout_constraintRight_toRightOf="@+id/passwordReText"
+        app:layout_constraintTop_toBottomOf="@+id/passwordReText" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPersonName"
+        android:hint="이름"
+        app:layout_constraintBottom_toTopOf="@id/birthInput"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/passwordReInput"
+        app:layout_constraintRight_toRightOf="@+id/passwordReInput"
+        app:layout_constraintTop_toBottomOf="@+id/passwordReInput" />
+
+    <TextView
+        android:id="@+id/birthText"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="생    년    월    일"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/birthInput"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/nameText"
+        app:layout_constraintRight_toRightOf="@+id/nameText"
+        app:layout_constraintTop_toBottomOf="@+id/nameText" />
+
+    <EditText
+        android:id="@+id/birthInput"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:inputType="date"
+        android:hint="생년월일"
+        app:layout_constraintBottom_toBottomOf="@id/birthText"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintLeft_toLeftOf="@+id/nameInput"
+        app:layout_constraintRight_toRightOf="@+id/nameInput"
+        app:layout_constraintTop_toBottomOf="@+id/nameInput" />
+
+    <Button
+        android:id="@+id/finishButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="확  인"
+        android:backgroundTint="#B9D8F1"
+        app:layout_constraintBottom_toBottomOf="@id/cancelButton"
+        app:layout_constraintLeft_toLeftOf="@+id/memberCheck"
+        app:layout_constraintRight_toLeftOf="@+id/cancelButton"
+        app:layout_constraintTop_toBottomOf="@+id/birthText" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="취  소"
+        android:textColor="#000000"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@id/finishButton"
+        app:layout_constraintLeft_toRightOf="@+id/finishButton"
+        app:layout_constraintRight_toRightOf="@+id/memberCheck"
+        app:layout_constraintTop_toBottomOf="@+id/birthInput" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

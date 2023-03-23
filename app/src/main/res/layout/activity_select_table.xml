@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/tableNoInput"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:text="테이블 No."
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/confirmButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="확 인"
+            android:backgroundTint="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/exPossible"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/exPossibleText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="예 약 가 능"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/exNonPossible"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="30dp"
+            android:background="#FF8282"
+            android:contentDescription=" "/>
+
+        <TextView
+            android:id="@+id/exNonPossibleText"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="예 약 불 가"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tableButton1"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:text="1"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton2"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="2"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton3"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="5dp"
+            android:text="3"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton4"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="4"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton5"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="5dp"
+            android:text="5"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton6"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="6"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tableButton7"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:text="7"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton8"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="8"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton9"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="5dp"
+            android:text="9"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton10"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="140dp"
+            android:text="10"
+            android:gravity="center"
+            android:background="#FF8282"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tableButton11"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:text="11"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton12"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:text="12"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton13"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginRight="5dp"
+            android:text="13"
+            android:textColor="#FFFFFF"
+            android:gravity="center"
+            android:background="#0000FF"/>
+
+        <TextView
+            android:id="@+id/tableButton14"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="140dp"
+            android:text="14"
+            android:gravity="center"
+            android:background="#FF8282"/>
+
+    </LinearLayout>
+
+</LinearLayout>

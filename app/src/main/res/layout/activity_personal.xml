@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/menuKoreanSoup"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="찌 개"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuJokBo"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="족 발 / 보 쌈"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuPorkBeef"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="고 기 / 구 이"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuWestern"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="양 식"
+            android:src="@drawable/pasta" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/koreanSoupText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:text="찌 개"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/jokBoText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="족발\n보쌈"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/porkBeefText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="고기\n구이"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/westernText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="양 식"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/menuChinese"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="중 식"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuJapanese"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="일 식"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuFlour"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="분 식"
+            android:src="@drawable/pasta" />
+
+        <ImageButton
+            android:id="@+id/menuEtc"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:scaleType="fitCenter"
+            android:contentDescription="기 타"
+            android:src="@drawable/pasta" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/chineseText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="20dp"
+            android:text="중 식"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/japaneseText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="일 식"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/flourText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="분 식"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/etcText"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="기 타"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center|bottom" >
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:text="검 색"
+            android:backgroundTint="#000000"/>
+
+        <Button
+            android:id="@+id/reserveCheckButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:text="예 약 내 역"
+            android:backgroundTint="#000000"/>
+
+        <Button
+            android:id="@+id/myInfoButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:text="내 정 보"
+            android:backgroundTint="#000000"/>
+
+    </LinearLayout>
+
+</LinearLayout>

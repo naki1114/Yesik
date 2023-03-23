@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center|top">
+
+    <TextView
+        android:id="@+id/resName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="롤 링 파 스 타"
+        android:textSize="30sp"
+        android:textColor="@color/black" />
+
+<!--    <ListView-->
+<!--        android:id="@+id/menuView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_marginTop="50dp"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+
+        <ImageView
+            android:id="@+id/exImage1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/steak" />
+
+        <TextView
+            android:id="@+id/exMenu1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="스 테 이 크"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/won1"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="₩"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/exPrice1"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="20,000"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/menuSelect1"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="선 택"
+            android:backgroundTint="#000000" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center" >
+
+
+        <ImageView
+            android:id="@+id/exImage2"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/pasta" />
+
+        <TextView
+            android:id="@+id/exMenu2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="파 스 타"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/won2"
+            android:layout_width="20dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:text="₩"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/exPrice2"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="16,000"
+            android:textColor="@color/black"
+            android:gravity="center" />
+
+        <Button
+            android:id="@+id/menuSelect2"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:text="선 택"
+            android:backgroundTint="#000000" />
+
+    </LinearLayout>
+
+</LinearLayout>

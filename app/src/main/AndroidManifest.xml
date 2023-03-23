@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Yesik"
+        tools:targetApi="31">
+        <activity
+            android:name=".Select_Menu"
+            android:exported="false" />
+        <activity
+            android:name=".Select_Table"
+            android:exported="false" />
+        <activity
+            android:name=".Restaurant_Register"
+            android:exported="false" />
+        <activity
+            android:name=".Reserve_Time"
+            android:exported="false" />
+        <activity
+            android:name=".Select_Restaurant"
+            android:exported="false" />
+        <activity
+            android:name=".Manage_Table"
+            android:exported="false" />
+        <activity
+            android:name=".Table_Register"
+            android:exported="false" />
+        <activity
+            android:name=".Menu_Register"
+            android:exported="false" />
+        <activity
+            android:name=".Personal"
+            android:exported="false" />
+        <activity
+            android:name=".Restaurant"
+            android:exported="false" />
+        <activity
+            android:name=".Join_Page"
+            android:exported="false" />
+        <activity
+            android:name=".Login_Page"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
