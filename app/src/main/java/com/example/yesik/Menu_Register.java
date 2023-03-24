@@ -1,13 +1,26 @@
 package com.example.yesik;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class Menu_Register extends AppCompatActivity {
 
     String tag;
+
+    RecyclerView menuList;
+    MenuAdapter menuAdapter;
+    EditText inputMenu;
+    EditText inputPrice;
+    Button registButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +30,15 @@ public class Menu_Register extends AppCompatActivity {
         tag = "메뉴 등록 페이지";
         Log.v(tag, "onCreate() 호출됨");
 
+        menuList = (RecyclerView) findViewById(R.id.menuRecyclerView);
+        menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        menuList.addItemDecoration(new DividerItemDecoration(this, 1));
+
+        inputMenu = findViewById(R.id.menuInput);
+        inputPrice = findViewById(R.id.priceInput);
+        registButton = findViewById(R.id.registerButton);
+
+        menuAdapter = new MenuAdapter();
     }
 
     @Override
@@ -29,6 +51,18 @@ public class Menu_Register extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        registButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String menu = inputMenu.getText().toString();
+                String price = inputPrice.getText().toString();
+
+                menuAdapter.addData(menu, price);
+                menuList.setAdapter(menuAdapter);
+            }
+        });
+
     }
 
     @Override

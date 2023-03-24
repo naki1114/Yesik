@@ -148,17 +148,17 @@ public class Join_Page extends AppCompatActivity {
                 getBirth = birth.getText().toString();
 
                 if (getID == null | getPW == null | getRePW == null | getName == null | getBirth == null) {
-                    Toast.makeText(getApplicationContext(), "모든 항목을 입력하세요.", Toast.LENGTH_LONG).show();
-                }
-                else if (getPW != getRePW) {
-                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "모든 항목을 입력하세요.", Toast.LENGTH_SHORT).show();
                 }
                 else if (duplicate_check == 0) {
-                    Toast.makeText(getApplicationContext(), "ID 중복 확인을 해주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "ID 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else if (getPW != getRePW) {
+                    Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
 
-                    Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(Join_Page.this, Login_Page.class);
                     intent.putStringArrayListExtra("ID_Res_New",id_res);
