@@ -51,4 +51,12 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
         menuPriceList.add(0,price);
     }
 
+    public void changeData(String menu, String price) {
+
+    }
+
+    public void removeData(String menu, String price) {
+
+    }
+
 }
