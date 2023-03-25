@@ -15,6 +15,8 @@ public class MenuViewHolder extends RecyclerView.ViewHolder {
     Button changeButton;
     Button removeButton;
 
+    int menuPosition;
+
     MenuViewHolder (Context context, View itemView) {
         super(itemView);
 

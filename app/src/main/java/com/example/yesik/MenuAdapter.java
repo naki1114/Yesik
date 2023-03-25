@@ -15,6 +15,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
     private ArrayList<String> menuNameList;
     private ArrayList<String> menuPriceList;
 
+    MenuViewHolder menuViewHolder;
+
+    int menuPosition;
+
     public MenuAdapter () {
         menuNameList = new ArrayList<>();
         menuPriceList = new ArrayList<>();
@@ -27,7 +31,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view= inflater.inflate(R.layout.restaurant_menu_list, parent, false);
 
-        MenuViewHolder menuViewHolder = new MenuViewHolder(context, view);
+        menuViewHolder = new MenuViewHolder(context, view);
 
         return menuViewHolder;
     }
@@ -55,8 +59,9 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
 
     }
 
-    public void removeData(String menu, String price) {
-
+    public void removeData(int position) {
+        menuNameList.remove(position);
+        menuPriceList.remove(position);
     }
 
 }
