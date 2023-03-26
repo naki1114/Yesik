@@ -21,6 +21,8 @@ public class Menu_Register extends AppCompatActivity {
     EditText inputPrice;
     Button registButton;
 
+    int listPosition;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,9 @@ public class Menu_Register extends AppCompatActivity {
 
                 menuAdapter.addData(menu, price);
                 menuList.setAdapter(menuAdapter);
+
+                inputMenu.setText("");
+                inputPrice.setText("");
             }
         });
 

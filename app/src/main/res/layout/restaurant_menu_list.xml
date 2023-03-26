@@ -28,7 +28,6 @@
             android:hint="메뉴이름"
             android:textSize="15sp"
             android:gravity="center"
-            android:focusableInTouchMode="false"
             android:background="@android:color/transparent"/>
 
         <EditText
@@ -39,7 +38,6 @@
             android:hint="가격"
             android:textSize="12sp"
             android:gravity="center"
-            android:focusableInTouchMode="false"
             android:background="@android:color/transparent" />
 
     </LinearLayout>

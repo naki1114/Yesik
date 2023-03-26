@@ -4,13 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
+public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder> {
 
     private ArrayList<String> menuNameList;
     private ArrayList<String> menuPriceList;
@@ -22,6 +24,27 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
     public MenuAdapter () {
         menuNameList = new ArrayList<>();
         menuPriceList = new ArrayList<>();
+    }
+
+    public class MenuViewHolder extends RecyclerView.ViewHolder {
+
+        EditText menuName;
+        EditText menuPrice;
+        Button changeButton;
+        Button removeButton;
+
+        int menuPosition;
+
+        MenuViewHolder (Context context, View itemView) {
+            super(itemView);
+
+            menuName = itemView.findViewById(R.id.menuName);
+            menuPrice = itemView.findViewById(R.id.menuPrice);
+            changeButton = itemView.findViewById(R.id.changeMenu);
+            removeButton = itemView.findViewById(R.id.removeMenu);
+
+        }
+
     }
 
     @NonNull
@@ -50,18 +73,29 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
         return menuNameList.size();
     }
 
+    public int getMenuPosition() {
+        return menuPosition;
+    }
+
+    public void setMenuPosition(int position) {
+        this.menuPosition = position;
+    }
+
     public void addData(String menu, String price) {
-        menuNameList.add(0,menu);
-        menuPriceList.add(0,price);
+        menuNameList.add(0, menu);
+        menuPriceList.add(0, price);
     }
 
     public void changeData(String menu, String price) {
-
+        menuPosition = 0;
     }
 
     public void removeData(int position) {
         menuNameList.remove(position);
         menuPriceList.remove(position);
+
+        notifyItemRemoved(position);
+        notifyDataSetChanged();
     }
 
 }
