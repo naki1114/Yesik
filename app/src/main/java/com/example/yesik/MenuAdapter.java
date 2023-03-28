@@ -1,11 +1,13 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,20 +30,62 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     public class MenuViewHolder extends RecyclerView.ViewHolder {
 
-        EditText menuName;
-        EditText menuPrice;
-        Button changeButton;
+        TextView menuNameView;
+        TextView menuPriceView;
+        EditText menuNameEdit;
+        EditText menuPriceEdit;
+        Button modifyButton;
         Button removeButton;
 
         int menuPosition;
+        int visibleCheck = 0;
 
         MenuViewHolder (Context context, View itemView) {
             super(itemView);
 
-            menuName = itemView.findViewById(R.id.menuName);
-            menuPrice = itemView.findViewById(R.id.menuPrice);
-            changeButton = itemView.findViewById(R.id.changeMenu);
+            menuNameView = itemView.findViewById(R.id.menuNameView);
+            menuPriceView = itemView.findViewById(R.id.menuPriceView);
+            menuNameEdit = itemView.findViewById(R.id.menuNameEdit);
+            menuPriceEdit = itemView.findViewById(R.id.menuPriceEdit);
+            modifyButton = itemView.findViewById(R.id.modifyMenu);
             removeButton = itemView.findViewById(R.id.removeMenu);
+
+            modifyButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (visibleCheck % 2 == 0) {
+                        menuNameEdit.setText(menuNameView.getText().toString());
+                        menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
+
+                        menuNameEdit.requestFocus();
+                        menuNameEdit.setSelection(menuNameEdit.getText().length());
+
+                        menuNameView.setVisibility(View.GONE);
+                        menuPriceView.setVisibility(View.GONE);
+                        menuNameEdit.setVisibility(View.VISIBLE);
+                        menuPriceEdit.setVisibility(View.VISIBLE);
+
+                        modifyButton.setText("완 료");
+                        removeButton.setText("취 소");
+
+                        visibleCheck++;
+                    }
+                    else {
+                        menuNameView.setText(menuNameEdit.getText().toString());
+                        menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
+
+                        menuNameView.setVisibility(View.VISIBLE);
+                        menuPriceView.setVisibility(View.VISIBLE);
+                        menuNameEdit.setVisibility(View.GONE);
+                        menuPriceEdit.setVisibility(View.GONE);
+
+                        modifyButton.setText("수 정");
+                        removeButton.setText("삭 제");
+
+                        visibleCheck++;
+                    }
+                }
+            });
 
         }
 
@@ -64,8 +108,10 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         String name = menuNameList.get(position);
         String price = menuPriceList.get(position);
 
-        holder.menuName.setText(name);
-        holder.menuPrice.setText(price);
+        holder.menuNameView.setText(name);
+        holder.menuPriceView.setText(price);
+        holder.menuNameEdit.setText(name);
+        holder.menuPriceEdit.setText(price);
     }
 
     @Override
@@ -73,20 +119,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         return menuNameList.size();
     }
 
-    public int getMenuPosition() {
-        return menuPosition;
-    }
-
-    public void setMenuPosition(int position) {
-        this.menuPosition = position;
-    }
-
     public void addData(String menu, String price) {
         menuNameList.add(0, menu);
-        menuPriceList.add(0, price);
+        menuPriceList.add(0, "₩ " + price);
+        for (int i = 0; i < menuNameList.size(); i++) {
+            Log.v("메뉴", menuNameList.get(i));
+            Log.v("가격", menuPriceList.get(i));
+        }
     }
 
-    public void changeData(String menu, String price) {
+    public void modifyData(String menu, String price) {
         menuPosition = 0;
     }
 

@@ -11,7 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.text.DecimalFormat;
+
 public class Menu_Register extends AppCompatActivity {
+
+    DecimalFormat priceFormat;
 
     String tag;
 
@@ -31,6 +35,8 @@ public class Menu_Register extends AppCompatActivity {
 
         tag = "메뉴 등록 페이지";
         Log.v(tag, "onCreate() 호출됨");
+
+        priceFormat = new DecimalFormat("###,###");
 
         menuList = (RecyclerView) findViewById(R.id.menuRecyclerView);
         menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
