@@ -112,7 +112,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="변 경"
-            android:backgroundTint="#000000" />
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue"/>
 
     </LinearLayout>
 
@@ -191,7 +192,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="변 경"
-            android:backgroundTint="#000000" />
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue" />
 
     </LinearLayout>
 
@@ -270,7 +272,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
             android:text="변 경"
-            android:backgroundTint="#000000" />
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue" />
 
     </LinearLayout>
 

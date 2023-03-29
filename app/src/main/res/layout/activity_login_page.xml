@@ -30,7 +30,8 @@
             android:gravity="center"
             android:text="식 당 회 원"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/dongdong" />
 
         <RadioButton
             android:id="@+id/personalMember"
@@ -41,7 +42,8 @@
             android:gravity="center"
             android:text="개 인 회 원"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily="@font/dongdong" />
 
     </RadioGroup>
 
@@ -67,7 +69,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:text="회 원 가 입"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightSkyBlue"
+        android:fontFamily="@font/dongdong"/>
 
     <Button
         android:id="@+id/loginButton"
@@ -75,13 +79,8 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:text="로   그   인"
-        android:backgroundTint="#000000" />
-
-    <TextView
-        android:id="@+id/testView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="30sp" />
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightSkyBlue"
+        android:fontFamily="@font/dongdong" />
 
 </LinearLayout>

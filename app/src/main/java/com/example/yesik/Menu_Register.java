@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -60,17 +61,23 @@ public class Menu_Register extends AppCompatActivity {
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MenuItem menuItem = new MenuItem(inputMenu.getText().toString(), inputPrice.getText().toString());
+                Log.v("메뉴", inputMenu.getText().toString());
+                if (inputMenu.getText().toString().equals("") | inputPrice.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "메뉴와 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    MenuItem menuItem = new MenuItem(inputMenu.getText().toString(), inputPrice.getText().toString());
 
-                menuAdapter.addData(menuItem);
-                menuList.setAdapter(menuAdapter);
+                    menuAdapter.addData(menuItem);
+                    menuList.setAdapter(menuAdapter);
 
-                menuAdapter.notifyDataSetChanged();
+                    menuAdapter.notifyDataSetChanged();
 
-                inputMenu.setText("");
-                inputPrice.setText("");
+                    inputMenu.setText("");
+                    inputPrice.setText("");
 
-                inputMenu.requestFocus();
+                    inputMenu.requestFocus();
+                }
             }
         });
     }

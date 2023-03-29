@@ -220,7 +220,8 @@
             android:layout_height="50dp"
             android:layout_marginRight="10dp"
             android:text="검 색"
-            android:backgroundTint="#000000"/>
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue"/>
 
         <Button
             android:id="@+id/reserveCheckButton"
@@ -229,7 +230,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:text="예 약 내 역"
-            android:backgroundTint="#000000"/>
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue"/>
 
         <Button
             android:id="@+id/myInfoButton"
@@ -237,7 +239,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:text="내 정 보"
-            android:backgroundTint="#000000"/>
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue"/>
 
     </LinearLayout>
 

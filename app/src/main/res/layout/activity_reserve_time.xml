@@ -56,7 +56,8 @@
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:text="확  인"
-            android:backgroundTint="#000000" />
+            android:textColor="@color/black"
+            android:backgroundTint="@color/lightSkyBlue" />
 
     </LinearLayout>
 

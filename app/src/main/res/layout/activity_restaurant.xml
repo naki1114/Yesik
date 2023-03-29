@@ -14,7 +14,8 @@
         android:gravity="center"
         android:text="메     뉴"
         android:textSize="30sp"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
 
     <Button
         android:id="@+id/restaurantRegister"
@@ -22,7 +23,9 @@
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:text="식 당   등 록"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
 
     <Button
         android:id="@+id/menuRegister"
@@ -30,7 +33,9 @@
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:text="메 뉴 / 가 격   등 록"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
 
     <Button
         android:id="@+id/tableRegister"
@@ -38,7 +43,9 @@
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:text="룸 / 테 이 블   등 록"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
 
     <Button
         android:id="@+id/manageTable"
@@ -46,7 +53,9 @@
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:text="테 이 블   관 리"
-        android:backgroundTint="#000000"/>
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
 
     <Button
         android:id="@+id/logout"
@@ -54,6 +63,8 @@
         android:layout_height="70dp"
         android:layout_marginTop="20dp"
         android:text="로 그 아 웃"
-        android:backgroundTint="#000000" />
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
 
 </LinearLayout>
