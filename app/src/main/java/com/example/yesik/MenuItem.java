@@ -5,6 +5,11 @@ public class MenuItem{
     private String menuName;
     private String menuPrice;
 
+    public MenuItem (String menuName, String menuPrice) {
+        this.menuName = menuName;
+        this.menuPrice = "₩ " + menuPrice;
+    }
+
     public String getMenuName() {
         return menuName;
     }
@@ -18,12 +23,7 @@ public class MenuItem{
     }
 
     public void setMenuPrice(String menuPrice) {
-        this.menuPrice = menuPrice;
-    }
-
-    public MenuItem (String menuName, String menuPrice) {
-        this.menuName = menuName;
-        this.menuPrice = menuPrice;
+        this.menuPrice = "₩ " + menuPrice;
     }
 
 }

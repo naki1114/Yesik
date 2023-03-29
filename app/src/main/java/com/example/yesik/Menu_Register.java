@@ -11,11 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Menu_Register extends AppCompatActivity {
 
-    DecimalFormat priceFormat;
+    ArrayList<MenuItem> menuItemList;
 
     String tag;
 
@@ -25,9 +25,6 @@ public class Menu_Register extends AppCompatActivity {
     EditText inputPrice;
     Button registButton;
 
-    int listPosition;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +32,6 @@ public class Menu_Register extends AppCompatActivity {
 
         tag = "메뉴 등록 페이지";
         Log.v(tag, "onCreate() 호출됨");
-
-        priceFormat = new DecimalFormat("###,###");
 
         menuList = (RecyclerView) findViewById(R.id.menuRecyclerView);
         menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
@@ -46,7 +41,9 @@ public class Menu_Register extends AppCompatActivity {
         inputPrice = findViewById(R.id.priceInput);
         registButton = findViewById(R.id.registerButton);
 
-        menuAdapter = new MenuAdapter();
+        menuItemList = new ArrayList<>();
+
+        menuAdapter = new MenuAdapter(menuItemList);
     }
 
     @Override
@@ -63,17 +60,19 @@ public class Menu_Register extends AppCompatActivity {
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String menu = inputMenu.getText().toString();
-                String price = inputPrice.getText().toString();
+                MenuItem menuItem = new MenuItem(inputMenu.getText().toString(), inputPrice.getText().toString());
 
-                menuAdapter.addData(menu, price);
+                menuAdapter.addData(menuItem);
                 menuList.setAdapter(menuAdapter);
+
+                menuAdapter.notifyDataSetChanged();
 
                 inputMenu.setText("");
                 inputPrice.setText("");
+
+                inputMenu.requestFocus();
             }
         });
-
     }
 
     @Override
