@@ -53,7 +53,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             modifyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (visibleCheck == 0) {
+                    if (visibleCheck % 2 == 0) {
                         menuNameEdit.setText(menuNameView.getText().toString());
                         menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
 
@@ -96,13 +96,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             removeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (visibleCheck == 0) {
+                    if (visibleCheck % 2 == 0) {
                         menuList.remove(getBindingAdapterPosition());
 
                         notifyItemRemoved(getBindingAdapterPosition());
                         notifyItemRangeChanged(getBindingAdapterPosition(), menuList.size());
-
-                        visibleCheck++;
                     }
                     else {
                         menuNameView.setVisibility(View.VISIBLE);
