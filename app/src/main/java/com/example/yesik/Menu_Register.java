@@ -32,6 +32,8 @@ public class Menu_Register extends AppCompatActivity {
 
     String tag;
 
+    Bitmap menuBitmapImage;
+
     private static final int REQUEST_IMAGE_CODE = 101;
 
     RecyclerView menuList;
@@ -110,20 +112,11 @@ public class Menu_Register extends AppCompatActivity {
         registButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (inputMenu.getText().toString().equals("") || inputPrice.getText().toString().equals("") || menuImageAddButton.getResources() == null) {
-                    if (menuImageAddButton.getResources() == null) {
-                        Toast.makeText(getApplicationContext(), "사진을 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    }
-                    else {
-                        Toast.makeText(getApplicationContext(), "메뉴와 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
-                    }
+                if (inputMenu.getText().toString().equals("") || inputPrice.getText().toString().equals("") || menuBitmapImage == null) {
+                    Toast.makeText(getApplicationContext(), "사진, 메뉴, 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    MenuItem menuItem = new MenuItem(R.id.menuImageButton, inputMenu.getText().toString(), inputPrice.getText().toString());
-
-                    menuItem.setMenuImage(R.id.menuImageButton);
-
-                    Toast.makeText(getApplicationContext(), "" + menuImageAddButton.getResources(), Toast.LENGTH_SHORT).show();
+                    MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
 
                     menuAdapter.addData(menuItem);
                     menuList.setAdapter(menuAdapter);
@@ -158,7 +151,7 @@ public class Menu_Register extends AppCompatActivity {
 
         if (requestCode == REQUEST_IMAGE_CODE && resultCode == RESULT_OK) {
             Bundle extras = data.getExtras();
-            Bitmap menuBitmapImage = (Bitmap) extras.get("data");
+            menuBitmapImage = (Bitmap) extras.get("data");
             menuImageAddButton.setImageBitmap(menuBitmapImage);
         }
     }

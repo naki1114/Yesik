@@ -1,6 +1,7 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,8 +25,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     MenuItem menuItem;
 
-    int menuPosition;
-
     public MenuAdapter (ArrayList<MenuItem> menuItem) {
         menuList = menuItem;
     }
@@ -39,6 +38,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         EditText menuPriceEdit;
         Button modifyButton;
         Button removeButton;
+        Bitmap menuImage;
 
         int visibleCheck = 0;
 
@@ -77,7 +77,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                         menuNameView.setText(menuNameEdit.getText().toString());
                         menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
 
-                        menuItem = new MenuItem(R.id.menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
+                        menuItem = new MenuItem(menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
 
                         menuList.set(getBindingAdapterPosition(), menuItem);
 
@@ -137,6 +137,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     @Override
     public void onBindViewHolder (@NonNull MenuViewHolder holder, int position) {
+        holder.menuImageView.setImageBitmap(menuList.get(position).getMenuImage());
         holder.menuNameView.setText(menuList.get(position).getMenuName());
         holder.menuPriceView.setText(menuList.get(position).getMenuPrice());
         holder.menuNameEdit.setText(menuList.get(position).getMenuName());
