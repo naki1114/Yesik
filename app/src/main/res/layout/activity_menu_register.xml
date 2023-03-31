@@ -27,12 +27,11 @@
         android:gravity="center">
 
         <ImageButton
-            android:id="@+id/menuImageInput"
+            android:id="@+id/menuImageButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="fitCenter"
-            android:contentDescription="이 미 지 첨 부"
-            android:src="@drawable/pasta" />
+            android:contentDescription="이 미 지 첨 부" />
 
         <EditText
             android:id="@+id/menuInput"

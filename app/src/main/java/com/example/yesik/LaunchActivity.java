@@ -19,6 +19,7 @@ public class LaunchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
 
+        // SDK_INT = 33 / Build.VERSION_CODES.M = 23
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (!hasPermissions(PERMISSIONS)) {
                 requestPermissions(PERMISSIONS, PERMISSIONS_REQUEST_CODE);
@@ -62,7 +63,7 @@ public class LaunchActivity extends AppCompatActivity {
                     boolean callPermissionAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
 
                     if (!cameraPermissionAccepted || !diskPermissionAccepted || !callPermissionAccepted) {
-                        showDialogForPermission("앱을 실행하려면 퍼미션을 허가하셔야합니다.");
+                        showDialogForPermission("앱을 실행하려면 권한을 허가해야합니다.");
                     }
                     else {
                         Intent toMain = new Intent(LaunchActivity.this, MainActivity.class);

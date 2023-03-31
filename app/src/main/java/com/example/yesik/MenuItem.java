@@ -1,13 +1,25 @@
 package com.example.yesik;
 
+import android.widget.ImageView;
+
 public class MenuItem{
 
+    private int menuImageId;
     private String menuName;
     private String menuPrice;
 
-    public MenuItem (String menuName, String menuPrice) {
+    public MenuItem (int id, String menuName, String menuPrice) {
+        menuImageId = id;
         this.menuName = menuName;
         this.menuPrice = "₩ " + menuPrice;
+    }
+
+    public int getMenuImage() {
+        return menuImageId;
+    }
+
+    public void setMenuImage(int id) {
+        menuImageId = id;
     }
 
     public String getMenuName() {

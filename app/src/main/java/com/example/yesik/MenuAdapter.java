@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -31,6 +32,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     public class MenuViewHolder extends RecyclerView.ViewHolder {
 
+        ImageView menuImageView;
         TextView menuNameView;
         TextView menuPriceView;
         EditText menuNameEdit;
@@ -43,6 +45,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         public MenuViewHolder (Context context, View itemView) {
             super(itemView);
 
+            menuImageView = itemView.findViewById(R.id.menuImage);
             menuNameView = itemView.findViewById(R.id.menuNameView);
             menuPriceView = itemView.findViewById(R.id.menuPriceView);
             menuNameEdit = itemView.findViewById(R.id.menuNameEdit);
@@ -74,7 +77,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                         menuNameView.setText(menuNameEdit.getText().toString());
                         menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
 
-                        menuItem = new MenuItem(menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
+                        menuItem = new MenuItem(R.id.menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
 
                         menuList.set(getBindingAdapterPosition(), menuItem);
 
