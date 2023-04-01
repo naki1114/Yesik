@@ -1,20 +1,13 @@
 package com.example.yesik;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.TargetApi;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -22,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -42,6 +37,9 @@ public class Menu_Register extends AppCompatActivity {
     EditText inputPrice;
     Button registButton;
     ImageButton menuImageAddButton;
+    ImageButton closeImageButton;
+    ImageView menuImageExpandView;
+    LinearLayout expandImageLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +66,7 @@ public class Menu_Register extends AppCompatActivity {
 
         menuImageAdd();
         menuAdd();
+        closeExpandImage();
 
     }
 
@@ -91,17 +90,20 @@ public class Menu_Register extends AppCompatActivity {
 
     // 생명주기 끝
 
-    // My method
+    // Custom method
 
     public void initializing() {
         menuList = (RecyclerView) findViewById(R.id.menuRecyclerView);
         menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         menuList.addItemDecoration(new DividerItemDecoration(this, 1));
 
+        menuImageExpandView = findViewById(R.id.menuImageExpandView);
         inputMenu = findViewById(R.id.menuInput);
         inputPrice = findViewById(R.id.priceInput);
         registButton = findViewById(R.id.registerButton);
         menuImageAddButton = findViewById(R.id.menuImageButton);
+        closeImageButton = findViewById(R.id.closeImageButton);
+        expandImageLayout = findViewById(R.id.expandImageLayout);
 
         menuItemList = new ArrayList<>();
 
@@ -118,6 +120,9 @@ public class Menu_Register extends AppCompatActivity {
                 else {
                     MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
 
+                    menuImageExpandView.setImageBitmap(menuBitmapImage);
+                    expandImageLayout.setVisibility(View.VISIBLE);
+
                     menuAdapter.addData(menuItem);
                     menuList.setAdapter(menuAdapter);
 
@@ -125,6 +130,7 @@ public class Menu_Register extends AppCompatActivity {
 
                     inputMenu.setText("");
                     inputPrice.setText("");
+                    menuBitmapImage = null;
 
                     inputMenu.requestFocus();
                 }
@@ -154,6 +160,15 @@ public class Menu_Register extends AppCompatActivity {
             menuBitmapImage = (Bitmap) extras.get("data");
             menuImageAddButton.setImageBitmap(menuBitmapImage);
         }
+    }
+
+    public void closeExpandImage() {
+        closeImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                expandImageLayout.setVisibility(View.INVISIBLE);
+            }
+        });
     }
 
 }

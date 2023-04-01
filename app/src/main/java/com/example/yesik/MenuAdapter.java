@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.DialogCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -40,12 +39,14 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         Button removeButton;
         Bitmap menuImage;
 
+        private static final int REQUEST_IMAGE_CODE = 101;
+
         int visibleCheck = 0;
 
         public MenuViewHolder (Context context, View itemView) {
             super(itemView);
 
-            menuImageView = itemView.findViewById(R.id.menuImage);
+            menuImageView = itemView.findViewById(R.id.menuImageView);
             menuNameView = itemView.findViewById(R.id.menuNameView);
             menuPriceView = itemView.findViewById(R.id.menuPriceView);
             menuNameEdit = itemView.findViewById(R.id.menuNameEdit);
@@ -56,69 +57,78 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             modifyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (visibleCheck % 2 == 0) {
-                        menuNameEdit.setText(menuNameView.getText().toString());
-                        menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
-
-                        menuNameEdit.requestFocus();
-                        menuNameEdit.setSelection(menuNameEdit.getText().length());
-
-                        menuNameView.setVisibility(View.GONE);
-                        menuPriceView.setVisibility(View.GONE);
-                        menuNameEdit.setVisibility(View.VISIBLE);
-                        menuPriceEdit.setVisibility(View.VISIBLE);
-
-                        modifyButton.setText("완 료");
-                        removeButton.setText("취 소");
-
-                        visibleCheck++;
-                    }
-                    else {
-                        menuNameView.setText(menuNameEdit.getText().toString());
-                        menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
-
-                        menuItem = new MenuItem(menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
-
-                        menuList.set(getBindingAdapterPosition(), menuItem);
-
-                        notifyItemChanged(getBindingAdapterPosition());
-
-                        menuNameView.setVisibility(View.VISIBLE);
-                        menuPriceView.setVisibility(View.VISIBLE);
-                        menuNameEdit.setVisibility(View.GONE);
-                        menuPriceEdit.setVisibility(View.GONE);
-
-                        modifyButton.setText("수 정");
-                        removeButton.setText("삭 제");
-
-                        visibleCheck--;
-                    }
+                    modifyData();
                 }
             });
 
             removeButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (visibleCheck % 2 == 0) {
-                        menuList.remove(getBindingAdapterPosition());
-
-                        notifyItemRemoved(getBindingAdapterPosition());
-                        notifyItemRangeChanged(getBindingAdapterPosition(), menuList.size());
-                    }
-                    else {
-                        menuNameView.setVisibility(View.VISIBLE);
-                        menuPriceView.setVisibility(View.VISIBLE);
-                        menuNameEdit.setVisibility(View.GONE);
-                        menuPriceEdit.setVisibility(View.GONE);
-
-                        modifyButton.setText("수 정");
-                        removeButton.setText("삭 제");
-
-                        visibleCheck--;
-                    }
+                    removeData();
                 }
             });
 
+        }
+
+        // ViewHolder Custom Method
+        public void modifyData() {
+            if (visibleCheck % 2 == 0) {
+                menuNameEdit.setText(menuNameView.getText().toString());
+                menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
+
+                menuNameEdit.requestFocus();
+                menuNameEdit.setSelection(menuNameEdit.getText().length());
+
+                menuNameView.setVisibility(View.GONE);
+                menuPriceView.setVisibility(View.GONE);
+                menuNameEdit.setVisibility(View.VISIBLE);
+                menuPriceEdit.setVisibility(View.VISIBLE);
+
+                modifyButton.setText("완 료");
+                removeButton.setText("취 소");
+
+                visibleCheck++;
+            }
+            else {
+                menuNameView.setText(menuNameEdit.getText().toString());
+                menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
+
+                menuItem = new MenuItem(menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
+
+                menuList.set(getBindingAdapterPosition(), menuItem);
+
+                notifyItemChanged(getBindingAdapterPosition());
+
+                menuNameView.setVisibility(View.VISIBLE);
+                menuPriceView.setVisibility(View.VISIBLE);
+                menuNameEdit.setVisibility(View.GONE);
+                menuPriceEdit.setVisibility(View.GONE);
+
+                modifyButton.setText("수 정");
+                removeButton.setText("삭 제");
+
+                visibleCheck--;
+            }
+        }
+
+        public void removeData() {
+            if (visibleCheck % 2 == 0) {
+                menuList.remove(getBindingAdapterPosition());
+
+                notifyItemRemoved(getBindingAdapterPosition());
+                notifyItemRangeChanged(getBindingAdapterPosition(), menuList.size());
+            }
+            else {
+                menuNameView.setVisibility(View.VISIBLE);
+                menuPriceView.setVisibility(View.VISIBLE);
+                menuNameEdit.setVisibility(View.GONE);
+                menuPriceEdit.setVisibility(View.GONE);
+
+                modifyButton.setText("수 정");
+                removeButton.setText("삭 제");
+
+                visibleCheck--;
+            }
         }
 
     }
@@ -128,7 +138,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     public MenuViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view= inflater.inflate(R.layout.restaurant_menu_list, parent, false);
+        View view = inflater.inflate(R.layout.restaurant_menu_list, parent, false);
 
         menuViewHolder = new MenuViewHolder(context, view);
 
