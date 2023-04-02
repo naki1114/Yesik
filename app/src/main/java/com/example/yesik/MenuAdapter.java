@@ -82,11 +82,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 menuNameEdit.setVisibility(View.VISIBLE);
                 menuPriceEdit.setVisibility(View.VISIBLE);
 
-                menuNameEdit.setFocusable(true);
-                menuNameEdit.clearFocus();
-                menuNameEdit.requestFocus();
-//                menuPriceEdit.requestFocus();
-//                menuPriceEdit.setSelection(menuPriceView.getText().toString().length() - 2);
+                menuPriceEdit.requestFocus();
+                menuPriceEdit.setSelection(menuPriceView.getText().toString().length() - 2);
 
                 modifyButton.setText("완 료");
                 removeButton.setText("취 소");
