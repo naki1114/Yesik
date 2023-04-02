@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -40,6 +41,7 @@ public class Menu_Register extends AppCompatActivity {
     ImageButton closeImageButton;
     ImageView menuImageExpandView;
     LinearLayout expandImageLayout;
+    LinearLayout menuRegistLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +99,7 @@ public class Menu_Register extends AppCompatActivity {
         menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         menuList.addItemDecoration(new DividerItemDecoration(this, 1));
 
+        menuRegistLayout = findViewById(R.id.menuRegistLayout);
         menuImageExpandView = findViewById(R.id.menuImageExpandView);
         inputMenu = findViewById(R.id.menuInput);
         inputPrice = findViewById(R.id.priceInput);
@@ -118,10 +121,14 @@ public class Menu_Register extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "사진, 메뉴, 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    InputMethodManager manager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+
                     MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
 
                     menuImageExpandView.setImageBitmap(menuBitmapImage);
                     expandImageLayout.setVisibility(View.VISIBLE);
+                    menuRegistLayout.setVisibility(View.INVISIBLE);
 
                     menuAdapter.addData(menuItem);
                     menuList.setAdapter(menuAdapter);
@@ -130,9 +137,9 @@ public class Menu_Register extends AppCompatActivity {
 
                     inputMenu.setText("");
                     inputPrice.setText("");
+                    menuImageAddButton.setImageResource(R.drawable.no_image);
                     menuBitmapImage = null;
 
-                    inputMenu.requestFocus();
                 }
             }
         });
@@ -167,6 +174,7 @@ public class Menu_Register extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 expandImageLayout.setVisibility(View.INVISIBLE);
+                menuRegistLayout.setVisibility(View.VISIBLE);
             }
         });
     }

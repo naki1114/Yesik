@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -76,13 +77,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 menuNameEdit.setText(menuNameView.getText().toString());
                 menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
 
-                menuNameEdit.requestFocus();
-                menuNameEdit.setSelection(menuNameEdit.getText().length());
-
                 menuNameView.setVisibility(View.GONE);
                 menuPriceView.setVisibility(View.GONE);
                 menuNameEdit.setVisibility(View.VISIBLE);
                 menuPriceEdit.setVisibility(View.VISIBLE);
+
+                menuNameEdit.setFocusable(true);
+                menuNameEdit.clearFocus();
+                menuNameEdit.requestFocus();
+//                menuPriceEdit.requestFocus();
+//                menuPriceEdit.setSelection(menuPriceView.getText().toString().length() - 2);
 
                 modifyButton.setText("완 료");
                 removeButton.setText("취 소");

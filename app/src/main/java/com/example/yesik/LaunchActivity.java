@@ -34,7 +34,7 @@ public class LaunchActivity extends AppCompatActivity {
     }
 
     static final int PERMISSIONS_REQUEST_CODE = 1000;
-    String[] PERMISSIONS = {android.Manifest.permission.CALL_PHONE, android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
+    String[] PERMISSIONS = {android.Manifest.permission.CAMERA, android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private boolean hasPermissions(String[] permissions) {
         int result;
@@ -60,9 +60,8 @@ public class LaunchActivity extends AppCompatActivity {
                 if (grantResults.length > 0) {
                     boolean cameraPermissionAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     boolean diskPermissionAccepted = grantResults[1] == PackageManager.PERMISSION_GRANTED;
-                    boolean callPermissionAccepted = grantResults[2] == PackageManager.PERMISSION_GRANTED;
 
-                    if (!cameraPermissionAccepted || !diskPermissionAccepted || !callPermissionAccepted) {
+                    if (!cameraPermissionAccepted || !diskPermissionAccepted) {
                         showDialogForPermission("앱을 실행하려면 권한을 허가해야합니다.");
                     }
                     else {
