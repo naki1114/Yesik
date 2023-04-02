@@ -93,7 +93,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 menuNameView.setText(menuNameEdit.getText().toString());
                 menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
 
-                menuItem = new MenuItem(menuImage, menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
+                menuItem = new MenuItem(menuList.get(getBindingAdapterPosition()).getMenuImage(), menuNameEdit.getText().toString(), menuPriceEdit.getText().toString());
 
                 menuList.set(getBindingAdapterPosition(), menuItem);
 
