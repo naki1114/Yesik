@@ -1,12 +1,10 @@
 package com.example.yesik;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -38,9 +36,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         EditText menuPriceEdit;
         Button modifyButton;
         Button removeButton;
-        Bitmap menuImage;
-
-        private static final int REQUEST_IMAGE_CODE = 101;
 
         int visibleCheck = 0;
 
