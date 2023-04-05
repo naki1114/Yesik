@@ -211,7 +211,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:inputType="date"
-        android:hint="YYMMDD"
+        android:hint="YY-MM-DD"
         app:layout_constraintBottom_toBottomOf="@id/birthText"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintLeft_toLeftOf="@+id/nameInput"
