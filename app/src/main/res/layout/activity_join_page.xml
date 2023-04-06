@@ -32,7 +32,7 @@
         app:layout_constraintBottom_toTopOf="@+id/idText">
 
         <RadioButton
-            android:id="@+id/personalMember"
+            android:id="@+id/personalUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -44,7 +44,7 @@
             android:fontFamily="@font/dongdong" />
 
         <RadioButton
-            android:id="@+id/restaurantMember"
+            android:id="@+id/restaurantUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -10,7 +10,12 @@ import android.util.Log;
 
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,22 +26,20 @@ public class Join_Page extends AppCompatActivity {
     EditText idInput;
     EditText pwInput;
     EditText pwReInput;
-    EditText userName;
-    EditText birth;
+    EditText userNameInput;
+    EditText userBirthInput;
+
+    RadioGroup memberCheck;
+    RadioButton restaurantButton;
+    RadioButton personButton;
 
     Button finishButton;
     Button cancelButton;
     Button duplicateCheck;
 
-    ArrayList id_res;
-    ArrayList pw_res;
-    ArrayList id_per;
-    ArrayList pw_per;
-
-    int member_res;
-    int member_per;
-
     int duplicate_check;
+    int restaurantUserCount = 0;
+    int personalUserCount = 0;
 
     String getID;
     String getPW;
@@ -44,16 +47,24 @@ public class Join_Page extends AppCompatActivity {
     String getName;
     String getBirth;
 
-    SharedPreferences userInfo;
+    SharedPreferences userInfoSplit;
+    SharedPreferences userInfoJson;
+
+    ArrayList<String> userIDList;
+    ArrayList<String> userPWList;
+    ArrayList<String> userNameList;
+    ArrayList<String> userBirthList;
+
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_page);
 
+        initializing();
         Log.v(tag, "onCreate() 호출됨");
 
-        initializing();
     }
 
     @Override
@@ -89,21 +100,10 @@ public class Join_Page extends AppCompatActivity {
                 getID = idInput.getText().toString();
                 getPW = pwInput.getText().toString();
                 getRePW = pwReInput.getText().toString();
-                getName = userName.getText().toString();
-                getBirth = birth.getText().toString();
+                getName = userNameInput.getText().toString();
+                getBirth = userBirthInput.getText().toString();
 
-//                memberJoin();
-
-                SharedPreferences.Editor editor = userInfo.edit();
-
-                editor.putString("UserId", userInfo.getString("UserId", "") + " " + getID);
-                editor.putString("UserPassword", userInfo.getString("UserPassword", "") + " " + getPW);
-                editor.putString("UserName", userInfo.getString("UserName", "") + " " + getName);
-                editor.putString("UserBirth", userInfo.getString("UserBirth", "") + " " + getBirth);
-
-                editor.commit();
-
-                getUserInfo();
+                memberJoin();
 
             }
 
@@ -136,6 +136,10 @@ public class Join_Page extends AppCompatActivity {
     public void initializing() {
         tag = "회원가입 페이지";
 
+        memberCheck = findViewById(R.id.memberCheck);
+        restaurantButton = findViewById(R.id.restaurantUser);
+        personButton = findViewById(R.id.personalUser);
+
         duplicateCheck = findViewById(R.id.duplicateCheck);
         finishButton = findViewById(R.id.finishButton);
         cancelButton = findViewById(R.id.cancelButton);
@@ -143,10 +147,16 @@ public class Join_Page extends AppCompatActivity {
         idInput = findViewById(R.id.idInput);
         pwInput = findViewById(R.id.passwordInput);
         pwReInput = findViewById(R.id.passwordReInput);
-        userName = findViewById(R.id.nameInput);
-        birth = findViewById(R.id.birthInput);
+        userNameInput = findViewById(R.id.nameInput);
+        userBirthInput = findViewById(R.id.birthInput);
 
-        userInfo = getSharedPreferences("UserInformation", MODE_PRIVATE);
+        userIDList = new ArrayList<>();
+        userPWList = new ArrayList<>();
+        userNameList = new ArrayList<>();
+        userBirthList = new ArrayList<>();
+
+        userInfoSplit = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
+        userInfoJson = getSharedPreferences("UserInfoJson", MODE_PRIVATE);
     }
 
     public void memberJoin() {
@@ -168,13 +178,52 @@ public class Join_Page extends AppCompatActivity {
 //            Intent intent = new Intent(Join_Page.this, Login_Page.class);
 //            startActivity(intent);
 //        }
+
+        if (restaurantButton.isChecked()) {
+            restaurantUserCount++;
+
+            saveUserInfoSplit();
+            getUserInfoSplit();
+
+            saveUserInfoJson();
+            getUserInfoJson();
+
+            intent = new Intent(Join_Page.this, Login_Page.class);
+            startActivity(intent);
+        }
+        else if (personButton.isChecked()) {
+            personalUserCount++;
+
+            saveUserInfoSplit();
+            getUserInfoSplit();
+
+            saveUserInfoJson();
+            getUserInfoJson();
+
+            intent = new Intent(Join_Page.this, Login_Page.class);
+            startActivity(intent);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    public void getUserInfo() {
-        String[] userID = userInfo.getString("UserId", "").split(" ");
-        String[] userPW = userInfo.getString("UserPassword", "").split(" ");
-        String[] userName = userInfo.getString("UserName", "").split(" ");
-        String[] userBirth = userInfo.getString("UserBirth", "").split(" ");
+    public void saveUserInfoSplit() {
+        SharedPreferences.Editor editorSplit = userInfoSplit.edit();
+
+        editorSplit.putString("UserId", userInfoSplit.getString("UserId", "") + "⊙" + getID);
+        editorSplit.putString("UserPassword", userInfoSplit.getString("UserPassword", "") + "⊙" + getPW);
+        editorSplit.putString("UserName", userInfoSplit.getString("UserName", "") + "⊙" + getName);
+        editorSplit.putString("UserBirth", userInfoSplit.getString("UserBirth", "") + "⊙" + getBirth);
+
+        editorSplit.commit();
+    }
+
+    public void getUserInfoSplit() {
+        String[] userID = userInfoSplit.getString("UserId", "").split("⊙");
+        String[] userPW = userInfoSplit.getString("UserPassword", "").split("⊙");
+        String[] userName = userInfoSplit.getString("UserName", "").split("⊙");
+        String[] userBirth = userInfoSplit.getString("UserBirth", "").split("⊙");
 
         for (int userCount = 1; userCount < userID.length; userCount++) {
             Log.v(userCount + "번째 User ID", userID[userCount]);
@@ -182,6 +231,42 @@ public class Join_Page extends AppCompatActivity {
             Log.v(userCount + "번째 User Name", userName[userCount]);
             Log.v(userCount + "번째 User Birth", userBirth[userCount]);
         }
+    }
+
+    public void saveUserInfoJson() {
+        SharedPreferences.Editor editorJson = userInfoJson.edit();
+
+        JSONObject saveInfoJson = new JSONObject();
+
+        try {
+            saveInfoJson.put("UserId", getID);
+            saveInfoJson.put("UserPassword", getPW);
+            saveInfoJson.put("UserName", getName);
+            saveInfoJson.put("UserBirth", getBirth);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        editorJson.putString("UserInformation", saveInfoJson.toString());
+        editorJson.commit();
+    }
+
+    public void getUserInfoJson() {
+        String inform = userInfoJson.getString("UserInformation", "");
+
+        try {
+            JSONObject getInfoJson = new JSONObject(inform);
+            Log.v("ID", getInfoJson.get("UserId").toString());
+            Log.v("PW", getInfoJson.get("UserPassword").toString());
+            Log.v("Name", getInfoJson.get("UserName").toString());
+            Log.v("Birth", getInfoJson.get("UserBirth").toString());
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
