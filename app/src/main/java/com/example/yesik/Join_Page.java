@@ -2,6 +2,7 @@ package com.example.yesik;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +40,7 @@ public class Join_Page extends AppCompatActivity {
     Button duplicateCheck;
 
     int duplicate_check;
+    int join_check = 0;
     int restaurantUserCount = 0;
     int personalUserCount = 0;
 
@@ -185,8 +188,8 @@ public class Join_Page extends AppCompatActivity {
             saveUserInfoSplit();
             getUserInfoSplit();
 
-            saveUserInfoJson();
-            getUserInfoJson();
+//            saveUserInfoJson();
+//            getUserInfoJson();
 
             intent = new Intent(Join_Page.this, Login_Page.class);
             startActivity(intent);
@@ -197,8 +200,8 @@ public class Join_Page extends AppCompatActivity {
             saveUserInfoSplit();
             getUserInfoSplit();
 
-            saveUserInfoJson();
-            getUserInfoJson();
+//            saveUserInfoJson();
+//            getUserInfoJson();
 
             intent = new Intent(Join_Page.this, Login_Page.class);
             startActivity(intent);
@@ -233,40 +236,72 @@ public class Join_Page extends AppCompatActivity {
         }
     }
 
-    public void saveUserInfoJson() {
-        SharedPreferences.Editor editorJson = userInfoJson.edit();
+    /**
+     * Json Object
+     */
+//    public void saveUserInfoJson() {
+//        SharedPreferences.Editor editorJson = userInfoJson.edit();
+//
+//        JSONObject saveInfoJson = new JSONObject();
+//
+//        try {
+//            saveInfoJson.put("UserId", getID);
+//            saveInfoJson.put("UserPassword", getPW);
+//            saveInfoJson.put("UserName", getName);
+//            saveInfoJson.put("UserBirth", getBirth);
+//        }
+//        catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//
+//        editorJson.putString("UserInformation", saveInfoJson.toString());
+//        editorJson.commit();
+//    }
+//
+//    public void getUserInfoJson() {
+//        String inform = userInfoJson.getString("UserInformation", "");
+//
+//        try {
+//            JSONObject getInfoJson = new JSONObject(inform);
+//            Log.v("ID", getInfoJson.get("UserId").toString());
+//            Log.v("PW", getInfoJson.get("UserPassword").toString());
+//            Log.v("Name", getInfoJson.get("UserName").toString());
+//            Log.v("Birth", getInfoJson.get("UserBirth").toString());
+//        }
+//        catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
-        JSONObject saveInfoJson = new JSONObject();
-
-        try {
-            saveInfoJson.put("UserId", getID);
-            saveInfoJson.put("UserPassword", getPW);
-            saveInfoJson.put("UserName", getName);
-            saveInfoJson.put("UserBirth", getBirth);
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
-        editorJson.putString("UserInformation", saveInfoJson.toString());
-        editorJson.commit();
-    }
-
-    public void getUserInfoJson() {
-        String inform = userInfoJson.getString("UserInformation", "");
-
-        try {
-            JSONObject getInfoJson = new JSONObject(inform);
-            Log.v("ID", getInfoJson.get("UserId").toString());
-            Log.v("PW", getInfoJson.get("UserPassword").toString());
-            Log.v("Name", getInfoJson.get("UserName").toString());
-            Log.v("Birth", getInfoJson.get("UserBirth").toString());
-        }
-        catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-    }
+    /**
+     * Json Array
+     */
+//    public void saveUserInfoJson() {
+//        userIDList.add(getID);
+//        userPWList.add(getPW);
+//        userNameList.add(getName);
+//        userBirthList.add(getBirth);
+//
+//        SharedPreferences.Editor editorJson = userInfoJson.edit();
+//
+//        if (!userIDList.isEmpty()) {
+//            editorJson.putString("UserId", userIDList.toString());
+//            editorJson.putString("UserPassword", userPWList.toString());
+//            editorJson.putString("UserName", userNameList.toString());
+//            editorJson.putString("UserBirth", userBirthList.toString());
+//            editorJson.
+//        }
+//        else {
+//            editorJson.putString("UserId", null);
+//            editorJson.putString("UserPassword", null);
+//            editorJson.putString("UserName", null);
+//            editorJson.putString("UserBirth", null);
+//        }
+//        editorJson.commit();
+//    }
+//
+//    public void getUserInfoJson() {
+//
+//    }
 
 }
