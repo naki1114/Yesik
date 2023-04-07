@@ -198,10 +198,11 @@ public class Join_Page extends AppCompatActivity {
     public void saveRestaurantUserInfoSplit() {
         SharedPreferences.Editor editorSplit = userInfoSplit.edit();
 
-        editorSplit.putString("Reataurant User ID", userInfoSplit.getString("Reataurant User ID", "") + "⊙" + getID);
-        editorSplit.putString("Reataurant User Password", userInfoSplit.getString("Reataurant User Password", "") + "⊙" + getPW);
-        editorSplit.putString("Reataurant User Name", userInfoSplit.getString("Reataurant User Name", "") + "⊙" + getName);
-        editorSplit.putString("Reataurant User Birth", userInfoSplit.getString("Reataurant User Birth", "") + "⊙" + getBirth);
+        editorSplit.putString("Restaurant User ID", userInfoSplit.getString("Restaurant User ID", "") + "⊙" + getID);
+        editorSplit.putString("Restaurant User Password", userInfoSplit.getString("Restaurant User Password", "") + "⊙" + getPW);
+        editorSplit.putString("Restaurant User Name", userInfoSplit.getString("Restaurant User Name", "") + "⊙" + getName);
+        editorSplit.putString("Restaurant User Birth", userInfoSplit.getString("Restaurant User Birth", "") + "⊙" + getBirth);
+        editorSplit.putInt("Restaurant User Count", restaurantUserCount);
 
         editorSplit.commit();
     }
@@ -213,21 +214,23 @@ public class Join_Page extends AppCompatActivity {
         editorSplit.putString("Personal User Password", userInfoSplit.getString("Personal User Password", "") + "⊙" + getPW);
         editorSplit.putString("Personal User Name", userInfoSplit.getString("Personal User Name", "") + "⊙" + getName);
         editorSplit.putString("Personal User Birth", userInfoSplit.getString("Personal User Birth", "") + "⊙" + getBirth);
+        editorSplit.putInt("Personal User Count", personalUserCount);
 
         editorSplit.commit();
     }
 
     public void getRestaurantUserInfoSplit() {
-        restaurantUserIDList = userInfoSplit.getString("Reataurant User ID", "").split("⊙");
-        restaurantUserPWList = userInfoSplit.getString("Reataurant User Password", "").split("⊙");
-        restaurantUserNameList = userInfoSplit.getString("Reataurant User Name", "").split("⊙");
-        restaurantUserBirthList = userInfoSplit.getString("Reataurant User Birth", "").split("⊙");
+        restaurantUserIDList = userInfoSplit.getString("Restaurant User ID", "").split("⊙");
+        restaurantUserPWList = userInfoSplit.getString("Restaurant User Password", "").split("⊙");
+        restaurantUserNameList = userInfoSplit.getString("Restaurant User Name", "").split("⊙");
+        restaurantUserBirthList = userInfoSplit.getString("Restaurant User Birth", "").split("⊙");
+        restaurantUserCount = userInfoSplit.getInt("Restaurant User Count",0);
 
-        for (int userCount = 1; userCount < restaurantUserIDList.length; userCount++) {
-            Log.v(userCount + "번째 Reataurant User ID", restaurantUserIDList[userCount]);
-            Log.v(userCount + "번째 Reataurant User PW", restaurantUserPWList[userCount]);
-            Log.v(userCount + "번째 Reataurant User Name", restaurantUserNameList[userCount]);
-            Log.v(userCount + "번째 Reataurant User Birth", restaurantUserBirthList[userCount]);
+        for (int count = 1; count <= restaurantUserCount; count++) {
+            Log.v(count + "번째 Restaurant User ID", restaurantUserIDList[count]);
+            Log.v(count + "번째 Restaurant User PW", restaurantUserPWList[count]);
+            Log.v(count + "번째 Restaurant User Name", restaurantUserNameList[count]);
+            Log.v(count + "번째 Restaurant User Birth", restaurantUserBirthList[count]);
         }
     }
 
@@ -236,12 +239,13 @@ public class Join_Page extends AppCompatActivity {
         personalUserPWList = userInfoSplit.getString("Personal User Password", "").split("⊙");
         personalUserNameList = userInfoSplit.getString("Personal User Name", "").split("⊙");
         personalUserBirthList = userInfoSplit.getString("Personal User Birth", "").split("⊙");
+        personalUserCount = userInfoSplit.getInt("Personal User Count", 0);
 
-        for (int userCount = 1; userCount < personalUserIDList.length; userCount++) {
-            Log.v(userCount + "번째 Personal User ID", personalUserIDList[userCount]);
-            Log.v(userCount + "번째 Personal User PW", personalUserPWList[userCount]);
-            Log.v(userCount + "번째 Personal User Name", personalUserNameList[userCount]);
-            Log.v(userCount + "번째 Personal User Birth", personalUserBirthList[userCount]);
+        for (int count = 1; count <= personalUserCount; count++) {
+            Log.v(count + "번째 Personal User ID", personalUserIDList[count]);
+            Log.v(count + "번째 Personal User PW", personalUserPWList[count]);
+            Log.v(count + "번째 Personal User Name", personalUserNameList[count]);
+            Log.v(count + "번째 Personal User Birth", personalUserBirthList[count]);
         }
     }
 
