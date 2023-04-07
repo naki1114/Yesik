@@ -97,7 +97,7 @@ public class Join_Page extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 duplicateCheck = 0;
-                idInput.setTextColor(Color.parseColor("#FF0000"));
+                idInput.setTextColor(Color.parseColor("#000000"));
             }
 
             @Override
@@ -351,7 +351,7 @@ public class Join_Page extends AppCompatActivity {
         else {
             if (restaurantUserCount == 0) {
                 duplicateCheck = 1;
-                idInput.setTextColor(Color.parseColor("#0000FF"));
+                idInput.setTextColor(Color.parseColor("#00FF00"));
             }
             else {
                 for (int count = 1; count <= restaurantUserCount; count++) {
@@ -363,15 +363,15 @@ public class Join_Page extends AppCompatActivity {
                     }
                     else {
                         duplicateCheck = 1;
-                        idInput.setTextColor(Color.parseColor("#0000FF"));
+                        idInput.setTextColor(Color.parseColor("#00FF00"));
                     }
                 }
             }
-            if (personalUserCount == 0) {
+            if (duplicateCheck == 1 && personalUserCount == 0) {
                 duplicateCheck = 1;
-                idInput.setTextColor(Color.parseColor("#0000FF"));
+                idInput.setTextColor(Color.parseColor("#00FF00"));
             }
-            else {
+            else if (duplicateCheck == 1 & personalUserCount != 0){
                 for (int count = 1; count <= personalUserCount; count++) {
                     if (personalUserIDList[count].equals(getID)) {
                         Toast.makeText(getApplicationContext(), "이미 등록된 아이디 입니다.", Toast.LENGTH_SHORT).show();
@@ -381,7 +381,7 @@ public class Join_Page extends AppCompatActivity {
                     }
                     else {
                         duplicateCheck = 1;
-                        idInput.setTextColor(Color.parseColor("#0000FF"));
+                        idInput.setTextColor(Color.parseColor("#00FF00"));
                     }
                 }
             }
