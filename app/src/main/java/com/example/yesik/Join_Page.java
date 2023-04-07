@@ -5,7 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.util.Log;
 
@@ -37,9 +40,9 @@ public class Join_Page extends AppCompatActivity {
 
     Button finishButton;
     Button cancelButton;
-    Button duplicateCheck;
+    Button duplicateCheckButton;
 
-    int duplicate_check;
+    int duplicateCheck;
     int join_check = 0;
     int restaurantUserCount = 0;
     int personalUserCount = 0;
@@ -51,7 +54,7 @@ public class Join_Page extends AppCompatActivity {
     String getBirth;
 
     SharedPreferences userInfoSplit;
-    SharedPreferences userInfoJson;
+//    SharedPreferences userInfoJson;
 
     String[] restaurantUserIDList;
     String[] restaurantUserPWList;
@@ -85,11 +88,31 @@ public class Join_Page extends AppCompatActivity {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
 
-        duplicateCheck.setOnClickListener(new View.OnClickListener() {
+        idInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                duplicateCheck = 0;
+                idInput.setTextColor(Color.parseColor("#FF0000"));
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        duplicateCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getID = idInput.getText().toString();
 
-                duplicate_check = 1;
+                userDuplicateCheck();
+
             }
         });
 
@@ -148,7 +171,7 @@ public class Join_Page extends AppCompatActivity {
         restaurantButton = findViewById(R.id.restaurantUser);
         personButton = findViewById(R.id.personalUser);
 
-        duplicateCheck = findViewById(R.id.duplicateCheck);
+        duplicateCheckButton = findViewById(R.id.duplicateCheck);
         finishButton = findViewById(R.id.finishButton);
         cancelButton = findViewById(R.id.cancelButton);
 
@@ -166,8 +189,6 @@ public class Join_Page extends AppCompatActivity {
     }
 
     public void memberJoin() {
-
-
         if (restaurantButton.isChecked()) {
             restaurantUserCount++;
 
@@ -175,6 +196,8 @@ public class Join_Page extends AppCompatActivity {
 
 //            saveUserInfoJson();
 //            getUserInfoJson();
+
+            Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
             intent = new Intent(Join_Page.this, Login_Page.class);
             startActivity(intent);
@@ -186,6 +209,8 @@ public class Join_Page extends AppCompatActivity {
 
 //            saveUserInfoJson();
 //            getUserInfoJson();
+
+            Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
             intent = new Intent(Join_Page.this, Login_Page.class);
             startActivity(intent);
@@ -316,5 +341,56 @@ public class Join_Page extends AppCompatActivity {
 //    public void getUserInfoJson() {
 //
 //    }
+
+    public void userDuplicateCheck() {
+
+        if (getID.equals("")) {
+            Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            Log.v("중복확인", "아이디를 입력해주세요.");
+        }
+        else {
+            if (restaurantUserCount == 0) {
+                duplicateCheck = 1;
+                idInput.setTextColor(Color.parseColor("#0000FF"));
+            }
+            else {
+                for (int count = 1; count <= restaurantUserCount; count++) {
+                    if (restaurantUserIDList[count].equals(getID)) {
+                        Toast.makeText(getApplicationContext(), "이미 등록된 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                        duplicateCheck = 0;
+                        idInput.setTextColor(Color.parseColor("#FF0000"));
+                        break;
+                    }
+                    else {
+                        duplicateCheck = 1;
+                        idInput.setTextColor(Color.parseColor("#0000FF"));
+                    }
+                }
+            }
+            if (personalUserCount == 0) {
+                duplicateCheck = 1;
+                idInput.setTextColor(Color.parseColor("#0000FF"));
+            }
+            else {
+                for (int count = 1; count <= personalUserCount; count++) {
+                    if (personalUserIDList[count].equals(getID)) {
+                        Toast.makeText(getApplicationContext(), "이미 등록된 아이디 입니다.", Toast.LENGTH_SHORT).show();
+                        duplicateCheck = 0;
+                        idInput.setTextColor(Color.parseColor("#FF0000"));
+                        break;
+                    }
+                    else {
+                        duplicateCheck = 1;
+                        idInput.setTextColor(Color.parseColor("#0000FF"));
+                    }
+                }
+            }
+
+            if (duplicateCheck == 1) {
+                Toast.makeText(getApplicationContext(), "사용 가능한 아이디 입니다.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+    }
 
 }
