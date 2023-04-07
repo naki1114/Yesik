@@ -53,10 +53,15 @@ public class Join_Page extends AppCompatActivity {
     SharedPreferences userInfoSplit;
     SharedPreferences userInfoJson;
 
-    ArrayList<String> userIDList;
-    ArrayList<String> userPWList;
-    ArrayList<String> userNameList;
-    ArrayList<String> userBirthList;
+    String[] restaurantUserIDList;
+    String[] restaurantUserPWList;
+    String[] restaurantUserNameList;
+    String[] restaurantUserBirthList;
+
+    String[] personalUserIDList;
+    String[] personalUserPWList;
+    String[] personalUserNameList;
+    String[] personalUserBirthList;
 
     Intent intent;
 
@@ -67,7 +72,6 @@ public class Join_Page extends AppCompatActivity {
 
         initializing();
         Log.v(tag, "onCreate() 호출됨");
-
     }
 
     @Override
@@ -84,6 +88,7 @@ public class Join_Page extends AppCompatActivity {
         duplicateCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 duplicate_check = 1;
             }
         });
@@ -153,40 +158,20 @@ public class Join_Page extends AppCompatActivity {
         userNameInput = findViewById(R.id.nameInput);
         userBirthInput = findViewById(R.id.birthInput);
 
-        userIDList = new ArrayList<>();
-        userPWList = new ArrayList<>();
-        userNameList = new ArrayList<>();
-        userBirthList = new ArrayList<>();
-
         userInfoSplit = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
-        userInfoJson = getSharedPreferences("UserInfoJson", MODE_PRIVATE);
+//        userInfoJson = getSharedPreferences("UserInfoJson", MODE_PRIVATE);
+
+        getRestaurantUserInfoSplit();
+        getPersonalUserInfoSplit();
     }
 
     public void memberJoin() {
-//        회원가입 기능
-//        if (getID.equals(null) || getPW.equals(null) || getRePW.equals(null) || getName.equals(null) || getBirth.equals(null) || duplicate_check == 0 || !getPW.equals(getRePW)) {
-//            if (duplicate_check == 0) {
-//                Toast.makeText(getApplicationContext(), "ID 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
-//            }
-//            if (!getPW.equals(getRePW)) {
-//                Toast.makeText(getApplicationContext(), "비밀번호가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
-//            }
-//            if (getID.equals(null) || getPW.equals(null) || getRePW.equals(null) || getName.equals(null) || getBirth.equals(null)) {
-//                Toast.makeText(getApplicationContext(), "모든 항목을 입력하세요.", Toast.LENGTH_SHORT).show();
-//            }
-//        }
-//        else {
-//            Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-//
-//            Intent intent = new Intent(Join_Page.this, Login_Page.class);
-//            startActivity(intent);
-//        }
+
 
         if (restaurantButton.isChecked()) {
             restaurantUserCount++;
 
-            saveUserInfoSplit();
-            getUserInfoSplit();
+            saveRestaurantUserInfoSplit();
 
 //            saveUserInfoJson();
 //            getUserInfoJson();
@@ -197,8 +182,7 @@ public class Join_Page extends AppCompatActivity {
         else if (personButton.isChecked()) {
             personalUserCount++;
 
-            saveUserInfoSplit();
-            getUserInfoSplit();
+            savePersonalUserInfoSplit();
 
 //            saveUserInfoJson();
 //            getUserInfoJson();
@@ -211,28 +195,53 @@ public class Join_Page extends AppCompatActivity {
         }
     }
 
-    public void saveUserInfoSplit() {
+    public void saveRestaurantUserInfoSplit() {
         SharedPreferences.Editor editorSplit = userInfoSplit.edit();
 
-        editorSplit.putString("UserId", userInfoSplit.getString("UserId", "") + "⊙" + getID);
-        editorSplit.putString("UserPassword", userInfoSplit.getString("UserPassword", "") + "⊙" + getPW);
-        editorSplit.putString("UserName", userInfoSplit.getString("UserName", "") + "⊙" + getName);
-        editorSplit.putString("UserBirth", userInfoSplit.getString("UserBirth", "") + "⊙" + getBirth);
+        editorSplit.putString("Reataurant User ID", userInfoSplit.getString("Reataurant User ID", "") + "⊙" + getID);
+        editorSplit.putString("Reataurant User Password", userInfoSplit.getString("Reataurant User Password", "") + "⊙" + getPW);
+        editorSplit.putString("Reataurant User Name", userInfoSplit.getString("Reataurant User Name", "") + "⊙" + getName);
+        editorSplit.putString("Reataurant User Birth", userInfoSplit.getString("Reataurant User Birth", "") + "⊙" + getBirth);
 
         editorSplit.commit();
     }
 
-    public void getUserInfoSplit() {
-        String[] userID = userInfoSplit.getString("UserId", "").split("⊙");
-        String[] userPW = userInfoSplit.getString("UserPassword", "").split("⊙");
-        String[] userName = userInfoSplit.getString("UserName", "").split("⊙");
-        String[] userBirth = userInfoSplit.getString("UserBirth", "").split("⊙");
+    public void savePersonalUserInfoSplit() {
+        SharedPreferences.Editor editorSplit = userInfoSplit.edit();
 
-        for (int userCount = 1; userCount < userID.length; userCount++) {
-            Log.v(userCount + "번째 User ID", userID[userCount]);
-            Log.v(userCount + "번째 User PW", userPW[userCount]);
-            Log.v(userCount + "번째 User Name", userName[userCount]);
-            Log.v(userCount + "번째 User Birth", userBirth[userCount]);
+        editorSplit.putString("Personal User ID", userInfoSplit.getString("Personal User ID", "") + "⊙" + getID);
+        editorSplit.putString("Personal User Password", userInfoSplit.getString("Personal User Password", "") + "⊙" + getPW);
+        editorSplit.putString("Personal User Name", userInfoSplit.getString("Personal User Name", "") + "⊙" + getName);
+        editorSplit.putString("Personal User Birth", userInfoSplit.getString("Personal User Birth", "") + "⊙" + getBirth);
+
+        editorSplit.commit();
+    }
+
+    public void getRestaurantUserInfoSplit() {
+        restaurantUserIDList = userInfoSplit.getString("Reataurant User ID", "").split("⊙");
+        restaurantUserPWList = userInfoSplit.getString("Reataurant User Password", "").split("⊙");
+        restaurantUserNameList = userInfoSplit.getString("Reataurant User Name", "").split("⊙");
+        restaurantUserBirthList = userInfoSplit.getString("Reataurant User Birth", "").split("⊙");
+
+        for (int userCount = 1; userCount < restaurantUserIDList.length; userCount++) {
+            Log.v(userCount + "번째 Reataurant User ID", restaurantUserIDList[userCount]);
+            Log.v(userCount + "번째 Reataurant User PW", restaurantUserPWList[userCount]);
+            Log.v(userCount + "번째 Reataurant User Name", restaurantUserNameList[userCount]);
+            Log.v(userCount + "번째 Reataurant User Birth", restaurantUserBirthList[userCount]);
+        }
+    }
+
+    public void getPersonalUserInfoSplit() {
+        personalUserIDList = userInfoSplit.getString("Personal User ID", "").split("⊙");
+        personalUserPWList = userInfoSplit.getString("Personal User Password", "").split("⊙");
+        personalUserNameList = userInfoSplit.getString("Personal User Name", "").split("⊙");
+        personalUserBirthList = userInfoSplit.getString("Personal User Birth", "").split("⊙");
+
+        for (int userCount = 1; userCount < personalUserIDList.length; userCount++) {
+            Log.v(userCount + "번째 Personal User ID", personalUserIDList[userCount]);
+            Log.v(userCount + "번째 Personal User PW", personalUserPWList[userCount]);
+            Log.v(userCount + "번째 Personal User Name", personalUserNameList[userCount]);
+            Log.v(userCount + "번째 Personal User Birth", personalUserBirthList[userCount]);
         }
     }
 
