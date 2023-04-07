@@ -3,59 +3,52 @@ package com.example.yesik;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class Login_Page extends AppCompatActivity {
 
     Button joinButton;
     Button loginButton;
 
+    EditText idInput;
+    EditText pwInput;
+
     RadioGroup memberCheck;
     RadioButton restaurantButton;
     RadioButton personButton;
 
-    ArrayList idRestaurant;
-    ArrayList pwRestaurant;
-    ArrayList idPerson;
-    ArrayList pwPerson;
-
     String tag;
 
-    int memberRestaurant;
-    int memberPerson;
-
-    int member_check;
-
     Intent putIntent;
+
+    SharedPreferences getUserInfoSplit;
+
+    String[] restaurantUserIDList;
+    String[] restaurantUserPWList;
+    String[] personalUserIDList;
+    String[] personalUserPWList;
+
+    int userIndex;
+
+    int restaurantUserCount;
+    int personalUserCount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
-
-        tag = "로그인 페이지";
         Log.v(tag, "onCreate() 호출됨");
 
-        member_check = 0;
-
-        joinButton = findViewById(R.id.joinButton);
-        loginButton = findViewById(R.id.loginButton);
-
-        memberCheck = findViewById(R.id.memberCheck);
-
-        restaurantButton = findViewById(R.id.restaurantMember);
-        personButton = findViewById(R.id.personalMember);
-
-        memberCheck.check(-1);
+        initializing();
     }
 
     @Override
@@ -72,19 +65,7 @@ public class Login_Page extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if (restaurantButton.isChecked()) {
-                    putIntent = new Intent(Login_Page.this, Restaurant.class);
-                    startActivity(putIntent);
-                }
-                else if (personButton.isChecked()) {
-                    putIntent = new Intent(Login_Page.this, Personal.class);
-                    startActivity(putIntent);
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_LONG).show();
-                }
-
+                userLogin();
             }
         });
 
@@ -114,6 +95,103 @@ public class Login_Page extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.v(tag, "Login_Page.onDestroy() 호출됨");
+    }
+
+    // Life Cycle Finish
+
+    // Custom Method
+
+    public void initializing() {
+        tag = "로그인 페이지";
+
+        joinButton = findViewById(R.id.joinButton);
+        loginButton = findViewById(R.id.loginButton);
+
+        idInput = findViewById(R.id.idInput);
+        pwInput = findViewById(R.id.passwordInput);
+
+        memberCheck = findViewById(R.id.memberCheck);
+
+        restaurantButton = findViewById(R.id.restaurantMember);
+        personButton = findViewById(R.id.personalMember);
+
+        memberCheck.check(-1);
+
+        getUserInfoSplit = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
+    }
+
+    public void userLogin() {
+        String getID = idInput.getText().toString();
+        String getPW = pwInput.getText().toString();
+
+        if (getID.equals("")) {
+            Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getPW.equals("")) {
+            Toast.makeText(getApplicationContext(), "패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            if (restaurantButton.isChecked()) {
+                restaurantUserIDList = getUserInfoSplit.getString("Restaurant User ID", "").split("⊙");
+                restaurantUserPWList = getUserInfoSplit.getString("Restaurant User Password", "").split("⊙");
+                restaurantUserCount = getUserInfoSplit.getInt("Restaurant User Count", 0);
+
+                for (int count = 1; count <= restaurantUserCount; count++) {
+                    if (restaurantUserIDList[count].equals(getID)) {
+                        userIndex = count;
+                        break;
+                    }
+                    else {
+                        userIndex = 0;
+                    }
+                }
+
+                if (userIndex == 0) {
+                    Toast.makeText(getApplicationContext(), "등록된 아이디가 아닙니다.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (restaurantUserPWList[userIndex].equals(getPW)) {
+                        putIntent = new Intent(Login_Page.this, Restaurant.class);
+                        startActivity(putIntent);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            else if (personButton.isChecked()) {
+                personalUserIDList = getUserInfoSplit.getString("Personal User ID", "").split("⊙");
+                personalUserPWList = getUserInfoSplit.getString("Personal User Password", "").split("⊙");
+                personalUserCount = getUserInfoSplit.getInt("Personal User Count", 0);
+
+                for (int count = 1; count <= personalUserCount; count++) {
+                    if (personalUserIDList[count].equals(getID)) {
+                        userIndex = count;
+                        break;
+                    }
+                    else {
+                        userIndex = 0;
+                    }
+                }
+
+                if (userIndex == 0) {
+                    Toast.makeText(getApplicationContext(), "등록된 아이디가 아닙니다.", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    if (personalUserPWList[userIndex].equals(getPW)) {
+                        putIntent = new Intent(Login_Page.this, Restaurant.class);
+                        startActivity(putIntent);
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_LONG).show();
+            }
+        }
+
     }
 
 }

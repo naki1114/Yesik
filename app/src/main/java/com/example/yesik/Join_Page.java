@@ -117,7 +117,7 @@ public class Join_Page extends AppCompatActivity {
                 getPW = pwInput.getText().toString();
                 getRePW = pwReInput.getText().toString();
 
-                if (getPW.length() >= 8 && getPW.length() <= 12) {
+                if (getPW.length() >= 8 && getPW.length() <= 20) {
                     pwInput.setTextColor(Color.parseColor("#00FF00"));
                 }
                 else {
@@ -173,7 +173,7 @@ public class Join_Page extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 getBirth = userBirthInput.getText().toString();
 
-                if (getBirth.length() == 8 && getBirth.substring(2,3).equals("-") && getBirth.substring(5,6).equals("-")) {
+                if (getBirth.length() == 6) {
                     userBirthInput.setTextColor(Color.parseColor("#00FF00"));
                 }
                 else {
@@ -193,7 +193,6 @@ public class Join_Page extends AppCompatActivity {
                 getID = idInput.getText().toString();
 
                 userDuplicateCheck();
-
             }
         });
 
@@ -216,7 +215,6 @@ public class Join_Page extends AppCompatActivity {
                 getBirth = userBirthInput.getText().toString();
 
                 memberJoin();
-
             }
 
         });
@@ -272,30 +270,51 @@ public class Join_Page extends AppCompatActivity {
     public void memberJoin() {
         if (getID.equals("")) {
             Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            idInput.requestFocus();
+            idInput.setSelection(getID.length());
+        }
+        else if (getID.length() < 6 || getID.length() > 12) {
+            Toast.makeText(getApplicationContext(), "아이디는 6 ~ 12자리 입력해주세요.", Toast.LENGTH_SHORT).show();
+            idInput.requestFocus();
+            idInput.setSelection(getID.length());
         }
         else if (duplicateCheck == 0) {
             Toast.makeText(getApplicationContext(), "아이디 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
         }
         else if (getPW.equals("")) {
             Toast.makeText(getApplicationContext(), "패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            pwInput.requestFocus();
+            pwInput.setSelection(getPW.length());
         }
-        else if (getPW.length() < 8 || getPW.length() > 12) {
-            Toast.makeText(getApplicationContext(), "패스워드는 8 ~ 12자리 입력해주세요.", Toast.LENGTH_SHORT).show();
+        else if (getPW.length() < 8 || getPW.length() > 20) {
+            Toast.makeText(getApplicationContext(), "패스워드는 8 ~ 20자리 입력해주세요.", Toast.LENGTH_SHORT).show();
+            pwInput.requestFocus();
+            pwInput.setSelection(getPW.length());
         }
         else if (getRePW.equals("")) {
             Toast.makeText(getApplicationContext(), "패스워드를 한번 더 확인해주세요.", Toast.LENGTH_SHORT).show();
+            pwReInput.requestFocus();
+            pwReInput.setSelection(getRePW.length());
         }
         else if (!getPW.equals(getRePW)) {
             Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+            pwReInput.requestFocus();
+            pwReInput.setSelection(getRePW.length());
         }
         else if (getName.equals("")) {
             Toast.makeText(getApplicationContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            userNameInput.requestFocus();
+            userNameInput.setSelection(getName.length());
         }
         else if (getBirth.equals("")) {
             Toast.makeText(getApplicationContext(), "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            userBirthInput.requestFocus();
+            userBirthInput.setSelection(getBirth.length());
         }
-        else if (getBirth.length() != 8 || !getBirth.substring(2,3).equals("-") || !getBirth.substring(5,6).equals("-")) {
+        else if (getBirth.length() != 6) {
             Toast.makeText(getApplicationContext(), "생년월일 형식은 YY-MM-DD 입니다.", Toast.LENGTH_SHORT).show();
+            userBirthInput.requestFocus();
+            userBirthInput.setSelection(getBirth.length());
         }
         else {
             if (restaurantButton.isChecked()) {
@@ -371,7 +390,7 @@ public class Join_Page extends AppCompatActivity {
     }
 
     public void getPersonalUserInfoSplit() {
-        personalUserIDList = userInfoSplit.getString("Personal User ID", "").split("⊙");
+        personalUserIDList = userInfoSplit.getString("Personal User ID", "").split("⊙ㅁ");
         personalUserPWList = userInfoSplit.getString("Personal User Password", "").split("⊙");
         personalUserNameList = userInfoSplit.getString("Personal User Name", "").split("⊙");
         personalUserBirthList = userInfoSplit.getString("Personal User Birth", "").split("⊙");
