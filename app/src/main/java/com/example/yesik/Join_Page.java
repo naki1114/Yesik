@@ -43,7 +43,6 @@ public class Join_Page extends AppCompatActivity {
     Button duplicateCheckButton;
 
     int duplicateCheck;
-    int join_check = 0;
     int restaurantUserCount = 0;
     int personalUserCount = 0;
 
@@ -390,7 +389,7 @@ public class Join_Page extends AppCompatActivity {
     }
 
     public void getPersonalUserInfoSplit() {
-        personalUserIDList = userInfoSplit.getString("Personal User ID", "").split("⊙ㅁ");
+        personalUserIDList = userInfoSplit.getString("Personal User ID", "").split("⊙");
         personalUserPWList = userInfoSplit.getString("Personal User Password", "").split("⊙");
         personalUserNameList = userInfoSplit.getString("Personal User Name", "").split("⊙");
         personalUserBirthList = userInfoSplit.getString("Personal User Birth", "").split("⊙");
