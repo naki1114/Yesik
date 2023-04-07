@@ -106,6 +106,87 @@ public class Join_Page extends AppCompatActivity {
             }
         });
 
+        pwInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                getPW = pwInput.getText().toString();
+                getRePW = pwReInput.getText().toString();
+
+                if (getPW.length() >= 8 && getPW.length() <= 12) {
+                    pwInput.setTextColor(Color.parseColor("#00FF00"));
+                }
+                else {
+                    pwInput.setTextColor(Color.parseColor("#000000"));
+                }
+
+                if (getPW.equals(getRePW)) {
+                    pwReInput.setTextColor(Color.parseColor("#00FF00"));
+                }
+                else {
+                    pwReInput.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        pwReInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                getPW = pwInput.getText().toString();
+                getRePW = pwReInput.getText().toString();
+
+                if (getRePW.equals(getPW)) {
+                    pwReInput.setTextColor(Color.parseColor("#00FF00"));
+                }
+                else {
+                    pwReInput.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        userBirthInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                getBirth = userBirthInput.getText().toString();
+
+                if (getBirth.length() == 8 && getBirth.substring(2,3).equals("-") && getBirth.substring(5,6).equals("-")) {
+                    userBirthInput.setTextColor(Color.parseColor("#00FF00"));
+                }
+                else {
+                    userBirthInput.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         duplicateCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +200,7 @@ public class Join_Page extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Join_Page.this, Login_Page.class);
+                intent = new Intent(Join_Page.this, Login_Page.class);
                 startActivity(intent);
             }
         });
@@ -189,35 +270,65 @@ public class Join_Page extends AppCompatActivity {
     }
 
     public void memberJoin() {
-        if (restaurantButton.isChecked()) {
-            restaurantUserCount++;
-
-            saveRestaurantUserInfoSplit();
-
-//            saveUserInfoJson();
-//            getUserInfoJson();
-
-            Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-
-            intent = new Intent(Join_Page.this, Login_Page.class);
-            startActivity(intent);
+        if (getID.equals("")) {
+            Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
         }
-        else if (personButton.isChecked()) {
-            personalUserCount++;
-
-            savePersonalUserInfoSplit();
-
-//            saveUserInfoJson();
-//            getUserInfoJson();
-
-            Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
-
-            intent = new Intent(Join_Page.this, Login_Page.class);
-            startActivity(intent);
+        else if (duplicateCheck == 0) {
+            Toast.makeText(getApplicationContext(), "아이디 중복 확인을 해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getPW.equals("")) {
+            Toast.makeText(getApplicationContext(), "패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getPW.length() < 8 || getPW.length() > 12) {
+            Toast.makeText(getApplicationContext(), "패스워드는 8 ~ 12자리 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getRePW.equals("")) {
+            Toast.makeText(getApplicationContext(), "패스워드를 한번 더 확인해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (!getPW.equals(getRePW)) {
+            Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getName.equals("")) {
+            Toast.makeText(getApplicationContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getBirth.equals("")) {
+            Toast.makeText(getApplicationContext(), "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
+        }
+        else if (getBirth.length() != 8 || !getBirth.substring(2,3).equals("-") || !getBirth.substring(5,6).equals("-")) {
+            Toast.makeText(getApplicationContext(), "생년월일 형식은 YY-MM-DD 입니다.", Toast.LENGTH_SHORT).show();
         }
         else {
-            Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_SHORT).show();
+            if (restaurantButton.isChecked()) {
+                restaurantUserCount++;
+
+                saveRestaurantUserInfoSplit();
+
+//            saveUserInfoJson();
+//            getUserInfoJson();
+
+                Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+
+                intent = new Intent(Join_Page.this, Login_Page.class);
+                startActivity(intent);
+            }
+            else if (personButton.isChecked()) {
+                personalUserCount++;
+
+                savePersonalUserInfoSplit();
+
+//            saveUserInfoJson();
+//            getUserInfoJson();
+
+                Toast.makeText(getApplicationContext(), "회원 가입이 완료되었습니다.", Toast.LENGTH_SHORT).show();
+
+                intent = new Intent(Join_Page.this, Login_Page.class);
+                startActivity(intent);
+            }
+            else {
+                Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_SHORT).show();
+            }
         }
+
     }
 
     public void saveRestaurantUserInfoSplit() {
