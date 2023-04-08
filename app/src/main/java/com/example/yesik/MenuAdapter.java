@@ -1,6 +1,7 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +37,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         EditText menuPriceEdit;
         Button modifyButton;
         Button removeButton;
+        SharedPreferences changeSharedData;
+        BitmapConverter imageConverter;
 
         int visibleCheck = 0;
 
@@ -49,6 +52,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
             menuPriceEdit = itemView.findViewById(R.id.menuPriceEdit);
             modifyButton = itemView.findViewById(R.id.modifyMenu);
             removeButton = itemView.findViewById(R.id.removeMenu);
+
+            changeSharedData = context.getSharedPreferences("MenuItem", Context.MODE_PRIVATE);
 
             modifyButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -95,6 +100,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
                 notifyItemChanged(getBindingAdapterPosition());
 
+                modifySharedData();
+
                 menuNameView.setVisibility(View.VISIBLE);
                 menuPriceView.setVisibility(View.VISIBLE);
                 menuNameEdit.setVisibility(View.GONE);
@@ -125,6 +132,36 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
                 visibleCheck--;
             }
+        }
+
+        public void modifySharedData() {
+            SharedPreferences.Editor editSharedData = changeSharedData.edit();
+            String[] changeMenuList = new String[menuList.size()];
+            String[] changePriceList = new String[menuList.size()];
+//            String[] changeImageList = new String[menuList.size()];
+
+            String allMenu = "";
+            String allPrice = "";
+//            String allImage = "";
+
+            for (int count = 0; count < menuList.size(); count++) {
+                changeMenuList[count] = menuList.get(menuList.size() - 1 - count).getMenuName();
+                changePriceList[count] = menuList.get(menuList.size() - 1 - count).getMenuPrice().substring(2);
+//                changeImageList[count] = imageConverter.BitmapToString(menuList.get(count).getMenuImage());
+
+                allMenu += "⊙" + changeMenuList[count];
+                allPrice += "⊙" + changePriceList[count];
+//                allImage += "⊙" + changeImageList[count];
+            }
+            editSharedData.putString("Menu Name", allMenu);
+            editSharedData.putString("Menu Price", allPrice);
+//            editSharedData.putString("Menu Image", allImage);
+
+            editSharedData.commit();
+        }
+
+        public void removeSharedData() {
+
         }
 
     }
