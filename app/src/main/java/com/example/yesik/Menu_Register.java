@@ -41,6 +41,8 @@ public class Menu_Register extends AppCompatActivity {
     ImageButton menuImageAddButton;
     BitmapConverter imageConverter;
     SharedPreferences sharedPreferencesItem;
+    SharedPreferences getUserID;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +115,7 @@ public class Menu_Register extends AppCompatActivity {
         menuImageAddButton = findViewById(R.id.menuImageButton);
 
         sharedPreferencesItem = getSharedPreferences("MenuItem", MODE_PRIVATE);
+        getUserID = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
 
         menuItemList = new ArrayList<>();
         imageConverter = new BitmapConverter();
@@ -163,18 +166,21 @@ public class Menu_Register extends AppCompatActivity {
 
     public void saveMenuItem() {
         SharedPreferences.Editor editorSaveItem = sharedPreferencesItem.edit();
+        userID = getUserID.getString("Login User ID","");
 
-        editorSaveItem.putString("Menu Name", sharedPreferencesItem.getString("Menu Name", "") + "⊙" + inputMenu.getText().toString());
-        editorSaveItem.putString("Menu Price", sharedPreferencesItem.getString("Menu Price", "") + "⊙" + inputPrice.getText().toString());
-        editorSaveItem.putString("Menu Image", sharedPreferencesItem.getString("Menu Image", "") + "⊙" + imageConverter.BitmapToString(menuBitmapImage));
+        editorSaveItem.putString(userID + " Menu Name", sharedPreferencesItem.getString(userID + " Menu Name", "") + "⊙" + inputMenu.getText().toString());
+        editorSaveItem.putString(userID + " Menu Price", sharedPreferencesItem.getString(userID + " Menu Price", "") + "⊙" + inputPrice.getText().toString());
+        editorSaveItem.putString(userID + " Menu Image", sharedPreferencesItem.getString(userID + " Menu Image", "") + "⊙" + imageConverter.BitmapToString(menuBitmapImage));
 
         editorSaveItem.commit();
     }
 
     public void loadMenuItem() {
-        String[] menuNameList = sharedPreferencesItem.getString("Menu Name", "").split("⊙");
-        String[] priceList = sharedPreferencesItem.getString("Menu Price", "").split("⊙");
-        String[] imageList = sharedPreferencesItem.getString("Menu Image", "").split("⊙");
+        userID = getUserID.getString("Login User ID","");
+
+        String[] menuNameList = sharedPreferencesItem.getString(userID + " Menu Name", "").split("⊙");
+        String[] priceList = sharedPreferencesItem.getString(userID + " Menu Price", "").split("⊙");
+        String[] imageList = sharedPreferencesItem.getString(userID + " Menu Image", "").split("⊙");
 
         for (int count = 1; count < menuNameList.length; count++) {
             MenuItem loadMenuItem = new MenuItem(imageConverter.StringToBitmap(imageList[count]), menuNameList[count], priceList[count]);

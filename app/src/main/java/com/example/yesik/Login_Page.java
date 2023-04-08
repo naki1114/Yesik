@@ -37,6 +37,7 @@ public class Login_Page extends AppCompatActivity {
     String[] personalUserIDList;
     String[] personalUserPWList;
 
+    String userID;
     int userIndex;
 
     int restaurantUserCount;
@@ -139,6 +140,7 @@ public class Login_Page extends AppCompatActivity {
                 for (int count = 1; count <= restaurantUserCount; count++) {
                     if (restaurantUserIDList[count].equals(getID)) {
                         userIndex = count;
+                        userID = restaurantUserIDList[count];
                         break;
                     }
                     else {
@@ -151,6 +153,11 @@ public class Login_Page extends AppCompatActivity {
                 }
                 else {
                     if (restaurantUserPWList[userIndex].equals(getPW)) {
+                        SharedPreferences.Editor putID = getUserInfoSplit.edit();
+
+                        putID.putString("Login User ID", userID);
+                        putID.commit();
+
                         putIntent = new Intent(Login_Page.this, Restaurant.class);
                         startActivity(putIntent);
                     }
@@ -167,6 +174,7 @@ public class Login_Page extends AppCompatActivity {
                 for (int count = 1; count <= personalUserCount; count++) {
                     if (personalUserIDList[count].equals(getID)) {
                         userIndex = count;
+                        userID = personalUserIDList[count];
                         break;
                     }
                     else {
@@ -179,6 +187,11 @@ public class Login_Page extends AppCompatActivity {
                 }
                 else {
                     if (personalUserPWList[userIndex].equals(getPW)) {
+                        SharedPreferences.Editor putID = getUserInfoSplit.edit();
+
+                        putID.putString("Login User ID", userID);
+                        putID.commit();
+
                         putIntent = new Intent(Login_Page.this, Restaurant.class);
                         startActivity(putIntent);
                     }
