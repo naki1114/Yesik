@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,10 +39,8 @@ public class Menu_Register extends AppCompatActivity {
     EditText inputPrice;
     Button registButton;
     ImageButton menuImageAddButton;
-    ImageButton closeImageButton;
-    ImageView menuImageExpandView;
-    LinearLayout expandImageLayout;
-    LinearLayout menuRegistLayout;
+    BitmapConverter imageConverter;
+    SharedPreferences sharedPreferencesItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class Menu_Register extends AppCompatActivity {
         Log.v(tag, "onCreate() 호출됨");
 
         initializing();
-
+        loadMenuItem();
     }
 
     @Override
@@ -68,8 +67,6 @@ public class Menu_Register extends AppCompatActivity {
 
         menuImageAdd();
         menuAdd();
-        closeExpandImage();
-
     }
 
     @Override
@@ -99,17 +96,15 @@ public class Menu_Register extends AppCompatActivity {
         menuList.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         menuList.addItemDecoration(new DividerItemDecoration(this, 1));
 
-        menuRegistLayout = findViewById(R.id.menuRegistLayout);
-        menuImageExpandView = findViewById(R.id.menuImageExpandView);
         inputMenu = findViewById(R.id.menuInput);
         inputPrice = findViewById(R.id.priceInput);
         registButton = findViewById(R.id.registerButton);
         menuImageAddButton = findViewById(R.id.menuImageButton);
-        closeImageButton = findViewById(R.id.closeImageButton);
-        expandImageLayout = findViewById(R.id.expandImageLayout);
+
+        sharedPreferencesItem = getSharedPreferences("MenuItem", MODE_PRIVATE);
 
         menuItemList = new ArrayList<>();
-
+        imageConverter = new BitmapConverter();
         menuAdapter = new MenuAdapter(menuItemList);
     }
 
@@ -126,12 +121,10 @@ public class Menu_Register extends AppCompatActivity {
 
                     MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
 
-                    menuImageExpandView.setImageBitmap(menuBitmapImage);
-                    expandImageLayout.setVisibility(View.VISIBLE);
-                    menuRegistLayout.setVisibility(View.INVISIBLE);
-
                     menuAdapter.addData(menuItem);
                     menuList.setAdapter(menuAdapter);
+
+                    saveMenuItem();
 
                     menuAdapter.notifyDataSetChanged();
 
@@ -169,14 +162,28 @@ public class Menu_Register extends AppCompatActivity {
         }
     }
 
-    public void closeExpandImage() {
-        closeImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                expandImageLayout.setVisibility(View.INVISIBLE);
-                menuRegistLayout.setVisibility(View.VISIBLE);
-            }
-        });
+    public void saveMenuItem () {
+        SharedPreferences.Editor editorSaveItem = sharedPreferencesItem.edit();
+
+        editorSaveItem.putString("Menu Name", sharedPreferencesItem.getString("Menu Name", "") + "⊙" + inputMenu.getText().toString());
+        editorSaveItem.putString("Menu Price", sharedPreferencesItem.getString("Menu Price", "") + "⊙" + inputPrice.getText().toString());
+        editorSaveItem.putString("Menu Image", sharedPreferencesItem.getString("Menu Image", "") + "⊙" + imageConverter.BitmapToString(menuBitmapImage));
+
+        editorSaveItem.commit();
+    }
+
+    public void loadMenuItem () {
+        String[] menuNameList = sharedPreferencesItem.getString("Menu Name", "").split("⊙");
+        String[] priceList = sharedPreferencesItem.getString("Menu Price", "").split("⊙");
+        String[] imageList = sharedPreferencesItem.getString("Menu Image", "").split("⊙");
+
+        for (int count = 1; count < menuNameList.length; count++) {
+            MenuItem loadMenuItem = new MenuItem(imageConverter.StringToBitmap(imageList[count]), menuNameList[count], priceList[count]);
+
+            menuAdapter.addData(loadMenuItem);
+        }
+        menuList.setAdapter(menuAdapter);
+        menuAdapter.notifyDataSetChanged();
     }
 
 }

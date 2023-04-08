@@ -311,7 +311,7 @@ public class Join_Page extends AppCompatActivity {
             userBirthInput.setSelection(getBirth.length());
         }
         else if (getBirth.length() != 6) {
-            Toast.makeText(getApplicationContext(), "생년월일 형식은 YY-MM-DD 입니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "생년월일 형식은 YYMMDD 입니다.", Toast.LENGTH_SHORT).show();
             userBirthInput.requestFocus();
             userBirthInput.setSelection(getBirth.length());
         }
