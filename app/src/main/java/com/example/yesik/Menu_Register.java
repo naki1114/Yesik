@@ -65,8 +65,19 @@ public class Menu_Register extends AppCompatActivity {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
 
-        menuImageAdd();
-        menuAdd();
+        menuImageAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                menuImageAdd();
+            }
+        });
+        registButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                menuAdd();
+            }
+        });
+
     }
 
     @Override
@@ -109,50 +120,38 @@ public class Menu_Register extends AppCompatActivity {
     }
 
     public void menuAdd() {
-        registButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (inputMenu.getText().toString().equals("") || inputPrice.getText().toString().equals("") || menuBitmapImage == null) {
-                    Toast.makeText(getApplicationContext(), "사진, 메뉴, 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    InputMethodManager manager = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-                    manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+        if (inputMenu.getText().toString().equals("") || inputPrice.getText().toString().equals("") || menuBitmapImage == null) {
+            Toast.makeText(getApplicationContext(), "사진, 메뉴, 가격을 모두 입력해주세요.", Toast.LENGTH_SHORT).show();
+        } else {
+            InputMethodManager manager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            manager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
 
-                    MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
+            MenuItem menuItem = new MenuItem(menuBitmapImage, inputMenu.getText().toString(), inputPrice.getText().toString());
 
-                    menuAdapter.addData(menuItem);
-                    menuList.setAdapter(menuAdapter);
+            menuAdapter.addData(menuItem);
+            menuList.setAdapter(menuAdapter);
 
-                    saveMenuItem();
+            saveMenuItem();
 
-                    menuAdapter.notifyDataSetChanged();
+            menuAdapter.notifyDataSetChanged();
 
-                    inputMenu.setText("");
-                    inputPrice.setText("");
-                    menuImageAddButton.setImageResource(R.drawable.no_image);
-                    menuBitmapImage = null;
-
-                }
-            }
-        });
+            inputMenu.setText("");
+            inputPrice.setText("");
+            menuImageAddButton.setImageResource(R.drawable.no_image);
+            menuBitmapImage = null;
+        }
     }
 
     public void menuImageAdd() {
-        menuImageAddButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent getImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent getImage = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-                if (getImage.resolveActivity(getPackageManager()) != null) {
-                    startActivityForResult(getImage, REQUEST_IMAGE_CODE);
-                }
-            }
-        });
+        if (getImage.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(getImage, REQUEST_IMAGE_CODE);
+        }
     }
 
     @Override
-    protected void onActivityResult (int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == REQUEST_IMAGE_CODE && resultCode == RESULT_OK) {
@@ -162,7 +161,7 @@ public class Menu_Register extends AppCompatActivity {
         }
     }
 
-    public void saveMenuItem () {
+    public void saveMenuItem() {
         SharedPreferences.Editor editorSaveItem = sharedPreferencesItem.edit();
 
         editorSaveItem.putString("Menu Name", sharedPreferencesItem.getString("Menu Name", "") + "⊙" + inputMenu.getText().toString());
@@ -172,7 +171,7 @@ public class Menu_Register extends AppCompatActivity {
         editorSaveItem.commit();
     }
 
-    public void loadMenuItem () {
+    public void loadMenuItem() {
         String[] menuNameList = sharedPreferencesItem.getString("Menu Name", "").split("⊙");
         String[] priceList = sharedPreferencesItem.getString("Menu Price", "").split("⊙");
         String[] imageList = sharedPreferencesItem.getString("Menu Image", "").split("⊙");
