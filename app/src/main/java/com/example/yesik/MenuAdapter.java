@@ -38,7 +38,6 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
         Button modifyButton;
         Button removeButton;
         SharedPreferences changeSharedData;
-        BitmapConverter imageConverter;
 
         int visibleCheck = 0;
 
@@ -120,6 +119,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
                 notifyItemRemoved(getBindingAdapterPosition());
                 notifyItemRangeChanged(getBindingAdapterPosition(), menuList.size());
+
+                modifySharedData();
             }
             else {
                 menuNameView.setVisibility(View.VISIBLE);
@@ -136,32 +137,30 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
         public void modifySharedData() {
             SharedPreferences.Editor editSharedData = changeSharedData.edit();
+            BitmapConverter imageConverter = new BitmapConverter();
+
             String[] changeMenuList = new String[menuList.size()];
             String[] changePriceList = new String[menuList.size()];
-//            String[] changeImageList = new String[menuList.size()];
+            String[] changeImageList = new String[menuList.size()];
 
             String allMenu = "";
             String allPrice = "";
-//            String allImage = "";
+            String allImage = "";
 
             for (int count = 0; count < menuList.size(); count++) {
                 changeMenuList[count] = menuList.get(menuList.size() - 1 - count).getMenuName();
                 changePriceList[count] = menuList.get(menuList.size() - 1 - count).getMenuPrice().substring(2);
-//                changeImageList[count] = imageConverter.BitmapToString(menuList.get(count).getMenuImage());
+                changeImageList[count] = imageConverter.BitmapToString(menuList.get(menuList.size() - 1 - count).getMenuImage());
 
                 allMenu += "⊙" + changeMenuList[count];
                 allPrice += "⊙" + changePriceList[count];
-//                allImage += "⊙" + changeImageList[count];
+                allImage += "⊙" + changeImageList[count];
             }
             editSharedData.putString("Menu Name", allMenu);
             editSharedData.putString("Menu Price", allPrice);
-//            editSharedData.putString("Menu Image", allImage);
+            editSharedData.putString("Menu Image", allImage);
 
             editSharedData.commit();
-        }
-
-        public void removeSharedData() {
-
         }
 
     }
