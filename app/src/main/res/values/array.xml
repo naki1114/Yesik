@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="imageMenu">
+        <item>**분류**</item>
+        <item>로고</item>
+        <item>내부 전경</item>
+    </string-array>
+
+</resources>

@@ -57,7 +57,7 @@
             android:fontFamily="@font/dongdong" />
 
         <Button
-            android:id="@+id/registerNameButton"
+            android:id="@+id/restaurantRegistButton"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
@@ -76,13 +76,14 @@
         android:gravity="center">
 
         <Spinner
-            android:id="@+id/spinner"
-            android:layout_width="120dp"
+            android:id="@+id/imageSelectSpinner"
+            android:layout_width="150dp"
             android:layout_height="50dp"
-            android:contentDescription="-" />
+            android:contentDescription="-"
+            android:entries="@array/imageMenu"/>
 
         <ImageButton
-            android:id="@+id/innerImageInput"
+            android:id="@+id/getImageButton"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="20dp"
@@ -91,7 +92,7 @@
             android:src="@drawable/restaurant_inner" />
 
         <Button
-            android:id="@+id/registerPictureButton"
+            android:id="@+id/imageRegistButton"
             android:layout_width="100dp"
             android:layout_height="50dp"
             android:layout_marginLeft="20dp"
