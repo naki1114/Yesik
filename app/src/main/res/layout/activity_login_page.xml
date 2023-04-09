@@ -63,11 +63,18 @@
         android:inputType="textPassword"
         android:hint="PASSWORD" />
 
+    <CheckBox
+        android:id="@+id/autoLoginCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="자동 로그인" />
+
     <Button
         android:id="@+id/joinButton"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:text="회 원 가 입"
         android:textColor="@color/black"
         android:backgroundTint="@color/lightSkyBlue"
