@@ -3,6 +3,7 @@ package com.example.yesik;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -19,6 +20,11 @@ public class Restaurant extends AppCompatActivity {
     Button manageTable;
     Button logout;
 
+    SharedPreferences autoLogin;
+
+    static final String USER_INFO_SPLIT = "UserInfoSplit";
+    static final String AUTO_LOGIN_CHECK = "Auto Login Check";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +39,8 @@ public class Restaurant extends AppCompatActivity {
         tableRegister = findViewById(R.id.tableRegister);
         manageTable = findViewById(R.id.manageTable);
         logout = findViewById(R.id.logout);
+
+        autoLogin = getSharedPreferences(USER_INFO_SPLIT, MODE_PRIVATE);
 
     }
 
@@ -82,6 +90,11 @@ public class Restaurant extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
+                SharedPreferences.Editor editor = autoLogin.edit();
+
+                editor.putString(AUTO_LOGIN_CHECK, "x");
+                editor.commit();
+
                 Intent intent = new Intent(Restaurant.this, Login_Page.class);
                 startActivity(intent);
             }

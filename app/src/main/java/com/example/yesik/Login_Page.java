@@ -9,12 +9,16 @@ import android.util.Log;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Login_Page extends AppCompatActivity {
+
+    String tag;
 
     Button joinButton;
     Button loginButton;
@@ -26,7 +30,7 @@ public class Login_Page extends AppCompatActivity {
     RadioButton restaurantButton;
     RadioButton personButton;
 
-    String tag;
+    CheckBox autoLoginCheck;
 
     Intent putIntent;
 
@@ -42,6 +46,9 @@ public class Login_Page extends AppCompatActivity {
 
     int restaurantUserCount;
     int personalUserCount;
+
+    static final String USER_INFO_SPLIT = "UserInfoSplit";
+    static final String AUTO_LOGIN_CHECK = "Auto Login Check";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +123,11 @@ public class Login_Page extends AppCompatActivity {
         restaurantButton = findViewById(R.id.restaurantMember);
         personButton = findViewById(R.id.personalMember);
 
+        autoLoginCheck = findViewById(R.id.autoLoginCheckBox);
+
         memberCheck.check(-1);
 
-        getUserInfoSplit = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
+        getUserInfoSplit = getSharedPreferences(USER_INFO_SPLIT, MODE_PRIVATE);
     }
 
     public void userLogin() {
@@ -156,6 +165,14 @@ public class Login_Page extends AppCompatActivity {
                         SharedPreferences.Editor putID = getUserInfoSplit.edit();
 
                         putID.putString("Login User ID", userID);
+
+                        if (autoLoginCheck.isChecked()) {
+                            putID.putString(AUTO_LOGIN_CHECK, "Restaurant");
+                        }
+                        else {
+                            putID.putString(AUTO_LOGIN_CHECK, "x");
+                        }
+
                         putID.commit();
 
                         putIntent = new Intent(Login_Page.this, Restaurant.class);
@@ -190,9 +207,17 @@ public class Login_Page extends AppCompatActivity {
                         SharedPreferences.Editor putID = getUserInfoSplit.edit();
 
                         putID.putString("Login User ID", userID);
+
+//                        if (autoLoginCheck.isChecked()) {
+//                            putID.putString(AUTO_LOGIN_CHECK, "Person");
+//                        }
+//                        else {
+//                            putID.putString(AUTO_LOGIN_CHECK, "x");
+//                        }
+
                         putID.commit();
 
-                        putIntent = new Intent(Login_Page.this, Restaurant.class);
+                        putIntent = new Intent(Login_Page.this, Personal.class);
                         startActivity(putIntent);
                     }
                     else {
