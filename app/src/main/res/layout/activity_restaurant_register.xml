@@ -89,7 +89,7 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="이 미 지 첨 부"
-            android:src="@drawable/restaurant_inner" />
+            android:src="@drawable/no_image" />
 
         <Button
             android:id="@+id/imageRegistButton"
