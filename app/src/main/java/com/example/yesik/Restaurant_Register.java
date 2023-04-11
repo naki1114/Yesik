@@ -1,18 +1,29 @@
 package com.example.yesik;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class Restaurant_Register extends AppCompatActivity {
 
@@ -26,9 +37,15 @@ public class Restaurant_Register extends AppCompatActivity {
 
     ImageButton getImageButton;
 
+    ImageView imageLogo;
+
     Spinner imageSelectSpinner;
 
     RecyclerView restaurantInnerView;
+
+    Bitmap getImage;
+
+    int spinnerGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +71,11 @@ public class Restaurant_Register extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 1) {
+                    spinnerGroup = 1;
                     Toast.makeText(getApplicationContext(), "로고", Toast.LENGTH_SHORT).show();
                 }
                 else if (position == 2) {
+                    spinnerGroup = 2;
                     Toast.makeText(getApplicationContext(), "내부 전경", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -67,6 +86,22 @@ public class Restaurant_Register extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        getImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectGalleryImage();
+            }
+        });
+
+        imageRegistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (spinnerGroup == 1) {
+                    imageLogo.setImageBitmap(getImage);
+                }
             }
         });
     }
@@ -102,6 +137,8 @@ public class Restaurant_Register extends AppCompatActivity {
         restaurantRegistButton = findViewById(R.id.restaurantRegistButton);
         imageRegistButton = findViewById(R.id.imageRegistButton);
 
+        imageLogo = findViewById(R.id.imageLogo);
+
         getImageButton = findViewById(R.id.getImageButton);
 
         imageSelectSpinner = findViewById(R.id.imageSelectSpinner);
@@ -109,8 +146,30 @@ public class Restaurant_Register extends AppCompatActivity {
         restaurantInnerView = findViewById(R.id.restaurantInnerView);
     }
 
-    public void selectSpinner() {
-
+    public void selectGalleryImage() {
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        launcher.launch(intent);
     }
+
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK) {
+                Uri uri = result.getData().getData();
+                try {
+                    getImage = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                    getImageButton.setImageBitmap(getImage);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            else if (result.getResultCode() == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 
 }
