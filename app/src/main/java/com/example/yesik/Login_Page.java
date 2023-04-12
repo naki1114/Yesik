@@ -158,7 +158,7 @@ public class Login_Page extends AppCompatActivity {
                 }
 
                 if (userIndex == 0) {
-                    Toast.makeText(getApplicationContext(), "등록된 아이디가 아닙니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if (restaurantUserPWList[userIndex].equals(getPW)) {
@@ -179,7 +179,7 @@ public class Login_Page extends AppCompatActivity {
                         startActivity(putIntent);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -200,7 +200,7 @@ public class Login_Page extends AppCompatActivity {
                 }
 
                 if (userIndex == 0) {
-                    Toast.makeText(getApplicationContext(), "등록된 아이디가 아닙니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     if (personalUserPWList[userIndex].equals(getPW)) {
@@ -221,7 +221,7 @@ public class Login_Page extends AppCompatActivity {
                         startActivity(putIntent);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
