@@ -4,17 +4,17 @@ import android.graphics.Bitmap;
 
 public class InnerViewItem {
 
-    Bitmap image;
+    Bitmap innerView;
 
     public InnerViewItem (Bitmap image) {
-        this.image = image;
+        this.innerView = image;
     }
 
-    public Bitmap getImage() {
-        return image;
+    public Bitmap getInnerView() {
+        return innerView;
     }
 
-    public void setImage(Bitmap image) {
-        this.image = image;
+    public void setInnerView(Bitmap innerView) {
+        this.innerView = innerView;
     }
 }
