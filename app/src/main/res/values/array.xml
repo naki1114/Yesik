@@ -7,4 +7,16 @@
         <item>내부 전경</item>
     </string-array>
 
+    <string-array name="division">
+        <item>**종류**</item>
+        <item>찌개</item>
+        <item>족발/보쌈</item>
+        <item>고기/구이</item>
+        <item>양식</item>
+        <item>중식</item>
+        <item>일식</item>
+        <item>분식</item>
+        <item>기타</item>
+    </string-array>
+
 </resources>
