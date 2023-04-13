@@ -7,106 +7,185 @@
     android:orientation="vertical"
     android:gravity="center|top">
 
-    <TextView
-        android:id="@+id/nameRegister"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="식 당   등 록"
-        android:textSize="30sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/dongdong" />
-
-    <ImageView
-        android:id="@+id/imageLogo"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="30dp"
-        android:background="@color/black"
-        android:contentDescription="이 미 지 첨 부"
-        android:scaleType="fitCenter"
-        android:src="@drawable/no_image" />
-
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/restaurantRegistScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="match_parent" >
 
-        <EditText
-            android:id="@+id/nameInput"
-            android:layout_width="180dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:inputType="textPersonName"
-            android:hint="상   호   명"
-            android:gravity="center"
-            android:fontFamily="@font/dongdong" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center|top">
 
-        <EditText
-            android:id="@+id/placeInput"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="5dp"
-            android:inputType="textPersonName"
-            android:hint="지      점"
-            android:gravity="center"
-            android:fontFamily="@font/dongdong" />
+            <TextView
+                android:id="@+id/nameRegister"
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="30dp"
+                android:gravity="center"
+                android:text="식 당   등 록"
+                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/dongdong" />
 
-        <Button
-            android:id="@+id/restaurantRegistButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="등 록"
-            android:textColor="#000000"
-            android:fontFamily="@font/dongdong"
-            android:backgroundTint="@color/lightSkyBlue" />
+            <ImageView
+                android:id="@+id/imageLogo"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/black"
+                android:contentDescription="이 미 지 첨 부"
+                android:scaleType="fitCenter"
+                android:src="@drawable/no_image" />
 
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+                <TextView
+                    android:id="@+id/s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:text="사업자 등록 번호"
+                    android:textSize="20sp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
 
-        <Spinner
-            android:id="@+id/imageSelectSpinner"
-            android:layout_width="150dp"
-            android:layout_height="50dp"
-            android:contentDescription="-"
-            android:entries="@array/imageMenu"/>
+                <EditText
+                    android:id="@+id/corporateNumber1"
+                    android:layout_width="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="number"
+                    android:hint="***"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
 
-        <ImageButton
-            android:id="@+id/getImageButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="20dp"
-            android:scaleType="fitCenter"
-            android:contentDescription="이 미 지 첨 부"
-            android:src="@drawable/no_image" />
+                <TextView
+                    android:id="@+id/corporateNumberDivision1"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:text="-"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
 
-        <Button
-            android:id="@+id/imageRegistButton"
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:text="등 록"
-            android:textColor="#000000"
-            android:fontFamily="@font/dongdong"
-            android:backgroundTint="@color/lightSkyBlue" />
+                <EditText
+                    android:id="@+id/corporateNumber2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:inputType="number"
+                    android:hint="**"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/corporateNumberDivision2"
+                    android:layout_width="20dp"
+                    android:layout_height="50dp"
+                    android:text="-"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/restaurantInnerView"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="30dp"/>
+                <EditText
+                    android:id="@+id/corporateNumber3"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:inputType="number"
+                    android:hint="*****"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/nameInput"
+                    android:layout_width="180dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:inputType="textPersonName"
+                    android:hint="상   호   명"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
+
+                <EditText
+                    android:id="@+id/placeInput"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:inputType="textPersonName"
+                    android:hint="지      점"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
+
+                <Button
+                    android:id="@+id/restaurantRegistButton"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="5dp"
+                    android:text="사 업 자  등 록"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/dongdong"
+                    android:backgroundTint="@color/lightSkyBlue" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <Spinner
+                    android:id="@+id/imageSelectSpinner"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:contentDescription="-"
+                    android:entries="@array/imageMenu"/>
+
+                <ImageButton
+                    android:id="@+id/getImageButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="이 미 지 첨 부"
+                    android:src="@drawable/no_image" />
+
+                <Button
+                    android:id="@+id/imageRegistButton"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:text="이미지 추가"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/dongdong"
+                    android:backgroundTint="@color/lightSkyBlue" />
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/restaurantInnerView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

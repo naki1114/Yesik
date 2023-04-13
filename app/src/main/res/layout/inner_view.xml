@@ -24,11 +24,13 @@
             android:scaleType="fitCenter"
             android:background="@color/gray" />
 
-        <ImageView
-            android:id="@+id/innerImageView"
+        <ImageButton
+            android:id="@+id/innerViewImage"
             android:layout_width="140dp"
             android:layout_height="140dp"
             android:layout_gravity="center"
+            android:contentDescription="이 미 지 첨 부"
+            android:background="@color/white"
             android:scaleType="fitCenter" />
 
         <ImageView
