@@ -165,6 +165,7 @@ public class Login_Page extends AppCompatActivity {
                         SharedPreferences.Editor putID = getUserInfoSplit.edit();
 
                         putID.putString("Login User ID", userID);
+                        putID.putInt("Login User Index", userIndex);
 
                         if (autoLoginCheck.isChecked()) {
                             putID.putString(AUTO_LOGIN_CHECK, "Restaurant");
@@ -207,6 +208,7 @@ public class Login_Page extends AppCompatActivity {
                         SharedPreferences.Editor putID = getUserInfoSplit.edit();
 
                         putID.putString("Login User ID", userID);
+                        putID.putInt("Login User Index", userIndex);
 
 //                        if (autoLoginCheck.isChecked()) {
 //                            putID.putString(AUTO_LOGIN_CHECK, "Person");
