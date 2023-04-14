@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.FileNotFoundException;
@@ -34,10 +36,11 @@ public class Restaurant_Register extends AppCompatActivity {
 
     String tag;
 
-    EditText nameInput;
-    EditText placeInput;
+    TextView corporationNumber;
+    TextView restaurantName;
+    TextView restaurantPlace;
+    TextView restaurantDivision;
 
-    Button restaurantRegistButton;
     Button imageRegistButton;
 
     ImageButton getImageButton;
@@ -54,6 +57,11 @@ public class Restaurant_Register extends AppCompatActivity {
 
     InnerViewAdapter innerViewAdapter;
 
+    SharedPreferences getUserInfo;
+    SharedPreferences saveRestaurantImage;
+
+    BitmapConverter imageConverter;
+
     int spinnerGroup;
     int modifyData;
 
@@ -64,6 +72,7 @@ public class Restaurant_Register extends AppCompatActivity {
         Log.v(tag, "onCreate() 호출됨");
 
         initializing();
+        loadUserInfo();
     }
 
     @Override
@@ -77,13 +86,6 @@ public class Restaurant_Register extends AppCompatActivity {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
 
-        restaurantRegistButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registRestaurant();
-            }
-        });
-
         imageSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -92,9 +94,6 @@ public class Restaurant_Register extends AppCompatActivity {
                 }
                 else if (position == 2) {
                     spinnerGroup = 2;
-                }
-                else {
-
                 }
             }
 
@@ -197,10 +196,11 @@ public class Restaurant_Register extends AppCompatActivity {
         restaurantInnerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
         restaurantInnerView.addItemDecoration(new DividerItemDecoration(this, 1));
 
-        nameInput = findViewById(R.id.nameInput);
-        placeInput = findViewById(R.id.placeInput);
+        corporationNumber = findViewById(R.id.corporationNumber);
+        restaurantName = findViewById(R.id.restaurantName);
+        restaurantPlace = findViewById(R.id.restaurantPlace);
+        restaurantDivision = findViewById(R.id.restaurantDivision);
 
-        restaurantRegistButton = findViewById(R.id.restaurantRegistButton);
         imageRegistButton = findViewById(R.id.imageRegistButton);
 
         imageLogo = findViewById(R.id.imageLogo);
@@ -211,6 +211,10 @@ public class Restaurant_Register extends AppCompatActivity {
 
         restaurantInnerView = findViewById(R.id.restaurantInnerView);
 
+        getUserInfo = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
+        saveRestaurantImage = getSharedPreferences("RestaurantImage", MODE_PRIVATE);
+
+        imageConverter = new BitmapConverter();
         innerViewImageList = new ArrayList<>();
         innerViewAdapter = new InnerViewAdapter(innerViewImageList);
     }
@@ -246,6 +250,8 @@ public class Restaurant_Register extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
         }
         else {
+            saveInnerView();
+
             InnerViewItem innerViewItem = new InnerViewItem(getImage);
 
             innerViewAdapter.addData(innerViewItem);
@@ -269,14 +275,39 @@ public class Restaurant_Register extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
         }
         else {
+            saveLogo();
+
             imageLogo.setImageBitmap(getImage);
             getImage = null;
             getImageButton.setImageResource(R.drawable.no_image);
         }
     }
 
-    public void registRestaurant() {
+    public void loadUserInfo() {
+        String[] corporationNumberList = getUserInfo.getString("Restaurant Corporation Number", "").split("⊙");
+        String[] restaurantNameList = getUserInfo.getString("Restaurant Name", "").split("⊙");
+        String[] restaurantPlaceList = getUserInfo.getString("Restaurant Place", "").split("⊙");
+        String[] restaurantDivisionList = getUserInfo.getString("Restaurant Division", "").split("⊙");
+        int userIndex = getUserInfo.getInt("Login User Index", 0);
 
+        corporationNumber.setText(corporationNumberList[userIndex].substring(0,3) + " - " + corporationNumberList[userIndex].substring(3,5) + " - " + corporationNumberList[userIndex].substring(5,10));
+        restaurantName.setText(restaurantNameList[userIndex]);
+        restaurantPlace.setText(restaurantPlaceList[userIndex]);
+        restaurantDivision.setText(restaurantDivisionList[userIndex]);
+    }
+
+    public void saveLogo() {
+        SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
+        String userId = getUserInfo.getString("Login User ID", "");
+
+        saveImage.putString(userId + " Logo", imageConverter.BitmapToString(getImage));
+    }
+
+    public void saveInnerView() {
+        SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
+        String userId = getUserInfo.getString("Login User ID", "");
+
+        saveImage.putString(userId + " Inner View", saveRestaurantImage.getString(userId + " Inner View", "") + "⊙" + imageConverter.BitmapToString(getImage));
     }
 
 }
