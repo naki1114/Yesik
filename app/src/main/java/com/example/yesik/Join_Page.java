@@ -239,7 +239,7 @@ public class Join_Page extends AppCompatActivity {
                     corporationNumberInput.setTextColor(Color.parseColor("#00FF00"));
                 }
                 else {
-                    userBirthInput.setTextColor(Color.parseColor("#000000"));
+                    corporationNumberInput.setTextColor(Color.parseColor("#000000"));
                 }
             }
 
