@@ -12,10 +12,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.util.Log;
 
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -28,11 +31,20 @@ public class Join_Page extends AppCompatActivity {
 
     String tag;
 
+    LinearLayout corporationNumberLayout;
+    LinearLayout restaurantNameLayout;
+    LinearLayout divisionLayout;
+
     EditText idInput;
     EditText pwInput;
     EditText pwReInput;
     EditText userNameInput;
     EditText userBirthInput;
+    EditText corporationNumberInput;
+    EditText restaurantNameInput;
+    EditText restaurantPlaceInput;
+
+    Spinner divisionSpinner;
 
     RadioGroup memberCheck;
     RadioButton restaurantButton;
@@ -46,11 +58,18 @@ public class Join_Page extends AppCompatActivity {
     int restaurantUserCount = 0;
     int personalUserCount = 0;
 
+    int spinnerGroup;
+
     String getID;
     String getPW;
     String getRePW;
     String getName;
     String getBirth;
+    String getCorporationNumber;
+    String getRestaurantName;
+    String getRestaurantPlace;
+    String getDivision;
+
 
     SharedPreferences userInfoSplit;
 //    SharedPreferences userInfoJson;
@@ -59,6 +78,10 @@ public class Join_Page extends AppCompatActivity {
     String[] restaurantUserPWList;
     String[] restaurantUserNameList;
     String[] restaurantUserBirthList;
+    String[] restaurantCorporationNumberList;
+    String[] restaurantNameList;
+    String[] restaurantPlaceList;
+    String[] restaurantDivisionList;
 
     String[] personalUserIDList;
     String[] personalUserPWList;
@@ -86,6 +109,22 @@ public class Join_Page extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        memberCheck.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+                if (checkedId == R.id.restaurantUser) {
+                    corporationNumberLayout.setVisibility(View.VISIBLE);
+                    restaurantNameLayout.setVisibility(View.VISIBLE);
+                    divisionLayout.setVisibility(View.VISIBLE);
+                }
+                else {
+                    corporationNumberLayout.setVisibility(View.GONE);
+                    restaurantNameLayout.setVisibility(View.GONE);
+                    divisionLayout.setVisibility(View.GONE);
+                }
+            }
+        });
 
         idInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -186,6 +225,30 @@ public class Join_Page extends AppCompatActivity {
             }
         });
 
+        corporationNumberInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                getCorporationNumber = corporationNumberInput.getText().toString();
+
+                if (getCorporationNumber.length() == 10) {
+                    corporationNumberInput.setTextColor(Color.parseColor("#00FF00"));
+                }
+                else {
+                    userBirthInput.setTextColor(Color.parseColor("#000000"));
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         duplicateCheckButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -212,10 +275,49 @@ public class Join_Page extends AppCompatActivity {
                 getRePW = pwReInput.getText().toString();
                 getName = userNameInput.getText().toString();
                 getBirth = userBirthInput.getText().toString();
+                getCorporationNumber = corporationNumberInput.getText().toString();
+                getRestaurantName = restaurantNameInput.getText().toString();
+                getRestaurantPlace = restaurantPlaceInput.getText().toString();
+                getDivision = divisionSpinner.getSelectedItem().toString();
 
                 memberJoin();
             }
 
+        });
+
+        divisionSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 1) {
+                    spinnerGroup = 1;
+                }
+                else if (position == 2) {
+                    spinnerGroup = 2;
+                }
+                else if (position == 3) {
+                    spinnerGroup = 3;
+                }
+                else if (position == 4) {
+                    spinnerGroup = 4;
+                }
+                else if (position == 5) {
+                    spinnerGroup = 5;
+                }
+                else if (position == 6) {
+                    spinnerGroup = 6;
+                }
+                else if (position == 7) {
+                    spinnerGroup = 7;
+                }
+                else if (position == 8) {
+                    spinnerGroup = 8;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
         });
 
     }
@@ -245,6 +347,10 @@ public class Join_Page extends AppCompatActivity {
     public void initializing() {
         tag = "회원가입 페이지";
 
+        corporationNumberLayout = findViewById(R.id.corporationNumberLayout);
+        restaurantNameLayout = findViewById(R.id.restauranNameLayout);
+        divisionLayout = findViewById(R.id.divisionLayout);
+
         memberCheck = findViewById(R.id.memberCheck);
         restaurantButton = findViewById(R.id.restaurantUser);
         personButton = findViewById(R.id.personalUser);
@@ -258,6 +364,11 @@ public class Join_Page extends AppCompatActivity {
         pwReInput = findViewById(R.id.passwordReInput);
         userNameInput = findViewById(R.id.nameInput);
         userBirthInput = findViewById(R.id.birthInput);
+        corporationNumberInput = findViewById(R.id.corporationNumberInput);
+        restaurantNameInput = findViewById(R.id.restaurantNameInput);
+        restaurantPlaceInput = findViewById(R.id.restaurantPlaceInput);
+
+        divisionSpinner = findViewById(R.id.divisionSpinner);
 
         userInfoSplit = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
 //        userInfoJson = getSharedPreferences("UserInfoJson", MODE_PRIVATE);
@@ -270,7 +381,6 @@ public class Join_Page extends AppCompatActivity {
         if (getID.equals("")) {
             Toast.makeText(getApplicationContext(), "아이디를 입력해주세요.", Toast.LENGTH_SHORT).show();
             idInput.requestFocus();
-            idInput.setSelection(getID.length());
         }
         else if (getID.length() < 6 || getID.length() > 12) {
             Toast.makeText(getApplicationContext(), "아이디는 6 ~ 12자리 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -283,7 +393,6 @@ public class Join_Page extends AppCompatActivity {
         else if (getPW.equals("")) {
             Toast.makeText(getApplicationContext(), "패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show();
             pwInput.requestFocus();
-            pwInput.setSelection(getPW.length());
         }
         else if (getPW.length() < 8 || getPW.length() > 20) {
             Toast.makeText(getApplicationContext(), "패스워드는 8 ~ 20자리 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -293,7 +402,6 @@ public class Join_Page extends AppCompatActivity {
         else if (getRePW.equals("")) {
             Toast.makeText(getApplicationContext(), "패스워드를 한번 더 확인해주세요.", Toast.LENGTH_SHORT).show();
             pwReInput.requestFocus();
-            pwReInput.setSelection(getRePW.length());
         }
         else if (!getPW.equals(getRePW)) {
             Toast.makeText(getApplicationContext(), "패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -303,17 +411,35 @@ public class Join_Page extends AppCompatActivity {
         else if (getName.equals("")) {
             Toast.makeText(getApplicationContext(), "이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
             userNameInput.requestFocus();
-            userNameInput.setSelection(getName.length());
         }
         else if (getBirth.equals("")) {
             Toast.makeText(getApplicationContext(), "생년월일을 입력해주세요.", Toast.LENGTH_SHORT).show();
             userBirthInput.requestFocus();
-            userBirthInput.setSelection(getBirth.length());
         }
         else if (getBirth.length() != 6) {
             Toast.makeText(getApplicationContext(), "생년월일 형식은 YYMMDD 입니다.", Toast.LENGTH_SHORT).show();
             userBirthInput.requestFocus();
             userBirthInput.setSelection(getBirth.length());
+        }
+        else if (restaurantButton.isChecked() && getCorporationNumber.equals("")) {
+            Toast.makeText(getApplicationContext(), "사업자 등록번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            corporationNumberInput.requestFocus();
+        }
+        else if (restaurantButton.isChecked() && getCorporationNumber.length() != 10) {
+            Toast.makeText(getApplicationContext(), "사업자 등록번호 형식에 맞게 입력해주세요.", Toast.LENGTH_SHORT).show();
+            corporationNumberInput.requestFocus();
+            corporationNumberInput.setSelection(getCorporationNumber.length());
+        }
+        else if (restaurantButton.isChecked() && getRestaurantName.equals("")) {
+            Toast.makeText(getApplicationContext(), "상호명을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            restaurantNameInput.requestFocus();
+        }
+        else if (restaurantButton.isChecked() && getRestaurantPlace.equals("")) {
+            Toast.makeText(getApplicationContext(), "지점을 입력해주세요.", Toast.LENGTH_SHORT).show();
+            restaurantPlaceInput.requestFocus();
+        }
+        else if (restaurantButton.isChecked() && (spinnerGroup < 1 || spinnerGroup > 8)) {
+            Toast.makeText(getApplicationContext(), "식당 분류를 선택해주세요.", Toast.LENGTH_SHORT).show();
         }
         else {
             if (restaurantButton.isChecked()) {
@@ -356,6 +482,10 @@ public class Join_Page extends AppCompatActivity {
         editorSplit.putString("Restaurant User Password", userInfoSplit.getString("Restaurant User Password", "") + "⊙" + getPW);
         editorSplit.putString("Restaurant User Name", userInfoSplit.getString("Restaurant User Name", "") + "⊙" + getName);
         editorSplit.putString("Restaurant User Birth", userInfoSplit.getString("Restaurant User Birth", "") + "⊙" + getBirth);
+        editorSplit.putString("Restaurant Corporation Number", userInfoSplit.getString("Restaurant Corporation Number", "") + "⊙" + getCorporationNumber);
+        editorSplit.putString("Restaurant Name", userInfoSplit.getString("Restaurant Name", "") + "⊙" + getRestaurantName);
+        editorSplit.putString("Restaurant Place", userInfoSplit.getString("Restaurant Place", "") + "⊙" + getRestaurantPlace);
+        editorSplit.putString("Restaurant Division", userInfoSplit.getString("Restaurant Division", "") + "⊙" + getDivision);
         editorSplit.putInt("Restaurant User Count", restaurantUserCount);
 
         editorSplit.commit();
@@ -378,14 +508,11 @@ public class Join_Page extends AppCompatActivity {
         restaurantUserPWList = userInfoSplit.getString("Restaurant User Password", "").split("⊙");
         restaurantUserNameList = userInfoSplit.getString("Restaurant User Name", "").split("⊙");
         restaurantUserBirthList = userInfoSplit.getString("Restaurant User Birth", "").split("⊙");
+        restaurantCorporationNumberList = userInfoSplit.getString("Restaurant Corporation Number", "").split("⊙");
+        restaurantNameList = userInfoSplit.getString("Restaurant Name", "").split("⊙");
+        restaurantPlaceList = userInfoSplit.getString("Restaurant Place", "").split("⊙");
+        restaurantDivisionList = userInfoSplit.getString("Restaurant Division", "").split("⊙");
         restaurantUserCount = userInfoSplit.getInt("Restaurant User Count",0);
-
-        for (int count = 1; count <= restaurantUserCount; count++) {
-            Log.v(count + "번째 Restaurant User ID", restaurantUserIDList[count]);
-            Log.v(count + "번째 Restaurant User PW", restaurantUserPWList[count]);
-            Log.v(count + "번째 Restaurant User Name", restaurantUserNameList[count]);
-            Log.v(count + "번째 Restaurant User Birth", restaurantUserBirthList[count]);
-        }
     }
 
     public void getPersonalUserInfoSplit() {
@@ -394,13 +521,6 @@ public class Join_Page extends AppCompatActivity {
         personalUserNameList = userInfoSplit.getString("Personal User Name", "").split("⊙");
         personalUserBirthList = userInfoSplit.getString("Personal User Birth", "").split("⊙");
         personalUserCount = userInfoSplit.getInt("Personal User Count", 0);
-
-        for (int count = 1; count <= personalUserCount; count++) {
-            Log.v(count + "번째 Personal User ID", personalUserIDList[count]);
-            Log.v(count + "번째 Personal User PW", personalUserPWList[count]);
-            Log.v(count + "번째 Personal User Name", personalUserNameList[count]);
-            Log.v(count + "번째 Personal User Birth", personalUserBirthList[count]);
-        }
     }
 
     /**
