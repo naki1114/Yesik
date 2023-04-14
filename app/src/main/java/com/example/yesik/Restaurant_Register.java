@@ -289,6 +289,12 @@ public class Restaurant_Register extends AppCompatActivity {
         String[] restaurantPlaceList = getUserInfo.getString("Restaurant Place", "").split("⊙");
         String[] restaurantDivisionList = getUserInfo.getString("Restaurant Division", "").split("⊙");
         int userIndex = getUserInfo.getInt("Login User Index", 0);
+        String userId = getUserInfo.getString("Login User ID", "");
+
+        if (!saveRestaurantImage.getString(userId + " Logo", "").equals("")) {
+            getImage = imageConverter.StringToBitmap(saveRestaurantImage.getString(userId + " Logo", ""));
+            imageLogo.setImageBitmap(getImage);
+        }
 
         corporationNumber.setText(corporationNumberList[userIndex].substring(0,3) + " - " + corporationNumberList[userIndex].substring(3,5) + " - " + corporationNumberList[userIndex].substring(5,10));
         restaurantName.setText(restaurantNameList[userIndex]);
@@ -301,6 +307,7 @@ public class Restaurant_Register extends AppCompatActivity {
         String userId = getUserInfo.getString("Login User ID", "");
 
         saveImage.putString(userId + " Logo", imageConverter.BitmapToString(getImage));
+        saveImage.commit();
     }
 
     public void saveInnerView() {
@@ -308,6 +315,7 @@ public class Restaurant_Register extends AppCompatActivity {
         String userId = getUserInfo.getString("Login User ID", "");
 
         saveImage.putString(userId + " Inner View", saveRestaurantImage.getString(userId + " Inner View", "") + "⊙" + imageConverter.BitmapToString(getImage));
+        saveImage.commit();
     }
 
 }
