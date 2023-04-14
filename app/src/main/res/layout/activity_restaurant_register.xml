@@ -63,8 +63,21 @@
                     android:layout_width="80dp"
                     android:layout_height="50dp"
                     android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:inputType="textPersonName"
                     android:hint="지      점"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:fontFamily="@font/dongdong" />
+
+                <TextView
+                    android:id="@+id/restaurantDivision"
+                    android:layout_width="80dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:inputType="textPersonName"
+                    android:hint="분      류"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:gravity="center"
