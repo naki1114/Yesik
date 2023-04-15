@@ -23,70 +23,33 @@
 
         <EditText
             android:id="@+id/resNameInput"
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_weight="1"
             android:inputType="textPersonName"
             android:hint="   검 색"
             android:textSize="15sp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
+
+        <ImageButton
+            android:id="@+id/textCancelButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="취소 버튼"
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:src="@drawable/textcancel" />
 
     </LinearLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent" />-->
-
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/restaurantRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/logoView1"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo" />
-
-        <TextView
-            android:id="@+id/resName1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="원할머니 족발 보쌈"
-            android:textSize="20sp"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <ImageView
-            android:id="@+id/logoView2"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo2" />
-
-        <TextView
-            android:id="@+id/resName2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginLeft="10dp"
-            android:gravity="center"
-            android:text="항아리 보쌈"
-            android:textSize="20sp"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
