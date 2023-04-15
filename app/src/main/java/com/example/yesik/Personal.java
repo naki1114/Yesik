@@ -27,28 +27,15 @@ public class Personal extends AppCompatActivity {
     Button reserveCheckButton;
     Button myInfoButton;
 
+    String division;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal);
         Log.v(tag, "onCreate() 호출됨");
 
-        tag = "개인회원 페이지";
-        Log.v(tag, "onCreate() 호출됨");
-
-        menuKoreanSoup = findViewById(R.id.menuKoreanSoup);
-        menuJokBo = findViewById(R.id.menuJokBo);
-        menuPorkBeef = findViewById(R.id.menuPorkBeef);
-        menuWestern = findViewById(R.id.menuWestern);
-        menuChinese = findViewById(R.id.menuChinese);
-        menuJapanese = findViewById(R.id.menuJapanese);
-        menuFlour = findViewById(R.id.menuFlour);
-        menuEtc = findViewById(R.id.menuEtc);
-
-        searchButton = findViewById(R.id.searchButton);
-        reserveCheckButton = findViewById(R.id.reserveCheckButton);
-        myInfoButton = findViewById(R.id.myInfoButton);
-
+        initializing();
     }
 
     @Override
@@ -65,72 +52,72 @@ public class Personal extends AppCompatActivity {
         menuKoreanSoup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "koreansoup";
+                changeScreen();
             }
         });
 
         menuJokBo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "jokbo";
+                changeScreen();
             }
         });
 
         menuPorkBeef.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "porkbeef";
+                changeScreen();
             }
         });
 
         menuWestern.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "western";
+                changeScreen();
             }
         });
 
         menuChinese.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "chinese";
+                changeScreen();
             }
         });
 
         menuJapanese.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "japanese";
+                changeScreen();
             }
         });
 
         menuFlour.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "flour";
+                changeScreen();
             }
         });
 
         menuEtc.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "etc";
+                changeScreen();
             }
         });
 
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                Intent intent = new Intent(Personal.this, Select_Restaurant.class);
-                startActivity(intent);
+                division = "all";
+                changeScreen();
             }
         });
 
@@ -152,6 +139,33 @@ public class Personal extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.v(tag, "onDestroy()");
+    }
+
+    // Life Cycle Finish
+
+    // Custom Method
+
+    public void initializing() {
+        tag = "개인회원 페이지";
+
+        menuKoreanSoup = findViewById(R.id.menuKoreanSoup);
+        menuJokBo = findViewById(R.id.menuJokBo);
+        menuPorkBeef = findViewById(R.id.menuPorkBeef);
+        menuWestern = findViewById(R.id.menuWestern);
+        menuChinese = findViewById(R.id.menuChinese);
+        menuJapanese = findViewById(R.id.menuJapanese);
+        menuFlour = findViewById(R.id.menuFlour);
+        menuEtc = findViewById(R.id.menuEtc);
+
+        searchButton = findViewById(R.id.searchButton);
+        reserveCheckButton = findViewById(R.id.reserveCheckButton);
+        myInfoButton = findViewById(R.id.myInfoButton);
+    }
+
+    public void changeScreen() {
+        Intent putIntent = new Intent(Personal.this, Select_Restaurant.class);
+        putIntent.putExtra("division", division);
+        startActivity(putIntent);
     }
 
 }
