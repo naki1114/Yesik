@@ -28,7 +28,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="찌 개"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/koreansoup" />
 
         <ImageButton
             android:id="@+id/menuJokBo"
@@ -38,7 +39,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="족 발 / 보 쌈"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/jokbo" />
 
         <ImageButton
             android:id="@+id/menuPorkBeef"
@@ -48,7 +50,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="고 기 / 구 이"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/porkbeef" />
 
         <ImageButton
             android:id="@+id/menuWestern"
@@ -57,7 +60,8 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="양 식"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/western" />
 
     </LinearLayout>
 
@@ -74,6 +78,7 @@
             android:layout_marginRight="20dp"
             android:text="찌 개"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -84,6 +89,7 @@
             android:layout_marginRight="20dp"
             android:text="족발\n보쌈"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -94,6 +100,7 @@
             android:layout_marginRight="20dp"
             android:text="고기\n구이"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -103,6 +110,7 @@
             android:layout_marginLeft="20dp"
             android:text="양 식"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
     </LinearLayout>
@@ -121,7 +129,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="중 식"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/chinese" />
 
         <ImageButton
             android:id="@+id/menuJapanese"
@@ -131,7 +140,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="일 식"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/japanese" />
 
         <ImageButton
             android:id="@+id/menuFlour"
@@ -141,7 +151,8 @@
             android:layout_marginRight="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="분 식"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/flour" />
 
         <ImageButton
             android:id="@+id/menuEtc"
@@ -150,7 +161,8 @@
             android:layout_marginLeft="20dp"
             android:scaleType="fitCenter"
             android:contentDescription="기 타"
-            android:src="@drawable/pasta" />
+            android:background="@android:color/transparent"
+            android:src="@drawable/etc" />
 
     </LinearLayout>
 
@@ -167,6 +179,7 @@
             android:layout_marginRight="20dp"
             android:text="중 식"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -177,6 +190,7 @@
             android:layout_marginRight="20dp"
             android:text="일 식"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -187,6 +201,7 @@
             android:layout_marginRight="20dp"
             android:text="분 식"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
         <TextView
@@ -196,6 +211,7 @@
             android:layout_marginLeft="20dp"
             android:text="기 타"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:gravity="center" />
 
     </LinearLayout>
@@ -221,6 +237,7 @@
             android:layout_marginRight="10dp"
             android:text="검 색"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:backgroundTint="@color/lightSkyBlue"/>
 
         <Button
@@ -231,6 +248,7 @@
             android:layout_marginRight="10dp"
             android:text="예 약 내 역"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:backgroundTint="@color/lightSkyBlue"/>
 
         <Button
@@ -240,6 +258,7 @@
             android:layout_marginLeft="10dp"
             android:text="내 정 보"
             android:textColor="@color/black"
+            android:fontFamily="@font/dongdong"
             android:backgroundTint="@color/lightSkyBlue"/>
 
     </LinearLayout>
