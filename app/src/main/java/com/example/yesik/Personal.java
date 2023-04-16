@@ -52,7 +52,7 @@ public class Personal extends AppCompatActivity {
         menuKoreanSoup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "koreansoup";
+                division = "찌개";
                 changeScreen();
             }
         });
@@ -60,7 +60,7 @@ public class Personal extends AppCompatActivity {
         menuJokBo.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "jokbo";
+                division = "족발/보쌈";
                 changeScreen();
             }
         });
@@ -68,7 +68,7 @@ public class Personal extends AppCompatActivity {
         menuPorkBeef.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "porkbeef";
+                division = "고기/구이";
                 changeScreen();
             }
         });
@@ -76,7 +76,7 @@ public class Personal extends AppCompatActivity {
         menuWestern.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "western";
+                division = "양식";
                 changeScreen();
             }
         });
@@ -84,7 +84,7 @@ public class Personal extends AppCompatActivity {
         menuChinese.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "chinese";
+                division = "중식";
                 changeScreen();
             }
         });
@@ -92,7 +92,7 @@ public class Personal extends AppCompatActivity {
         menuJapanese.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "japanese";
+                division = "일식";
                 changeScreen();
             }
         });
@@ -100,7 +100,7 @@ public class Personal extends AppCompatActivity {
         menuFlour.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "flour";
+                division = "분식";
                 changeScreen();
             }
         });
@@ -108,7 +108,7 @@ public class Personal extends AppCompatActivity {
         menuEtc.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "etc";
+                division = "기타";
                 changeScreen();
             }
         });
@@ -116,7 +116,7 @@ public class Personal extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                division = "all";
+                division = "ALL";
                 changeScreen();
             }
         });
