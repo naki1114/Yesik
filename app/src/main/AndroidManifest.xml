@@ -21,10 +21,15 @@
         android:theme="@style/Theme.Yesik"
         tools:targetApi="31">
         <activity
+            android:name=".PersonalUserInfo"
+            android:exported="false" />
+        <activity
+            android:name=".ReserveCheck"
+            android:exported="false" />
+        <activity
             android:name=".LaunchActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,27 +39,27 @@
         <activity
             android:name=".Select_Menu"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Select_Table"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Restaurant_Register"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Reserve_Time"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Select_Restaurant"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Manage_Table"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Table_Register"
             android:exported="false"
@@ -83,8 +88,7 @@
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/SplashTheme">
-        </activity>
+            android:theme="@style/SplashTheme" />
     </application>
 
 </manifest>
