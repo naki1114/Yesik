@@ -4,89 +4,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center|top">
+    android:gravity="center|top"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/resName"
+    <ScrollView
+        android:id="@+id/reserveTimePageScroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:gravity="center"
-        android:text="원 할 머 니  보 쌈  족 발"
-        android:textSize="30sp"
-        android:textColor="@color/black" />
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/innerView"
-        android:layout_width="match_parent"
-        android:layout_height="195dp"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/restaurant_inner" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+            <TextView
+                android:id="@+id/restaurantName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/dongdong"
+                android:gravity="center"
+                android:hint="상 호 명 / 지 점"
+                android:textColor="@color/black"
+                android:textSize="25sp" />
 
-        <TextView
-            android:id="@+id/timeText"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="5dp"
-            android:gravity="center"
-            android:text="시 간"
-            android:textSize="15sp"
-            android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/innerView"
+                android:layout_width="match_parent"
+                android:layout_height="195dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/restaurant_inner" />
 
-        <TimePicker
-            android:id="@+id/timePick"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_gravity="center"
-            android:timePickerMode="spinner" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/confirmButton"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:text="확  인"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/lightSkyBlue" />
+                <Button
+                    android:id="@+id/reserveButton"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginRight="10dp"
+                    android:backgroundTint="@color/lightSkyBlue"
+                    android:fontFamily="@font/dongdong"
+                    android:text="예 약 하 기"
+                    android:textColor="@color/black" />
 
-    </LinearLayout>
+                <Button
+                    android:id="@+id/backButton"
+                    android:layout_width="120dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="10dp"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/dongdong"
+                    android:text="뒤 로 가 기"
+                    android:textColor="@color/black" />
 
-    <TextView
-        android:id="@+id/reviewText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:gravity="left"
-        android:text="리 뷰"
-        android:textSize="30sp"
-        android:textColor="@color/black" />
+            </LinearLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/reviewView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_marginTop="50dp"/>-->
+            <TextView
+                android:id="@+id/menuText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="10dp"
+                android:fontFamily="@font/dongdong"
+                android:gravity="center"
+                android:text="메 뉴"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
-    <TextView
-        android:id="@+id/reviewView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:text="완전 맛있어요!!"
-        android:textSize="15sp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/menuView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/timeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:fontFamily="@font/dongdong"
+        android:text="시 간  선 택"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/hourSelectSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:contentDescription="시 선택"
+            android:entries="@array/hour"/>
+
+        <TextView
+            android:id="@+id/hourTextView"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:fontFamily="@font/dongdong"
+            android:text="시"
+            android:textColor="@color/black" />
+
+        <Spinner
+            android:id="@+id/minuteSeletcSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:contentDescription="분 선택"
+            android:entries="@array/minute"/>
+
+        <TextView
+            android:id="@+id/minuteTextVew"
+            android:layout_width="30dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:fontFamily="@font/dongdong"
+            android:text="분"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialogReserveButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="10dp"
+            android:backgroundTint="@color/lightSkyBlue"
+            android:fontFamily="@font/dongdong"
+            android:text="예 약"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/dialogCancelButton"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/dongdong"
+            android:text="취 소"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>

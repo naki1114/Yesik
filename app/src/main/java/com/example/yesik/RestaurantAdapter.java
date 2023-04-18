@@ -36,8 +36,8 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent putIntent = new Intent(context, Reserve_Time.class);
-                    context.startActivity(putIntent);
+                    Intent putInfo = new Intent(context, Reserve_Time.class);
+                    context.startActivity(putInfo);
                 }
             });
         }
