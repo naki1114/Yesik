@@ -8,14 +8,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 public class Select_Restaurant extends AppCompatActivity {
 
     String tag;
+
+    ImageButton textCancelButton;
+    EditText restaurantSearch;
 
     BitmapConverter converter;
 
@@ -62,6 +71,31 @@ public class Select_Restaurant extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        textCancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restaurantSearch.setText("");
+            }
+        });
+
+        restaurantSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                searchRestaurant();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 
     @Override
@@ -92,6 +126,9 @@ public class Select_Restaurant extends AppCompatActivity {
         restaurantListRecyclerView = (RecyclerView) findViewById(R.id.restaurantRecyclerView);
         restaurantListRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         restaurantListRecyclerView.addItemDecoration(new DividerItemDecoration(this, 1));
+
+        textCancelButton = findViewById(R.id.textCancelButton);
+        restaurantSearch = findViewById(R.id.restaurantSearch);
 
         Intent getDivision = getIntent();
 
@@ -145,6 +182,32 @@ public class Select_Restaurant extends AppCompatActivity {
 
             restaurantAdapter.addData(restaurantListItem);
         }
+        restaurantListRecyclerView.setAdapter(restaurantAdapter);
+        restaurantAdapter.notifyDataSetChanged();
+    }
+
+    public void searchRestaurant() {
+        restaurantList.clear();
+        restaurantNameList.clear();
+        restaurantPlaceList.clear();
+        restaurantDivisionList.clear();
+        restaurantLogoList.clear();
+
+        for (int count = 1; count <= restaurantUserCount; count++) {
+            if (allRestaurantNameList[count].contains(restaurantSearch.getText()) || allRestaurantPlaceList[count].contains(restaurantSearch.getText())) {
+                restaurantNameList.add(allRestaurantNameList[count]);
+                restaurantPlaceList.add(allRestaurantPlaceList[count]);
+                restaurantDivisionList.add(allRestaurantDivisionList[count]);
+                restaurantLogoList.add(getLogoImage.getString(allRestaurantUserIDList[count] + " Logo", ""));
+            }
+        }
+
+        for (int count = 0; count < restaurantNameList.size(); count++) {
+            RestaurantItem restaurantListItem = new RestaurantItem(converter.StringToBitmap(restaurantLogoList.get(count)), restaurantNameList.get(count), restaurantPlaceList.get(count));
+
+            restaurantAdapter.addData(restaurantListItem);
+        }
+
         restaurantListRecyclerView.setAdapter(restaurantAdapter);
         restaurantAdapter.notifyDataSetChanged();
     }
