@@ -1,6 +1,7 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,6 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
     RestaurantViewHolder restaurantViewHolder;
 
-    RestaurantItem restaurantItem;
-
     public RestaurantAdapter (ArrayList<RestaurantItem> restaurantItems) {
         restaurantList = restaurantItems;
     }
@@ -33,6 +32,14 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
 
             logoView = itemView.findViewById(R.id.logoView);
             restaurantName = itemView.findViewById(R.id.restaurantName);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent putIntent = new Intent(context, Reserve_Time.class);
+                    context.startActivity(putIntent);
+                }
+            });
         }
     }
 
