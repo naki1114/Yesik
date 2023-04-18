@@ -171,6 +171,7 @@ public class Personal extends AppCompatActivity {
         SharedPreferences.Editor editor = putDivision.edit();
 
         editor.putString("Division Select", division);
+        editor.commit();
 
         Intent putIntent = new Intent(Personal.this, Select_Restaurant.class);
         startActivity(putIntent);
