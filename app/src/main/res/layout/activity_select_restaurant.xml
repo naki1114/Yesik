@@ -22,7 +22,7 @@
             android:src="@drawable/search_icon"/>
 
         <EditText
-            android:id="@+id/resNameInput"
+            android:id="@+id/restaurantSearch"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
