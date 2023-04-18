@@ -130,10 +130,6 @@ public class Select_Restaurant extends AppCompatActivity {
         textCancelButton = findViewById(R.id.textCancelButton);
         restaurantSearch = findViewById(R.id.restaurantSearch);
 
-        Intent getDivision = getIntent();
-
-        division = getDivision.getStringExtra("division");
-
         converter = new BitmapConverter();
 
         restaurantList = new ArrayList<>();
@@ -147,6 +143,8 @@ public class Select_Restaurant extends AppCompatActivity {
 
         getRestaurantInfo = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
         getLogoImage = getSharedPreferences("RestaurantImage", MODE_PRIVATE);
+
+        division = getRestaurantInfo.getString("Division Select", "");
     }
 
     public void divideRestaurant() {

@@ -3,6 +3,7 @@ package com.example.yesik;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,6 +29,8 @@ public class Personal extends AppCompatActivity {
     Button myInfoButton;
 
     String division;
+
+    SharedPreferences putDivision;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,11 +163,16 @@ public class Personal extends AppCompatActivity {
         searchButton = findViewById(R.id.searchButton);
         reserveCheckButton = findViewById(R.id.reserveCheckButton);
         myInfoButton = findViewById(R.id.myInfoButton);
+
+        putDivision = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
     }
 
     public void changeScreen() {
+        SharedPreferences.Editor editor = putDivision.edit();
+
+        editor.putString("Division Select", division);
+
         Intent putIntent = new Intent(Personal.this, Select_Restaurant.class);
-        putIntent.putExtra("division", division);
         startActivity(putIntent);
     }
 
