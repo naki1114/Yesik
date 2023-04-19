@@ -210,12 +210,12 @@ public class Login_Page extends AppCompatActivity {
                         putID.putString("Login User ID", userID);
                         putID.putInt("Login User Index", userIndex);
 
-//                        if (autoLoginCheck.isChecked()) {
-//                            putID.putString(AUTO_LOGIN_CHECK, "Person");
-//                        }
-//                        else {
-//                            putID.putString(AUTO_LOGIN_CHECK, "x");
-//                        }
+                        if (autoLoginCheck.isChecked()) {
+                            putID.putString(AUTO_LOGIN_CHECK, "Person");
+                        }
+                        else {
+                            putID.putString(AUTO_LOGIN_CHECK, "x");
+                        }
 
                         putID.commit();
 
