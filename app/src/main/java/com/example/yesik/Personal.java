@@ -124,6 +124,14 @@ public class Personal extends AppCompatActivity {
             }
         });
 
+        reserveCheckButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Personal.this, ReserveCheck.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override

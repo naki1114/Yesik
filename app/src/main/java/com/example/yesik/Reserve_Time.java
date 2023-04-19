@@ -167,6 +167,7 @@ public class Reserve_Time extends AppCompatActivity {
                     editor.putString("Reserve User", reserveTime.getString("Reserve User", "") + "⊙" + getUserInfo.getString("Login User ID", ""));
                     editor.putString("Reserve Restaurant Name", reserveTime.getString("Reserve Restaurant Name", "") + "⊙" + reserveTime.getString("Selected Restaurant Name", ""));
                     editor.putString("Reserve Restaurant Place", reserveTime.getString("Reserve Restaurant Place", "") + "⊙" + reserveTime.getString("Selected Restaurant Place", ""));
+                    editor.putString("Reserve Status", reserveTime.getString("Reserve Status", "") + "⊙" + "대기");
                     editor.commit();
 
                     Toast.makeText(Reserve_Time.this, hour + "시 " + minute + "분으로 예약 요청을 완료했습니다.", Toast.LENGTH_SHORT).show();

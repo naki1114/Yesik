@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:orientation="vertical"
+    tools:context=".ReserveCheck">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="예약 내역"
+        android:textSize="30sp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="식당 이름"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="지점"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="시간"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:text="상태"
+            android:textSize="15sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
+
+        <LinearLayout
+            android:layout_width="10dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reservationList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
+
+</LinearLayout>
