@@ -132,6 +132,14 @@ public class Personal extends AppCompatActivity {
             }
         });
 
+        myInfoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Personal.this, PersonalUserInfo.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
