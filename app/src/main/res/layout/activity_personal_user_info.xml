@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top|center"
+    android:orientation="vertical"
+    tools:context=".PersonalUserInfo">
+
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/backbutton" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dongdong"
+        android:gravity="center"
+        android:text="사 용 자   정 보"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="160dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:background="@color/gray" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+
+            <ImageButton
+                android:id="@+id/profileButton"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/no_image" />
+
+            <View
+                android:layout_width="5dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="160dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center"
+            android:background="@color/gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:text="아  이  디"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/userID"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:hint="아  이  디"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:text="이        름"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:hint="이        름"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:text="생        일"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/userBirth"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:fontFamily="@font/dongdong"
+            android:gravity="center"
+            android:hint="생        일"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/logoutButton"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/lightSkyBlue"
+        android:fontFamily="@font/dongdong"
+        android:gravity="center"
+        android:text="로 그 아 웃"
+        android:textColor="@color/black"
+        android:textSize="15sp" />
+
+</LinearLayout>
