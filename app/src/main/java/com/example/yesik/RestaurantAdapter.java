@@ -2,6 +2,7 @@ package com.example.yesik;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +25,11 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
     }
 
     public class RestaurantViewHolder extends RecyclerView.ViewHolder {
+
         ImageView logoView;
         TextView restaurantName;
+
+        SharedPreferences saveRestaurantInfo;
 
         public RestaurantViewHolder(Context context, View itemView) {
             super(itemView);
@@ -33,9 +37,16 @@ public class RestaurantAdapter extends RecyclerView.Adapter<RestaurantAdapter.Re
             logoView = itemView.findViewById(R.id.logoView);
             restaurantName = itemView.findViewById(R.id.restaurantName);
 
+            saveRestaurantInfo = context.getSharedPreferences("Reservation", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = saveRestaurantInfo.edit();
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    editor.putString("Selected Restaurant Name", restaurantList.get(getBindingAdapterPosition()).getRestaurantName());
+                    editor.putString("Selected Restaurant Place", restaurantList.get(getBindingAdapterPosition()).getRestaurantPlace());
+                    editor.commit();
+
                     Intent putInfo = new Intent(context, Reserve_Time.class);
                     context.startActivity(putInfo);
                 }
