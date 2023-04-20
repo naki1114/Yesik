@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,85 +7,132 @@
     android:gravity="center|top"
     android:orientation="vertical">
 
-    <ScrollView
-        android:id="@+id/reserveTimePageScroll"
+    <LinearLayout
+        android:id="@+id/restaurantInfoLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:visibility="visible" >
 
-        <LinearLayout
+        <ScrollView
+            android:id="@+id/reserveTimePageScroll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center|top"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/restaurantName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
-                android:fontFamily="@font/dongdong"
-                android:gravity="center"
-                android:hint="상 호 명 / 지 점"
-                android:textColor="@color/black"
-                android:textSize="25sp" />
-
-            <ImageView
-                android:id="@+id/innerView"
-                android:layout_width="match_parent"
-                android:layout_height="195dp"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/restaurant_inner" />
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:gravity="center|top"
+                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/reserveButton"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
-                    android:layout_marginRight="10dp"
-                    android:backgroundTint="@color/lightSkyBlue"
+                <TextView
+                    android:id="@+id/restaurantName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/dongdong"
-                    android:text="예 약 하 기"
-                    android:textColor="@color/black" />
+                    android:gravity="center"
+                    android:hint="상 호 명 / 지 점"
+                    android:textColor="@color/black"
+                    android:textSize="25sp" />
 
-                <Button
-                    android:id="@+id/backButton"
-                    android:layout_width="120dp"
-                    android:layout_height="50dp"
+                <ImageView
+                    android:id="@+id/innerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="195dp"
+                    android:layout_marginTop="20dp"
+                    android:src="@drawable/restaurant_inner" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/mapViewButton"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="@color/lightSkyBlue"
+                        android:fontFamily="@font/dongdong"
+                        android:text="지 도"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/reserveButton"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:backgroundTint="@color/lightSkyBlue"
+                        android:fontFamily="@font/dongdong"
+                        android:text="예 약 하 기"
+                        android:textColor="@color/black" />
+
+                    <Button
+                        android:id="@+id/backButton"
+                        android:layout_width="120dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:backgroundTint="@color/white"
+                        android:fontFamily="@font/dongdong"
+                        android:text="뒤 로 가 기"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/menuText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:backgroundTint="@color/white"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp"
                     android:fontFamily="@font/dongdong"
-                    android:text="뒤 로 가 기"
-                    android:textColor="@color/black" />
+                    android:gravity="center"
+                    android:text="메 뉴"
+                    android:textColor="@color/black"
+                    android:textSize="20sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/menuView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/menuText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="10dp"
-                android:fontFamily="@font/dongdong"
-                android:gravity="center"
-                android:text="메 뉴"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
+        </ScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/menuView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
+    </LinearLayout>
 
-        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/mapViewFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:visibility="gone" >
 
-    </ScrollView>
+        <ImageButton
+            android:id="@+id/mapViewBackButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/backbutton" />
 
-</LinearLayout>
+        <LinearLayout
+            android:id="@+id/mapViewLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:orientation="vertical" />
+
+    </LinearLayout>
+
+</FrameLayout>
