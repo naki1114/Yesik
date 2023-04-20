@@ -22,6 +22,7 @@
     <!--usesCleartextTraffic : 지도를 가져올 때 HTTP 프로토콜 이용한 통신을 하기 때문에 접근 허용 위한 작업-->
     <application
         android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
