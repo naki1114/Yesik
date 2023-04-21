@@ -8,21 +8,35 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import net.daum.mf.map.api.MapView;
 
 public class Reserve_Time extends AppCompatActivity {
 
     String tag;
 
+    LinearLayout restaurantInfoLayout;
+    LinearLayout mapViewLayout;
+    LinearLayout mapViewFrame;
+
     Button reserveButton;
     Button backButton;
+    Button mapViewButton;
+
+    ImageButton mapViewBackButton;
 
     TextView restaurantName;
+
+    MapView mapView;
 
     Dialog timeDialog;
 
@@ -39,6 +53,7 @@ public class Reserve_Time extends AppCompatActivity {
         Log.v(tag, "onCreate() 호출됨");
 
         initializing();
+        setMapView();
     }
 
     @Override
@@ -63,6 +78,22 @@ public class Reserve_Time extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 timeSelectDialog();
+            }
+        });
+
+        mapViewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restaurantInfoLayout.setVisibility(view.GONE);
+                mapViewFrame.setVisibility(view.VISIBLE);
+            }
+        });
+
+        mapViewBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                restaurantInfoLayout.setVisibility(view.VISIBLE);
+                mapViewFrame.setVisibility(view.GONE);
             }
         });
     }
@@ -92,8 +123,14 @@ public class Reserve_Time extends AppCompatActivity {
     public void initializing() {
         tag = "시간 예약 페이지";
 
+        restaurantInfoLayout = findViewById(R.id.restaurantInfoLayout);
+        mapViewLayout = findViewById(R.id.mapViewLayout);
+        mapViewFrame = findViewById(R.id.mapViewFrame);
+
         reserveButton = findViewById(R.id.reserveButton);
         backButton = findViewById(R.id.backButton);
+        mapViewButton = findViewById(R.id.mapViewButton);
+        mapViewBackButton = findViewById(R.id.mapViewBackButton);
 
         restaurantName = findViewById(R.id.restaurantName);
 
@@ -185,6 +222,17 @@ public class Reserve_Time extends AppCompatActivity {
                 timeDialog.dismiss();
             }
         });
+    }
+
+    public void setMapView() {
+        mapView = new MapView(this);
+
+        ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.mapViewLayout);
+        mapViewContainer.addView(mapView);
+
+        mapView.setZoomLevel(1,true);
+
+        mapView.setCurrentLocationEventListener((MapView.CurrentLocationEventListener) this);
     }
 
 }
