@@ -13,11 +13,19 @@
         android:gravity="center|top"
         android:orientation="vertical">
 
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:background="@android:color/transparent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/backbutton" />
+
         <TextView
             android:id="@+id/menuRegister"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_marginTop="50dp"
             android:backgroundTint="@color/lightSkyBlue"
             android:fontFamily="@font/dongdong"
             android:gravity="center"

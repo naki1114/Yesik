@@ -35,13 +35,20 @@ public class Menu_Register extends AppCompatActivity {
 
     RecyclerView menuList;
     MenuAdapter menuAdapter;
+
     EditText inputMenu;
     EditText inputPrice;
+
     Button registButton;
+
     ImageButton menuImageAddButton;
+    ImageButton backButton;
+
     BitmapConverter imageConverter;
+
     SharedPreferences sharedPreferencesItem;
     SharedPreferences getUserID;
+
     String userID;
 
     @Override
@@ -80,6 +87,14 @@ public class Menu_Register extends AppCompatActivity {
             }
         });
 
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu_Register.this, Restaurant.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -113,6 +128,7 @@ public class Menu_Register extends AppCompatActivity {
         inputPrice = findViewById(R.id.priceInput);
         registButton = findViewById(R.id.registerButton);
         menuImageAddButton = findViewById(R.id.menuImageButton);
+        backButton = findViewById(R.id.backButton);
 
         sharedPreferencesItem = getSharedPreferences("MenuItem", MODE_PRIVATE);
         getUserID = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);

@@ -41,10 +41,10 @@ public class Reserve_Time extends AppCompatActivity {
     LinearLayout mapViewFrame;
 
     Button reserveButton;
-    Button backButton;
     Button mapViewButton;
 
     ImageButton mapViewBackButton;
+    ImageButton backButton;
 
     TextView restaurantName;
 
@@ -159,6 +159,7 @@ public class Reserve_Time extends AppCompatActivity {
     public void changeScreen() {
         Intent change = new Intent(Reserve_Time.this, Select_Restaurant.class);
         startActivity(change);
+        finish();
     }
 
     public void timeSelectDialog() {

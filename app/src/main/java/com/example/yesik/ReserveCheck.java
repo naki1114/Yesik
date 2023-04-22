@@ -5,15 +5,20 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
 public class ReserveCheck extends AppCompatActivity {
 
     String tag;
+
+    ImageButton backButton;
 
     RecyclerView reservationListView;
     ReserveAdapter reserveAdapter;
@@ -43,6 +48,15 @@ public class ReserveCheck extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReserveCheck.this, Personal.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     @Override
@@ -71,6 +85,8 @@ public class ReserveCheck extends AppCompatActivity {
         tag = "예약 내역 확인 페이지";
 
         reservationListView = findViewById(R.id.reservationList);
+
+        backButton = findViewById(R.id.backButton);
 
         reservationListView = (RecyclerView) findViewById(R.id.reservationList);
         reservationListView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));

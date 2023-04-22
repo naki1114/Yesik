@@ -44,6 +44,7 @@ public class Restaurant_Register extends AppCompatActivity {
     Button imageRegistButton;
 
     ImageButton getImageButton;
+    ImageButton backButton;
 
     ImageView imageLogo;
 
@@ -85,6 +86,15 @@ public class Restaurant_Register extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Restaurant_Register.this, Restaurant.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         imageSelectSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -202,6 +212,7 @@ public class Restaurant_Register extends AppCompatActivity {
         restaurantDivision = findViewById(R.id.restaurantDivision);
 
         imageRegistButton = findViewById(R.id.imageRegistButton);
+        backButton = findViewById(R.id.backButton);
 
         imageLogo = findViewById(R.id.imageLogo);
 

@@ -18,11 +18,19 @@
             android:orientation="vertical"
             android:gravity="center|top">
 
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="left"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/backbutton" />
+
             <TextView
                 android:id="@+id/nameRegister"
                 android:layout_width="300dp"
                 android:layout_height="70dp"
-                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="식 당   등 록"
                 android:textSize="30sp"

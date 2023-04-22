@@ -24,6 +24,7 @@ public class Select_Restaurant extends AppCompatActivity {
     String tag;
 
     ImageButton textCancelButton;
+    ImageButton backButton;
     EditText restaurantSearch;
 
     BitmapConverter converter;
@@ -71,6 +72,15 @@ public class Select_Restaurant extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         Log.v(tag, "onResume() 호출됨");
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Select_Restaurant.this, Personal.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         textCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,6 +137,7 @@ public class Select_Restaurant extends AppCompatActivity {
         restaurantListRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         restaurantListRecyclerView.addItemDecoration(new DividerItemDecoration(this, 1));
 
+        backButton = findViewById(R.id.backButton);
         textCancelButton = findViewById(R.id.textCancelButton);
         restaurantSearch = findViewById(R.id.restaurantSearch);
 

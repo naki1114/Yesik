@@ -26,11 +26,19 @@
                 android:gravity="center|top"
                 android:orientation="vertical">
 
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="left"
+                    android:background="@android:color/transparent"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/backbutton" />
+
                 <TextView
                     android:id="@+id/restaurantName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
                     android:fontFamily="@font/dongdong"
                     android:gravity="center"
                     android:hint="상 호 명 / 지 점"
@@ -70,16 +78,6 @@
                         android:backgroundTint="@color/lightSkyBlue"
                         android:fontFamily="@font/dongdong"
                         android:text="예 약 하 기"
-                        android:textColor="@color/black" />
-
-                    <Button
-                        android:id="@+id/backButton"
-                        android:layout_width="120dp"
-                        android:layout_height="50dp"
-                        android:layout_marginLeft="5dp"
-                        android:backgroundTint="@color/white"
-                        android:fontFamily="@font/dongdong"
-                        android:text="뒤 로 가 기"
                         android:textColor="@color/black" />
 
                 </LinearLayout>
