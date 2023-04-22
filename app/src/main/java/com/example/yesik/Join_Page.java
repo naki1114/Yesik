@@ -34,6 +34,7 @@ public class Join_Page extends AppCompatActivity {
     LinearLayout corporationNumberLayout;
     LinearLayout restaurantNameLayout;
     LinearLayout divisionLayout;
+    LinearLayout addressLayout;
 
     EditText idInput;
     EditText pwInput;
@@ -43,6 +44,7 @@ public class Join_Page extends AppCompatActivity {
     EditText corporationNumberInput;
     EditText restaurantNameInput;
     EditText restaurantPlaceInput;
+    EditText restaurantAddressInput;
 
     Spinner divisionSpinner;
 
@@ -68,6 +70,7 @@ public class Join_Page extends AppCompatActivity {
     String getCorporationNumber;
     String getRestaurantName;
     String getRestaurantPlace;
+    String getRestaurantAddress;
     String getDivision;
 
 
@@ -81,6 +84,7 @@ public class Join_Page extends AppCompatActivity {
     String[] restaurantCorporationNumberList;
     String[] restaurantNameList;
     String[] restaurantPlaceList;
+    String[] restaurantAddressList;
     String[] restaurantDivisionList;
 
     String[] personalUserIDList;
@@ -117,11 +121,13 @@ public class Join_Page extends AppCompatActivity {
                     corporationNumberLayout.setVisibility(View.VISIBLE);
                     restaurantNameLayout.setVisibility(View.VISIBLE);
                     divisionLayout.setVisibility(View.VISIBLE);
+                    addressLayout.setVisibility(View.VISIBLE);
                 }
                 else {
                     corporationNumberLayout.setVisibility(View.GONE);
                     restaurantNameLayout.setVisibility(View.GONE);
                     divisionLayout.setVisibility(View.GONE);
+                    addressLayout.setVisibility(View.GONE);
                 }
             }
         });
@@ -278,6 +284,7 @@ public class Join_Page extends AppCompatActivity {
                 getCorporationNumber = corporationNumberInput.getText().toString();
                 getRestaurantName = restaurantNameInput.getText().toString();
                 getRestaurantPlace = restaurantPlaceInput.getText().toString();
+                getRestaurantAddress = restaurantAddressInput.getText().toString();
                 getDivision = divisionSpinner.getSelectedItem().toString();
 
                 memberJoin();
@@ -350,6 +357,7 @@ public class Join_Page extends AppCompatActivity {
         corporationNumberLayout = findViewById(R.id.corporationNumberLayout);
         restaurantNameLayout = findViewById(R.id.restauranNameLayout);
         divisionLayout = findViewById(R.id.divisionLayout);
+        addressLayout = findViewById(R.id.addressLayout);
 
         memberCheck = findViewById(R.id.memberCheck);
         restaurantButton = findViewById(R.id.restaurantUser);
@@ -367,6 +375,7 @@ public class Join_Page extends AppCompatActivity {
         corporationNumberInput = findViewById(R.id.corporationNumberInput);
         restaurantNameInput = findViewById(R.id.restaurantNameInput);
         restaurantPlaceInput = findViewById(R.id.restaurantPlaceInput);
+        restaurantAddressInput = findViewById(R.id.restaurantAddressInput);
 
         divisionSpinner = findViewById(R.id.divisionSpinner);
 
@@ -486,6 +495,7 @@ public class Join_Page extends AppCompatActivity {
         editorSplit.putString("Restaurant Name", userInfoSplit.getString("Restaurant Name", "") + "⊙" + getRestaurantName);
         editorSplit.putString("Restaurant Place", userInfoSplit.getString("Restaurant Place", "") + "⊙" + getRestaurantPlace);
         editorSplit.putString("Restaurant Division", userInfoSplit.getString("Restaurant Division", "") + "⊙" + getDivision);
+        editorSplit.putString("Restaurant Address", userInfoSplit.getString("Restaurant Address", "") + "⊙" + getRestaurantAddress);
         editorSplit.putInt("Restaurant User Count", restaurantUserCount);
 
         editorSplit.commit();
@@ -511,6 +521,7 @@ public class Join_Page extends AppCompatActivity {
         restaurantCorporationNumberList = userInfoSplit.getString("Restaurant Corporation Number", "").split("⊙");
         restaurantNameList = userInfoSplit.getString("Restaurant Name", "").split("⊙");
         restaurantPlaceList = userInfoSplit.getString("Restaurant Place", "").split("⊙");
+        restaurantAddressList = userInfoSplit.getString("Restaurant Address", "").split("⊙");
         restaurantDivisionList = userInfoSplit.getString("Restaurant Division", "").split("⊙");
         restaurantUserCount = userInfoSplit.getInt("Restaurant User Count",0);
     }
