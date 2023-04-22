@@ -94,6 +94,9 @@ public class Join_Page extends AppCompatActivity {
 
     Intent intent;
 
+    long finishTime = 1000;
+    long pressTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -269,6 +272,7 @@ public class Join_Page extends AppCompatActivity {
             public void onClick(View view) {
                 intent = new Intent(Join_Page.this, Login_Page.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -463,6 +467,7 @@ public class Join_Page extends AppCompatActivity {
 
                 intent = new Intent(Join_Page.this, Login_Page.class);
                 startActivity(intent);
+                finish();
             }
             else if (personButton.isChecked()) {
                 personalUserCount++;
@@ -476,6 +481,7 @@ public class Join_Page extends AppCompatActivity {
 
                 intent = new Intent(Join_Page.this, Login_Page.class);
                 startActivity(intent);
+                finish();
             }
             else {
                 Toast.makeText(getApplicationContext(), "회원 종류를 선택하세요.", Toast.LENGTH_SHORT).show();
@@ -651,6 +657,24 @@ public class Join_Page extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            pressTime = tempTime;
+            intent = new Intent(Join_Page.this, Login_Page.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
 }

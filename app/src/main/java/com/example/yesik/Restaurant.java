@@ -9,6 +9,7 @@ import android.util.Log;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Restaurant extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class Restaurant extends AppCompatActivity {
     static final String USER_INFO_SPLIT = "UserInfoSplit";
     static final String AUTO_LOGIN_CHECK = "Auto Login Check";
 
+    long finishTime = 1000;
+    long pressTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +111,22 @@ public class Restaurant extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         Log.v(tag, "onDestroy()");
+    }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            pressTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

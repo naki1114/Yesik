@@ -47,6 +47,9 @@ public class Login_Page extends AppCompatActivity {
     int restaurantUserCount;
     int personalUserCount;
 
+    long finishTime = 1000;
+    long pressTime = 0;
+
     static final String USER_INFO_SPLIT = "UserInfoSplit";
     static final String AUTO_LOGIN_CHECK = "Auto Login Check";
 
@@ -82,6 +85,7 @@ public class Login_Page extends AppCompatActivity {
             public void onClick(View view) {
                 putIntent = new Intent(Login_Page.this, Join_Page.class);
                 startActivity(putIntent);
+                finish();
             }
         });
 
@@ -178,6 +182,7 @@ public class Login_Page extends AppCompatActivity {
 
                         putIntent = new Intent(Login_Page.this, Restaurant.class);
                         startActivity(putIntent);
+                        finish();
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -221,6 +226,7 @@ public class Login_Page extends AppCompatActivity {
 
                         putIntent = new Intent(Login_Page.this, Personal.class);
                         startActivity(putIntent);
+                        finish();
                     }
                     else {
                         Toast.makeText(getApplicationContext(), "아이디 혹은 패스워드가 일치하지 않습니다.", Toast.LENGTH_SHORT).show();
@@ -232,6 +238,22 @@ public class Login_Page extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - pressTime;
+
+        if (0 <= intervalTime && finishTime >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            pressTime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
