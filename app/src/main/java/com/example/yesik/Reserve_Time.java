@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,6 @@ import java.util.Locale;
 
 public class Reserve_Time extends AppCompatActivity {
 
-//    private static final MapPoint MARKER_POINT = ;
     String tag;
 
     LinearLayout restaurantInfoLayout;
@@ -237,13 +237,24 @@ public class Reserve_Time extends AppCompatActivity {
     }
 
     public void setMapView() {
+        String[] restaurantNameList = getUserInfo.getString("Restaurant Name", "").split("⊙");
+        String[] restaurantPlaceList = getUserInfo.getString("Restaurant Place", "").split("⊙");
+        String[] restaurantAddressList = getUserInfo.getString("Restaurant Address", "").split("⊙");
+        String address = "";
+
+        for (int count = 1; count < restaurantNameList.length; count++) {
+            if (restaurantName.getText().equals(restaurantNameList[count] + " " + restaurantPlaceList[count])) {
+                address = restaurantAddressList[count];
+            }
+        }
+
         mapView = new MapView(this);
 
         mapViewLayout = findViewById(R.id.mapViewLayout);
         mapViewLayout.addView(mapView);
 
-        double restaurantLatitude = findGeoPoint(getApplicationContext(), "경기도 수원시 영통구 권광로 260번길 36").getLatitude();
-        double restaurantLongitude = findGeoPoint(getApplicationContext(), "경기도 수원시 영통구 권광로 260번길 36").getLongitude();
+        double restaurantLatitude = findGeoPoint(getApplicationContext(), address).getLatitude();
+        double restaurantLongitude = findGeoPoint(getApplicationContext(), address).getLongitude();
 
         // 중심점 변경
         mapView.setMapCenterPoint(MapPoint.mapPointWithGeoCoord(restaurantLatitude, restaurantLongitude), true);
@@ -258,7 +269,7 @@ public class Reserve_Time extends AppCompatActivity {
         MapPOIItem marker = new MapPOIItem();
 
         // 클릭 시 나오는 값
-        marker.setItemName("응급실 떡볶이");
+        marker.setItemName(restaurantName.getText().toString());
         // 왜 있는지 모르겠음
         marker.setTag(0);
         // 좌표를 입력받아 현 위치로 출력
