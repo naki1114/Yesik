@@ -16,7 +16,6 @@ public class Restaurant extends AppCompatActivity {
 
     Button restaurantRegister;
     Button menuRegister;
-    Button tableRegister;
     Button manageTable;
     Button logout;
 
@@ -36,7 +35,6 @@ public class Restaurant extends AppCompatActivity {
 
         restaurantRegister = findViewById(R.id.restaurantRegister);
         menuRegister = findViewById(R.id.menuRegister);
-        tableRegister = findViewById(R.id.tableRegister);
         manageTable = findViewById(R.id.manageTable);
         logout = findViewById(R.id.logout);
 
@@ -67,14 +65,6 @@ public class Restaurant extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Restaurant.this, Menu_Register.class);
-                startActivity(intent);
-            }
-        });
-
-        tableRegister.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Restaurant.this, Table_Register.class);
                 startActivity(intent);
             }
         });
