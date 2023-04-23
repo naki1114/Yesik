@@ -120,7 +120,7 @@ public class Restaurant extends AppCompatActivity {
 
         if (0 <= intervalTime && finishTime >= intervalTime)
         {
-            finish();
+            finishAffinity();
         }
         else
         {

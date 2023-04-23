@@ -247,7 +247,7 @@ public class Login_Page extends AppCompatActivity {
 
         if (0 <= intervalTime && finishTime >= intervalTime)
         {
-            finish();
+            finishAffinity();
         }
         else
         {
