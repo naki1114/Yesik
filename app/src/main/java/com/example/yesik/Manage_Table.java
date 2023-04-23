@@ -114,17 +114,32 @@ public class Manage_Table extends AppCompatActivity {
         for (int count = 1; count < reserveRestaurantNameList.length; count++) {
             if (reserveRestaurantNameList[count].equals(restaurantName) && reserveRestaurantPlaceList[count].equals(restaurantPlace)) {
                 itemCount++;
+            }
+        }
+
+        for (int count = 1; count < reserveRestaurantNameList.length; count++) {
+            if (reserveRestaurantNameList[count].equals(restaurantName) && reserveRestaurantPlaceList[count].equals(restaurantPlace)) {
                 String userID = reserveUserIDList[count];
                 String reserveHour = reserveHourList[count];
                 String reserveMinute = reserveMinuteList[count];
                 String status = reserveStatusList[count];
+
+                if (reserveHour.equals("0")) {
+                    reserveHour = "00";
+                }
+                if (reserveMinute.equals("0")) {
+                    reserveMinute = "00";
+                }
+
                 ManageReservationItem manageReservationItem = new ManageReservationItem (itemCount, userID, reserveHour + " : " + reserveMinute, status);
 
                 manageAdapter.addData(manageReservationItem);
+
+                itemCount--;
             }
-            reservationListView.setAdapter(manageAdapter);
-            manageAdapter.notifyDataSetChanged();
         }
+        reservationListView.setAdapter(manageAdapter);
+        manageAdapter.notifyDataSetChanged();
     }
 
 }
