@@ -28,6 +28,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,6 +76,7 @@ public class Restaurant_Register extends AppCompatActivity {
 
         initializing();
         loadUserInfo();
+        setInnerView();
     }
 
     @Override
@@ -271,13 +274,6 @@ public class Restaurant_Register extends AppCompatActivity {
             innerViewAdapter.notifyDataSetChanged();
             getImageButton.setImageResource(R.drawable.no_image);
             getImage = null;
-
-            if (innerViewAdapter.getItemCount() != 0) {
-                restaurantInnerView.setVisibility(View.VISIBLE);
-            }
-            else {
-                restaurantInnerView.setVisibility(View.GONE);
-            }
         }
     }
 
@@ -327,6 +323,21 @@ public class Restaurant_Register extends AppCompatActivity {
 
         saveImage.putString(userId + " Inner View", saveRestaurantImage.getString(userId + " Inner View", "") + "⊙" + imageConverter.BitmapToString(getImage));
         saveImage.commit();
+    }
+
+    public void setInnerView() {
+        String userId = getUserInfo.getString("Login User ID", "");
+        String[] innerViewList = saveRestaurantImage.getString(userId + " Inner View", "").split("⊙");
+        Log.v(tag, innerViewList[1]);
+        Log.v(tag, innerViewList[2]);
+
+        for (int count = 1; count < innerViewList.length; count++) {
+            InnerViewItem innerViewItem = new InnerViewItem (imageConverter.StringToBitmap(innerViewList[count]));
+
+            innerViewAdapter.addData(innerViewItem);
+        }
+        restaurantInnerView.setAdapter(innerViewAdapter);
+        innerViewAdapter.notifyDataSetChanged();
     }
 
 }
