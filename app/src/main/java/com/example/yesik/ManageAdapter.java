@@ -1,6 +1,7 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,10 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
         TextView number;
         TextView userID;
         TextView reserveTime;
+
         Button status;
+        Button statusConfirm;
+        Button statusDenial;
 
         public ManageViewHolder(Context context, View itemView) {
             super(itemView);
@@ -36,6 +40,32 @@ public class ManageAdapter extends RecyclerView.Adapter<ManageAdapter.ManageView
             userID = itemView.findViewById(R.id.userID);
             reserveTime = itemView.findViewById(R.id.reserveTime);
             status = itemView.findViewById(R.id.status);
+            statusConfirm = itemView.findViewById(R.id.statusConfirm);
+            statusDenial = itemView.findViewById(R.id.statusDenial);
+
+            status.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    status.setVisibility(View.GONE);
+                    statusConfirm.setVisibility(View.VISIBLE);
+                }
+            });
+
+            statusConfirm.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    statusConfirm.setVisibility(View.GONE);
+                    statusDenial.setVisibility(View.VISIBLE);
+                }
+            });
+
+            statusDenial.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    statusDenial.setVisibility(View.GONE);
+                    status.setVisibility(View.VISIBLE);
+                }
+            });
         }
     }
 
