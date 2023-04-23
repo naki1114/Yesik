@@ -28,8 +28,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;

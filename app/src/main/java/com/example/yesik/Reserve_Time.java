@@ -46,7 +46,9 @@ public class Reserve_Time extends AppCompatActivity {
     LinearLayout mapViewFrame;
 
     RecyclerView menuView;
+    RecyclerView innerView;
     MenuViewAdapter menuViewAdapter;
+    InnerViewAdapter innerViewAdapter;
     BitmapConverter imageConverter;
 
     Button reserveButton;
@@ -64,8 +66,10 @@ public class Reserve_Time extends AppCompatActivity {
     SharedPreferences reserveTime;
     SharedPreferences getUserInfo;
     SharedPreferences getMenuImage;
+    SharedPreferences getRestaurantImage;
 
     ArrayList<MenuItem> menuList;
+    ArrayList<InnerViewItem> innerViewList;
 
     int hour;
     int minute;
@@ -79,6 +83,7 @@ public class Reserve_Time extends AppCompatActivity {
         initializing();
         setMapView();
         setMenu();
+        setInnerView();
     }
 
     @Override
@@ -152,9 +157,15 @@ public class Reserve_Time extends AppCompatActivity {
         menuView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         menuView.addItemDecoration(new DividerItemDecoration(this, 1));
 
+        innerView = (RecyclerView) findViewById(R.id.innerView);
+        innerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+
         menuList = new ArrayList<>();
         menuViewAdapter = new MenuViewAdapter(menuList);
         imageConverter = new BitmapConverter();
+
+        innerViewList = new ArrayList<>();
+        innerViewAdapter = new InnerViewAdapter(innerViewList);
 
         restaurantInfoLayout = findViewById(R.id.restaurantInfoLayout);
         mapViewLayout = findViewById(R.id.mapViewLayout);
@@ -174,6 +185,7 @@ public class Reserve_Time extends AppCompatActivity {
         reserveTime = getSharedPreferences("Reservation", MODE_PRIVATE);
         getUserInfo = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
         getMenuImage = getSharedPreferences("MenuItem", MODE_PRIVATE);
+        getRestaurantImage = getSharedPreferences("RestaurantImage", MODE_PRIVATE);
 
         restaurantName.setText(reserveTime.getString("Selected Restaurant Name", "") + " " + reserveTime.getString("Selected Restaurant Place", ""));
     }
@@ -352,6 +364,30 @@ public class Reserve_Time extends AppCompatActivity {
         }
         menuView.setAdapter(menuViewAdapter);
         menuViewAdapter.notifyDataSetChanged();
+    }
+
+    public void setInnerView() {
+        String[] userIDList = getUserInfo.getString("Restaurant User ID", "").split("⊙");
+        String[] restaurantNameList = getUserInfo.getString("Restaurant Name", "").split("⊙");
+        String[] restaurantPlaceList = getUserInfo.getString("Restaurant Place", "").split("⊙");
+        String userId = "";
+
+        for (int count = 1; count < restaurantNameList.length; count++) {
+            if (restaurantName.getText().equals(restaurantNameList[count] + " " + restaurantPlaceList[count])) {
+                userId = userIDList[count];
+                break;
+            }
+        }
+
+        String[] innerViewList = getRestaurantImage.getString(userId + " Inner View", "").split("⊙");
+
+        for (int count = 1; count < innerViewList.length; count++) {
+            InnerViewItem innerViewItem = new InnerViewItem (imageConverter.StringToBitmap(innerViewList[count]));
+
+            innerViewAdapter.addData(innerViewItem);
+        }
+        innerView.setAdapter(innerViewAdapter);
+        innerViewAdapter.notifyDataSetChanged();
     }
 
 }
