@@ -3,11 +3,15 @@ package com.example.yesik;
 import static net.daum.mf.map.api.MapPOIItem.MarkerType.RedPin;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -29,6 +33,7 @@ import net.daum.mf.map.api.MapPoint;
 import net.daum.mf.map.api.MapView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -39,6 +44,10 @@ public class Reserve_Time extends AppCompatActivity {
     LinearLayout restaurantInfoLayout;
     LinearLayout mapViewLayout;
     LinearLayout mapViewFrame;
+
+    RecyclerView menuView;
+    MenuViewAdapter menuViewAdapter;
+    BitmapConverter imageConverter;
 
     Button reserveButton;
     Button mapViewButton;
@@ -54,6 +63,9 @@ public class Reserve_Time extends AppCompatActivity {
 
     SharedPreferences reserveTime;
     SharedPreferences getUserInfo;
+    SharedPreferences getMenuImage;
+
+    ArrayList<MenuItem> menuList;
 
     int hour;
     int minute;
@@ -66,6 +78,7 @@ public class Reserve_Time extends AppCompatActivity {
 
         initializing();
         setMapView();
+        setMenu();
     }
 
     @Override
@@ -135,6 +148,14 @@ public class Reserve_Time extends AppCompatActivity {
     public void initializing() {
         tag = "시간 예약 페이지";
 
+        menuView = (RecyclerView) findViewById(R.id.menuView);
+        menuView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+        menuView.addItemDecoration(new DividerItemDecoration(this, 1));
+
+        menuList = new ArrayList<>();
+        menuViewAdapter = new MenuViewAdapter(menuList);
+        imageConverter = new BitmapConverter();
+
         restaurantInfoLayout = findViewById(R.id.restaurantInfoLayout);
         mapViewLayout = findViewById(R.id.mapViewLayout);
         mapViewFrame = findViewById(R.id.mapViewFrame);
@@ -152,6 +173,7 @@ public class Reserve_Time extends AppCompatActivity {
 
         reserveTime = getSharedPreferences("Reservation", MODE_PRIVATE);
         getUserInfo = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
+        getMenuImage = getSharedPreferences("MenuItem", MODE_PRIVATE);
 
         restaurantName.setText(reserveTime.getString("Selected Restaurant Name", "") + " " + reserveTime.getString("Selected Restaurant Place", ""));
     }
@@ -286,24 +308,50 @@ public class Reserve_Time extends AppCompatActivity {
     public static Location findGeoPoint(Context mcontext, String address) {
         Location loc = new Location("");
         Geocoder coder = new Geocoder(mcontext);
-        List<Address> addr = null;// 한좌표에 대해 두개이상의 이름이 존재할수있기에 주소배열을 리턴받기 위해 설정
+        List<Address> addr = null;
 
         try {
             addr = coder.getFromLocationName(address, 5);
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        }// 몇개 까지의 주소를 원하는지 지정 1~5개 정도가 적당
+        }
         if (addr != null) {
             for (int i = 0; i < addr.size(); i++) {
                 Address lating = addr.get(i);
-                double lat = lating.getLatitude(); // 위도가져오기
-                double lon = lating.getLongitude(); // 경도가져오기
+                double lat = lating.getLatitude();
+                double lon = lating.getLongitude();
                 loc.setLatitude(lat);
                 loc.setLongitude(lon);
             }
         }
         return loc;
+    }
+
+    public void setMenu() {
+        String[] restaurantIDList = getUserInfo.getString("Restaurant User ID", "").split("⊙");
+        String[] restaurantNameList = getUserInfo.getString("Restaurant Name", "").split("⊙");
+        String[] restaurantPlaceList = getUserInfo.getString("Restaurant Place", "").split("⊙");
+        String restaurantID = "";
+
+        for (int count = 1; count < restaurantNameList.length; count++) {
+            if (restaurantName.getText().equals(restaurantNameList[count] + " " + restaurantPlaceList[count])) {
+                restaurantID = restaurantIDList[count];
+                break;
+            }
+        }
+
+        String[] menuImageList = getMenuImage.getString(restaurantID + " Menu Image", "").split("⊙");
+        String[] menuNameList = getMenuImage.getString(restaurantID + " Menu Name", "").split("⊙");
+        String[] menuPriceList = getMenuImage.getString(restaurantID + " Menu Price", "").split("⊙");
+
+        for (int count = 1; count < menuImageList.length; count++) {
+            MenuItem menuItem = new MenuItem(imageConverter.StringToBitmap(menuImageList[count]), menuNameList[count], menuPriceList[count]);
+
+            menuViewAdapter.addData(menuItem);
+        }
+        menuView.setAdapter(menuViewAdapter);
+        menuViewAdapter.notifyDataSetChanged();
     }
 
 }
