@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center|top" >
+
+    <TextView
+        android:id="@+id/number"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp"
+        android:hint="No."
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
+
+    <TextView
+        android:id="@+id/userID"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="아 이 디"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
+
+    <TextView
+        android:id="@+id/reserveTime"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:hint="시   간"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
+
+    <Button
+        android:id="@+id/status"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="5dp"
+        android:hint="상   태"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong"
+        android:backgroundTint="@color/lightSkyBlue"/>
+
+</LinearLayout>

@@ -14,6 +14,7 @@
         android:layout_gravity="left"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
+        android:contentDescription="뒤로가기"
         android:src="@drawable/backbutton" />
 
     <TextView
@@ -23,7 +24,8 @@
         android:text="예 약   관 리"
         android:gravity="center"
         android:textSize="30dp"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:fontFamily="@font/dongdong" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,279 +38,50 @@
             android:id="@+id/tableNoText"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="테 이 블\nN o ."
+            android:layout_marginRight="5dp"
+            android:text="No."
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
 
         <TextView
             android:id="@+id/roomTableText"
-            android:layout_width="80dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:text="룸\n테 이 블"
+            android:layout_marginRight="5dp"
+            android:text="아 이 디"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
 
         <TextView
             android:id="@+id/possibilityText"
-            android:layout_width="70dp"
+            android:layout_width="120dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:text="n 인 용"
+            android:layout_marginRight="5dp"
+            android:text="시   간"
             android:gravity="center"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:fontFamily="@font/dongdong" />
 
         <TextView
             android:id="@+id/usdCheckText"
             android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="75dp"
-            android:text="사 용 여 부"
+            android:text="상   태"
             android:gravity="center"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/exRoomTable1"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="1"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exPossibility1"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="룸"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exQuantity1"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="8인"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exUseCheck1"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="가 능"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/infoButton1"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="변 경"
             android:textColor="@color/black"
-            android:backgroundTint="@color/lightSkyBlue"/>
+            android:fontFamily="@font/dongdong" />
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reservationListView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/exReserveText1"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="예 약 정 보"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exReserveInfo1"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="13일 18시 ~ 19시\n13일 19시 ~ 21시"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center" >
-
-        <TextView
-            android:id="@+id/exRoomTable2"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="2"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exPossibility2"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="테 이 블"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exQuantity2"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="4인"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exUseCheck2"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="가 능"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/infoButton2"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="변 경"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/lightSkyBlue" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/exReserveText2"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="예 약 정 보"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exReserveInfo2"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="13일 18시 ~ 20시\n14일 19시 ~ 21시\n15일 18시 ~ 20시"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:orientation="horizontal"
-        android:gravity="center" >
-
-        <TextView
-            android:id="@+id/exRoomTable3"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="3"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exPossibility3"
-            android:layout_width="80dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="테 이 블"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exQuantity3"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="6인"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exUseCheck3"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="사 용"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/infoButton3"
-            android:layout_width="70dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:text="변 경"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/lightSkyBlue" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/exReserveText3"
-            android:layout_width="135dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="예 약 정 보"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/exReserveInfo3"
-            android:layout_width="220dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:text="13일 18시 ~ 20시\n14일 19시 ~ 21시"
-            android:gravity="center"
-            android:textColor="@color/black" />
-
-    </LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp" />
 
 </LinearLayout>
