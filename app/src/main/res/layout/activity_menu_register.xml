@@ -33,19 +33,58 @@
             android:textColor="@color/black"
             android:textSize="30dp" />
 
-        <ImageButton
-            android:id="@+id/menuImageButton"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/white"
-            android:contentDescription="이 미 지 첨 부"
-            android:scaleType="fitCenter"
-            android:src="@drawable/no_image" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:background="@color/gray" />
+
+                <ImageButton
+                    android:id="@+id/menuImageButton"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="이미지 첨부"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/no_image" />
+
+                <View
+                    android:layout_width="5dp"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:background="@color/gray" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="210dp"
+                android:layout_height="5dp"
+                android:layout_gravity="center"
+                android:background="@color/gray" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:gravity="center"
             android:orientation="horizontal">
 
