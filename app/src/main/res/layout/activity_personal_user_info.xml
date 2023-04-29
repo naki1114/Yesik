@@ -53,6 +53,7 @@
                 android:id="@+id/profileButton"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
+                android:scaleType="fitCenter"
                 android:background="@android:color/transparent"
                 android:src="@drawable/no_image" />
 
