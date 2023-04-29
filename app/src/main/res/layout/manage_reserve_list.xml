@@ -37,40 +37,16 @@
         android:hint="시   간"
         android:textColor="@color/black" />
 
-    <Button
+    <Spinner
         android:id="@+id/status"
         android:layout_width="80dp"
         android:layout_height="50dp"
         android:layout_marginLeft="5dp"
-        android:backgroundTint="@color/lightSkyBlue"
+        android:entries="@array/status"
         android:fontFamily="@font/dongdong"
         android:gravity="center"
         android:text="대기"
         android:textColor="@color/black"
         android:visibility="visible" />
-
-    <Button
-        android:id="@+id/statusConfirm"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
-        android:backgroundTint="@color/blue"
-        android:fontFamily="@font/dongdong"
-        android:gravity="center"
-        android:text="승인"
-        android:textColor="@color/white"
-        android:visibility="gone" />
-
-    <Button
-        android:id="@+id/statusDenial"
-        android:layout_width="80dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="5dp"
-        android:backgroundTint="@color/gray"
-        android:fontFamily="@font/dongdong"
-        android:gravity="center"
-        android:text="거절"
-        android:textColor="@color/white"
-        android:visibility="gone" />
 
 </LinearLayout>
