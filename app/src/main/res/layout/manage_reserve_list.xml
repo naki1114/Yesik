@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/number"
-        android:layout_width="50dp"
+        android:layout_width="40dp"
         android:layout_height="50dp"
         android:layout_marginRight="5dp"
         android:fontFamily="@font/dongdong"
@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/reserveTime"
-        android:layout_width="110dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -39,13 +39,13 @@
 
     <Spinner
         android:id="@+id/status"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:layout_marginLeft="5dp"
         android:entries="@array/status"
         android:fontFamily="@font/dongdong"
         android:gravity="center"
-        android:text="대기"
+        android:hint="대기"
         android:textColor="@color/black"
         android:visibility="visible" />
 
