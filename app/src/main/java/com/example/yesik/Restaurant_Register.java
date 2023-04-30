@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -60,7 +59,9 @@ public class Restaurant_Register extends AppCompatActivity {
     Uri uri;
 
     int spinnerGroup;
-    int modifyData;
+    int modifyData = 1;
+
+    int adapterPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,12 +156,28 @@ public class Restaurant_Register extends AppCompatActivity {
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (modifyData == 1) {
+                            adapterPosition = position;
+
                             Intent intent = new Intent(Intent.ACTION_PICK);
                             intent.setType("image/*");
-                            launcher.launch(intent);
+                            modifyImage.launch(intent);
                         }
                         else if (modifyData == 2) {
-                            // 삭제
+                            innerViewImageList.remove(position);
+
+                            innerViewAdapter.notifyItemRemoved(position);
+                            innerViewAdapter.notifyItemRangeChanged(position, innerViewImageList.size());
+
+                            String userId = getUserInfo.getString("Login User ID", "");
+                            String allInnerView = "";
+
+                            for (int count = innerViewImageList.size() - 1; count >= 0; count--) {
+                                allInnerView += "⊙" + innerViewImageList.get(count).getInnerView().toString();
+                            }
+                            SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
+
+                            saveImage.putString(userId + " Inner View", allInnerView);
+                            saveImage.commit();
                         }
                     }
                 });
@@ -242,6 +259,34 @@ public class Restaurant_Register extends AppCompatActivity {
                 Glide.with(Restaurant_Register.this)
                         .load(uri)
                         .into(getImageButton);
+            }
+            else if (result.getResultCode() == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
+
+    ActivityResultLauncher<Intent> modifyImage = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK) {
+                uri = result.getData().getData();
+
+                InnerViewItem innerViewItem = new InnerViewItem(uri);
+                innerViewImageList.set(adapterPosition, innerViewItem);
+
+                innerViewAdapter.notifyDataSetChanged();
+
+                String userId = getUserInfo.getString("Login User ID", "");
+                String allInnerView = "";
+
+                for (int count = innerViewImageList.size() - 1; count >= 0; count--) {
+                    allInnerView += "⊙" + innerViewImageList.get(count).getInnerView().toString();
+                }
+                SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
+
+                saveImage.putString(userId + " Inner View", allInnerView);
+                saveImage.commit();
             }
             else if (result.getResultCode() == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show();
