@@ -1,12 +1,15 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -15,6 +18,8 @@ public class InnerViewAdapter extends RecyclerView.Adapter<InnerViewAdapter.Inne
     private ArrayList<InnerViewItem> innerViewImageList;
 
     InnerViewViewHolder innerViewViewHolder;
+
+    Context contextActivity;
 
     public InnerViewAdapter (ArrayList<InnerViewItem> innerView) {
         innerViewImageList = innerView;
@@ -26,6 +31,7 @@ public class InnerViewAdapter extends RecyclerView.Adapter<InnerViewAdapter.Inne
 
         public InnerViewViewHolder(Context context, View itemView) {
             super(itemView);
+            contextActivity = context;
             innerViewImage = itemView.findViewById(R.id.innerViewImage);
 
             innerViewImage.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +60,9 @@ public class InnerViewAdapter extends RecyclerView.Adapter<InnerViewAdapter.Inne
 
     @Override
     public void onBindViewHolder (@NonNull InnerViewAdapter.InnerViewViewHolder holder, int position) {
-        holder.innerViewImage.setImageBitmap(innerViewImageList.get(position).getInnerView());
+        Glide.with(contextActivity)
+                .load(innerViewImageList.get(position).getInnerView())
+                .into(holder.innerViewImage);
     }
 
     @Override

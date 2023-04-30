@@ -1,5 +1,9 @@
 package com.example.yesik;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -9,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -21,6 +26,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Menu_Register extends AppCompatActivity {
@@ -50,6 +59,8 @@ public class Menu_Register extends AppCompatActivity {
     SharedPreferences getUserID;
 
     String userID;
+
+    int positionAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +106,21 @@ public class Menu_Register extends AppCompatActivity {
                 finish();
             }
         });
+
+        menuAdapter.setOnImageClickListener(new MenuAdapter.OnImageClickListener() {
+            @Override
+            public void onImageClick(View v, int position) {
+                if (menuAdapter.statusCheck == 0) {
+                    positionAdapter = position;
+                    modifyImage();
+                }
+                else {
+
+                }
+            }
+        });
     }
+
 
     @Override
     protected void onPause() {
@@ -206,5 +231,24 @@ public class Menu_Register extends AppCompatActivity {
         menuList.setAdapter(menuAdapter);
         menuAdapter.notifyDataSetChanged();
     }
+
+    public void modifyImage() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        launcher.launch(intent);
+    }
+
+    ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+        @Override
+        public void onActivityResult(ActivityResult result) {
+            if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                Bundle extras = result.getData().getExtras();
+                menuBitmapImage = (Bitmap) extras.get("data");
+                menuImageAddButton.setImageBitmap(menuBitmapImage);
+            }
+            else if (result.getResultCode() == RESULT_CANCELED) {
+                Toast.makeText(getApplicationContext(), "사진 촬영 취소", Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
 
 }

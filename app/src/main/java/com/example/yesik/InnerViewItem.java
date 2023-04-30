@@ -1,20 +1,20 @@
 package com.example.yesik;
 
-import android.graphics.Bitmap;
+import android.net.Uri;
 
 public class InnerViewItem {
 
-    Bitmap innerView;
+    Uri innerView;
 
-    public InnerViewItem (Bitmap image) {
+    public InnerViewItem (Uri image) {
         this.innerView = image;
     }
 
-    public Bitmap getInnerView() {
+    public Uri getInnerView() {
         return innerView;
     }
 
-    public void setInnerView(Bitmap innerView) {
+    public void setInnerView(Uri innerView) {
         this.innerView = innerView;
     }
 }

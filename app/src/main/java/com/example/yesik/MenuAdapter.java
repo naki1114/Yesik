@@ -1,7 +1,12 @@
 package com.example.yesik;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +33,8 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
     MenuViewHolder menuViewHolder;
 
     MenuItem menuItem;
+
+    int statusCheck = 1;
 
     public MenuAdapter (ArrayList<MenuItem> menuItem) {
         menuList = menuItem;
@@ -68,11 +80,23 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 }
             });
 
+            menuImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position = getBindingAdapterPosition();
+                    if (mListener != null) {
+                        mListener.onImageClick(view, position);
+                    }
+                }
+            });
+
         }
 
         // ViewHolder Custom Method
         public void modifyData() {
+            // 수정 버튼
             if (visibleCheck % 2 == 0) {
+                statusCheck = 0;
                 menuNameEdit.setText(menuNameView.getText().toString());
                 menuPriceEdit.setText(menuPriceView.getText().toString().substring(2,menuPriceView.getText().length()));
 
@@ -88,8 +112,11 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 removeButton.setText("취 소");
 
                 visibleCheck++;
+                Log.v("수정버튼 statusCheck", "" + statusCheck);
             }
+            // 완료 버튼
             else {
+                statusCheck = 1;
                 menuNameView.setText(menuNameEdit.getText().toString());
                 menuPriceView.setText("₩ " + menuPriceEdit.getText().toString());
 
@@ -110,6 +137,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
                 removeButton.setText("삭 제");
 
                 visibleCheck--;
+                Log.v("완료버튼 statusCheck", "" + statusCheck);
             }
         }
 
@@ -193,6 +221,16 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuAdapter.MenuViewHolder
 
     public void addData(MenuItem menuItem) {
         menuList.add(0, menuItem);
+    }
+
+    public interface OnImageClickListener {
+        void onImageClick(View v, int position);
+    }
+
+    private OnImageClickListener mListener = null;
+
+    public void setOnImageClickListener(OnImageClickListener listener) {
+        this.mListener = listener;
     }
 
 }

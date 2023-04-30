@@ -13,10 +13,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,8 +26,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 public class Restaurant_Register extends AppCompatActivity {
@@ -52,8 +50,6 @@ public class Restaurant_Register extends AppCompatActivity {
 
     RecyclerView restaurantInnerView;
 
-    Bitmap getImage;
-
     ArrayList<InnerViewItem> innerViewImageList;
 
     InnerViewAdapter innerViewAdapter;
@@ -61,7 +57,7 @@ public class Restaurant_Register extends AppCompatActivity {
     SharedPreferences getUserInfo;
     SharedPreferences saveRestaurantImage;
 
-    BitmapConverter imageConverter;
+    Uri uri;
 
     int spinnerGroup;
     int modifyData;
@@ -159,7 +155,9 @@ public class Restaurant_Register extends AppCompatActivity {
                 dlg.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         if (modifyData == 1) {
-                            // 수정
+                            Intent intent = new Intent(Intent.ACTION_PICK);
+                            intent.setType("image/*");
+                            launcher.launch(intent);
                         }
                         else if (modifyData == 2) {
                             // 삭제
@@ -226,7 +224,6 @@ public class Restaurant_Register extends AppCompatActivity {
         getUserInfo = getSharedPreferences("UserInfoSplit", MODE_PRIVATE);
         saveRestaurantImage = getSharedPreferences("RestaurantImage", MODE_PRIVATE);
 
-        imageConverter = new BitmapConverter();
         innerViewImageList = new ArrayList<>();
         innerViewAdapter = new InnerViewAdapter(innerViewImageList);
     }
@@ -241,15 +238,10 @@ public class Restaurant_Register extends AppCompatActivity {
         @Override
         public void onActivityResult(ActivityResult result) {
             if (result.getResultCode() == RESULT_OK) {
-                Uri uri = result.getData().getData();
-                try {
-                    getImage = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                    getImageButton.setImageBitmap(getImage);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                uri = result.getData().getData();
+                Glide.with(Restaurant_Register.this)
+                        .load(uri)
+                        .into(getImageButton);
             }
             else if (result.getResultCode() == RESULT_CANCELED) {
                 Toast.makeText(getApplicationContext(), "사진 선택 취소", Toast.LENGTH_SHORT).show();
@@ -258,32 +250,34 @@ public class Restaurant_Register extends AppCompatActivity {
     });
 
     public void registInnerView() {
-        if (getImage == null) {
+        if (uri == null) {
             Toast.makeText(getApplicationContext(), "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
         }
         else {
             saveInnerView();
 
-            InnerViewItem innerViewItem = new InnerViewItem(getImage);
+            InnerViewItem innerViewItem = new InnerViewItem(uri);
 
             innerViewAdapter.addData(innerViewItem);
             restaurantInnerView.setAdapter(innerViewAdapter);
 
             innerViewAdapter.notifyDataSetChanged();
             getImageButton.setImageResource(R.drawable.no_image);
-            getImage = null;
+            uri = null;
         }
     }
 
     public void registLogo() {
-        if (getImage == null) {
+        if (uri == null) {
             Toast.makeText(getApplicationContext(), "사진을 선택하세요.", Toast.LENGTH_SHORT).show();
         }
         else {
             saveLogo();
 
-            imageLogo.setImageBitmap(getImage);
-            getImage = null;
+            Glide.with(Restaurant_Register.this)
+                    .load(uri)
+                    .into(imageLogo);
+            uri = null;
             getImageButton.setImageResource(R.drawable.no_image);
         }
     }
@@ -297,8 +291,9 @@ public class Restaurant_Register extends AppCompatActivity {
         String userId = getUserInfo.getString("Login User ID", "");
 
         if (!saveRestaurantImage.getString(userId + " Logo", "").equals("")) {
-            getImage = imageConverter.StringToBitmap(saveRestaurantImage.getString(userId + " Logo", ""));
-            imageLogo.setImageBitmap(getImage);
+            Glide.with(Restaurant_Register.this)
+                    .load(Uri.parse(saveRestaurantImage.getString(userId + " Logo", "")))
+                    .into(imageLogo);
         }
 
         corporationNumber.setText(corporationNumberList[userIndex].substring(0,3) + " - " + corporationNumberList[userIndex].substring(3,5) + " - " + corporationNumberList[userIndex].substring(5,10));
@@ -311,7 +306,7 @@ public class Restaurant_Register extends AppCompatActivity {
         SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
         String userId = getUserInfo.getString("Login User ID", "");
 
-        saveImage.putString(userId + " Logo", imageConverter.BitmapToString(getImage));
+        saveImage.putString(userId + " Logo", uri.toString());
         saveImage.commit();
     }
 
@@ -319,18 +314,16 @@ public class Restaurant_Register extends AppCompatActivity {
         SharedPreferences.Editor saveImage = saveRestaurantImage.edit();
         String userId = getUserInfo.getString("Login User ID", "");
 
-        saveImage.putString(userId + " Inner View", saveRestaurantImage.getString(userId + " Inner View", "") + "⊙" + imageConverter.BitmapToString(getImage));
+        saveImage.putString(userId + " Inner View", saveRestaurantImage.getString(userId + " Inner View", "") + "⊙" + uri.toString());
         saveImage.commit();
     }
 
     public void setInnerView() {
         String userId = getUserInfo.getString("Login User ID", "");
         String[] innerViewList = saveRestaurantImage.getString(userId + " Inner View", "").split("⊙");
-        Log.v(tag, innerViewList[1]);
-        Log.v(tag, innerViewList[2]);
 
         for (int count = 1; count < innerViewList.length; count++) {
-            InnerViewItem innerViewItem = new InnerViewItem (imageConverter.StringToBitmap(innerViewList[count]));
+            InnerViewItem innerViewItem = new InnerViewItem (Uri.parse(innerViewList[count]));
 
             innerViewAdapter.addData(innerViewItem);
         }

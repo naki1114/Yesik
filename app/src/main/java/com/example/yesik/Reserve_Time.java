@@ -16,6 +16,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -382,7 +383,7 @@ public class Reserve_Time extends AppCompatActivity {
         String[] innerViewList = getRestaurantImage.getString(userId + " Inner View", "").split("⊙");
 
         for (int count = 1; count < innerViewList.length; count++) {
-            InnerViewItem innerViewItem = new InnerViewItem (imageConverter.StringToBitmap(innerViewList[count]));
+            InnerViewItem innerViewItem = new InnerViewItem (Uri.parse(innerViewList[count]));
 
             innerViewAdapter.addData(innerViewItem);
         }
